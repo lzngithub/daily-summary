@@ -8,10 +8,10 @@
 </head>
 <body>
     <script>
-        let a = [1, 2, 34, 3, 3432, -4, 0.999]
-        console.log(a)
-        console.log(Math.max(...a))
-        console.log(Math.max.apply(null, a))
+        function a (...b) {
+            console.log(b.length)
+        }
+        a(1, 2, 4)
     </script>
 </body>
 </html>
