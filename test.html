@@ -10,14 +10,11 @@
 
 <body>
   <script>
-    let arr = [273, 34, 32, 23]
+    let arr = [273, 34, 32, 1, 23]
     function dataSort(origin = []) {
-      for (let i = 0; i < origin.length; i ++) {
-        for (let j = 0; j < origin.length - i - 1; j ++) {
-          if(origin[j] > origin[j+1]) [origin[j], origin[j+1]] = [origin[j+1], origin[j]]
-        }
-      }
-      return origin
+
+      let baseData = origin[0]
+
     }
     console.log(dataSort(arr))
   </script>
