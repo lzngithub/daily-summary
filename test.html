@@ -12,25 +12,38 @@
   <script>
     let arr = [273, 34, 32, 1, 23]
     function dataSort(origin = []) {
-      let maxBit = Math.max(...origin).toString().length
-      let dev = 1, mod = 10, bucket = []
-      
-      for(let i = 0; i < maxBit; i ++, dev *= 10, mod *= 10) {
-        for(let j = 0; j < origin.length; j ++) {
-          let index = Math.floor((origin[j] % mod) / dev)
-          if (!bucket[index]) bucket[index] = []
-          bucket[index].push(origin[j])
+
+      let len = origin.length
+
+      function buildMaxHeap(origin) {
+        for (let i = Math.floor(origin.length / 2); i > 0; i --) {
+          heapify(origin, i)
+        }
+      }
+
+      function heapify(origin, i) {
+        let left = 2*i + 1;
+        let right = 2*i + 2
+        let maxIndex = i
+        if (left < len && origin[left] > origin[maxIndex]) {
+          maxIndex = left
+        }
+        if (right < len && origin[right] > origin[maxIndex]) {
+          maxIndex = right
         }
 
-        let pos = 0
-        for(let j = 0; j < bucket.length; j ++) {
-          let value = undefined
-          if (bucket[j]) {
-            while((value = bucket[j].shift())) {
-              origin[pos++] = value
-            }
-          }
+        if (maxIndex !== i) {
+          [origin[maxIndex], origin[i]] = [origin[i], origin[maxIndex]]
+          heapify(origin, maxIndex)
         }
+      }
+
+      buildMaxHeap(origin)
+      for (let i = origin.length - 1; i > 0; i --) {
+        [origin[0], origin[i]] = [origin[i], origin[0]]
+        len --;
+        heapify(origin, 0)
+
       }
       return origin
     }
