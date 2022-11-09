@@ -12,22 +12,26 @@
   <script>
     let arr = [273, 34, 32, 1, 23]
     function dataSort(origin = []) {
-      function core(arr, left, right) {
-        if (left >= right ) return
-        // 定义左边的基数值
-        let baseIndex = left
-        let baseValue = arr[left]
-        for(let i = left + 1; i <= right; i ++) {
-          if(arr[i] < baseValue) {
-            [arr[i], arr[baseIndex+1]] = [arr[baseIndex+1], arr[i]]
-            baseIndex ++
+      let maxBit = Math.max(...origin).toString().length
+      let dev = 1, mod = 10, bucket = []
+      
+      for(let i = 0; i < maxBit; i ++, dev *= 10, mod *= 10) {
+        for(let j = 0; j < origin.length; j ++) {
+          let index = Math.floor((origin[j] % mod) / dev)
+          if (!bucket[index]) bucket[index] = []
+          bucket[index].push(origin[j])
+        }
+
+        let pos = 0
+        for(let j = 0; j < bucket.length; j ++) {
+          let value = undefined
+          if (bucket[j]) {
+            while((value = bucket[j].shift())) {
+              origin[pos++] = value
+            }
           }
         }
-        [arr[left], arr[baseIndex]] = [arr[baseIndex], arr[left]]
-        core(arr, left, baseIndex)
-        core(arr, baseIndex+1, right)
       }
-      core(origin, 0, origin.length - 1)
       return origin
     }
     console.log(dataSort(arr))
