@@ -1,0 +1,14 @@
+.g-container {
+    position: relative;
+    width: 300px;
+    height: 100px;
+}
+
+.g-content {
+    height: 100px;
+}
+
+.g-filter {
+    height: 100px;
+    background: radial-gradient(circle at 50% -10px, transparent 0, transparent 39px, #000 40px, #000);
+}
