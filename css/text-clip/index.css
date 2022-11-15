@@ -1,0 +1,27 @@
+body {
+    font-family:'Times New Roman', Times, serif;
+    height: 100vh;
+    padding: 0px;
+    margin: 0px;
+    background-color: black;
+}
+
+div {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 100vh;
+    font-size: 100px;
+    background-image: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: trans 5s infinite;
+}
+
+@keyframes trans {
+    100% {
+        background-position: 400% 0;
+    }
+}
+
