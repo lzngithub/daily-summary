@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        body {
+            overflow: auto;
+        }
+        #wrapper {
+            position: relative;
+            top: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 10px solid #000;
+            height: 600px;
+            width: 1000px;
+            background-color: #eee;
+            overflow: auto;
+        }
+        #content {
+            display: inline-block;
+            width: 2000px;
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="content"></div>
+    </div>
+    <script>
+        let content = document.getElementById('content')
+        let wrapper = document.getElementById('wrapper')
+        console.log(screen.height) // 固定大小
+        console.log(screen.availHeight) // 固定大小
+        console.log(window.outerHeight) // 浏览器视口大小，包括任务栏页签部分
+        console.log(window.innerHeight) // 可用高度大小，内容区，包括滚动条,会随浏览器窗口大小变化
+        console.log(wrapper.clientHeight)
+        console.log(wrapper.offsetHeight) // 包括border和滚动条
+        console.log(wrapper.scrollWidth) // 内容高度，包括溢出不可见的内容
+        console.log('x, y')
+        console.log(wrapper.offsetTop)
+    </script>
+</body>
+</html>

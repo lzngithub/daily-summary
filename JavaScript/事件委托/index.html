@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+    <style>
+        #out {
+            display: inline-block;
+            width: 200px;
+            height: 200px;
+            background-color: #aaa;
+        }
+        #inner {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <div id="out">
+        <div id="inner"></div>
+    </div>
+    <script>
+        let out = document.getElementById('out')
+        let inner = document.getElementById('inner')
+        out.addEventListener('click', () => {
+            console.log('out')
+        }, true)
+        inner.addEventListener('click', (e) => {
+            e.stopPropagation()
+            e.stopImmediatePropagation()
+            e.preventDefault() // 阻止默认事件
+            console.log('inner')
+        }, false)
+    </script>
+</body>
+</html>
