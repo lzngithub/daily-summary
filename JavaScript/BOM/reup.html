@@ -50,15 +50,16 @@
         const up = document.querySelector('.up')
         const content = document.querySelector('.content')
         const wrapper = document.querySelector('.wrapper')
-        console.log(wrapper)
         wrapper.onscroll = (e) => {
-            console.log(e.target.scrollTop)
+            let scrollTop = e.target.scrollTop
+            up.style.opacity = scrollTop/500
             
         }
         up.onclick = (e) => {
-            console.log(content)
-            console.log(content.scrollTop)
-            wrapper.scrollTop = 0
+            wrapper.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            })
         }
     </script>
 </body>
