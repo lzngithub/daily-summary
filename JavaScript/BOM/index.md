@@ -55,6 +55,62 @@ reload(): 刷新，传递参数true则会强制清空缓存刷新页面
 
 屏幕对象
 
-
 window.innerWidth: 浏览器内容显示区域的宽度，不包括控制台的部分
+
+获取屏幕的高度：screen.heigt
+获取屏幕可用高度（去掉底部任务栏高度）: screen.availHeight
+
+浏览器高度：window.outerHeight
+浏览器可用高度：window.innerHeight
+
+元素(视口)高度：element.clinetHeight(content + padding)
+元素（视口）高度：element.offsetHeight(content + padding + 滚动条 + margin)
+元素内容高度：element.scrollHeight
+
+> 通过element.style.height获取的是内联样式设置的高度，内联样式设置的元素高度跟元素实际高度不是恒等的关系
+> 影响内容高度的因素有：margin padding box-sizing line-height height
+> overflow默认值visible，内容不会被修建，会呈现在元素框之外，就是不会滚动
+
+改变元素高度：通过class或者内联样式
+
+距离element.offsetParent(定位的父元素)的距离：element.offsetTop
+滚动条长度：element.scrollTop（该值可变）
+
+获取元素相对于浏览器的位置: element.getBoundingClientRect().top/bottom/left/right
+获取元素的相对位置（相对于浏览器）：
+```js
+// 1. 方法一
+element.getBoundingClientRect().top
+// 2. 方法二
+function getElementViewTop(element) {
+    let current = element
+    let len = 0
+    while(current != null) {
+        len = current.offsetTop
+        current = current.offsetParent
+    }
+    return len - element.scrollTop
+}
+
+```
+
+获取元素的绝对位置（元素实际内容的宽高）: 
+
+```js
+// 1. 方法一
+element.getBoundingClientRect().top + element.scrollTop
+
+// 2. 方法二
+function getElementTop(element) {
+    let current = element
+    let len = 0
+    while(current != null) {
+        len = current.offsetTop
+        current = current.offsetParent
+    }
+    return len
+}
+
+```
+
 
