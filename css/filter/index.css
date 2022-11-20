@@ -11,7 +11,7 @@
 
 .g-content {
     height: 100px;
-    filter: contrast(20);
+    filter: contrast(0);
     background-color: #fff;
     overflow: hidden;
 }
@@ -19,29 +19,5 @@
 .g-filter {
     height: 100px;
     background: radial-gradient(circle at 50% -10px, transparent 0, transparent 39px, #000 40px, #000);
-    filter: blur(10px);
-}
-
-
-
-.yuanhu {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    background-color: #fff;
-    filter: contrast(20);
-    overflow: hidden;
-}
-
-.yuanhu::before {
-    position: absolute;
-    content: '';
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    border-radius: 50%;
-    border: 20px solid transparent;
-    border-bottom: 20px solid #000;
     filter: blur(10px);
 }
