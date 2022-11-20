@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+
+<body>
+    <canvas id="can" width="300" height="300">
+        你的浏览器不支持canvas，请升级你的浏览器
+    </canvas>
+    <script>
+        function draw() {
+            let can = document.getElementById('can')
+            if (!can.getContext) return
+            var ctx = can.getContext("2d");
+            ctx.fillStyle = "rgb(200,0,0)";
+            //绘制矩形
+            ctx.fillRect(10, 10, 55, 50); // x,y,width,height
+            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
+            ctx.fillRect(30, 30, 55, 50);
+        }
+        draw()
+    </script>
+</body>
+
+</html>
