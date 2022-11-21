@@ -7,9 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>canvas</title>
 </head>
-
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 <body>
-    <canvas id="can" width="300" height="300">
+    <canvas id="can" width="900" height="900" style="background-color: #eee;">
         你的浏览器不支持canvas，请升级你的浏览器
     </canvas>
     <script>
@@ -17,11 +22,49 @@
             let can = document.getElementById('can')
             if (!can.getContext) return
             var ctx = can.getContext("2d");
-            ctx.fillStyle = "rgb(200,0,0)";
-            //绘制矩形
-            ctx.fillRect(10, 10, 55, 50); // x,y,width,height
-            ctx.fillStyle = "rgba(0, 0, 200, 0.5)";
-            ctx.fillRect(30, 30, 55, 50);
+            // 矩形
+            ctx.fillStyle = '#ccc'
+            ctx.rect(0, 0, 100, 100)
+            ctx.fill()
+            
+            ctx.beginPath()
+            ctx.strokeStyle = 'orange'
+            ctx.rect(150, 0, 100, 100)
+            ctx.stroke()
+            // 圆
+            ctx.beginPath()
+            ctx.lineWidth = 10
+            ctx.strokeStyle = 'blue'
+            ctx.arc(350, 50, 50, 0, 2*Math.PI)
+            ctx.stroke()
+            // 文本
+            ctx.font = "30px Arial"
+            ctx.fillText('hello world', 450, 65)
+            // 图像
+            let img = document.createElement('img')
+            img.src = './photo/example.png'
+            console.log(img)
+            img.onload = () => {
+                ctx.drawImage(img, 650, 0, 100, 100)
+            }
+            //路径
+            ctx.beginPath()
+            ctx.strokeStyle = 'red'
+            ctx.lineWidth = 2
+            ctx.moveTo(20, 150)
+            ctx.quadraticCurveTo(20, 200, 100, 150)
+            ctx.stroke()
+
+            ctx.beginPath()
+            ctx.strokeStyle = 'black'
+            ctx.moveTo(150, 150)
+            ctx.lineTo(200, 150)
+            ctx.lineTo(250, 180)
+            ctx.lineTo(300, 120)
+            ctx.lineTo(350, 180)
+            ctx.lineTo(400, 150)
+            ctx.lineTo(800, 150)
+            ctx.stroke()
         }
         draw()
     </script>
