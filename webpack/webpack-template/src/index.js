@@ -1,4 +1,4 @@
 import add from './add'
-import './index.css'
+import './index.less'
 
 console.log(add(1, 2))

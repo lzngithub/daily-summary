@@ -140,7 +140,27 @@ npm install --save-dev html-webpack-plugin
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-plugins: [new HtmlWebpackPlugin()],
+plugins: [new HtmlWebpackPlugin({
+  template: './public/index.html' // 以该文件为模板创建html文件
+})],
+```
+
+增加 html 模板文件，方便后面通过 img 标签引入图片
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div></div>
+    <img src="./1.webp" alt="" width="300" height="200" />
+  </body>
+</html>
 ```
 
 ## 处理 css 资源
@@ -166,7 +186,7 @@ module: {
 },
 ```
 
-## 处理less
+## 处理 less
 
 ```bash
 npm i less-loader -D
@@ -178,21 +198,20 @@ npm i less-loader -D
 module: {
     rules: [
       {
-        test: /\.css$/i, // 匹配文件的正则
-        use: ["style-loader", "css-loader"], // 用到的loader
-      },
-      {
         test: /\.less$/i, // 匹配文件的正则
         use: ["style-loader", "css-loader", "less-loader"], // 用到的loader
       },
     ],
 },
 ```
-* sass等同理
 
-## 处理图片
+- sass 等同理
 
-html-loader：为html引入图片所需要
+## 处理图片资源
+
+css 中图片的引入 webpack5 会自动处理，因为只需要考虑 img 标签引入的就可以了
+
+html-loader：为 html 引入图片所需要
 
 ```bash
 npm i html-loader -D
@@ -211,13 +230,30 @@ module: {
 },
 ```
 
+## 处理其他资源
+
+配置
+
+```js
+{
+  test: /\.(avi|mp3|ttf|woff2?)$/,
+  type: "asset/resource",
+  generator: {
+    filename: "resources/[hash:10][ext][query]",
+  },
+},
+```s
+
 ## devServer
 
 安装
+
 ```bash
 npm i webpack-dev-server -D
 ```
+
 配置
+
 ```js
 devServer: {
     static: {
@@ -228,6 +264,7 @@ devServer: {
     open: true,
 },
 ```
+
 启动命令改为
 
 ```bash
