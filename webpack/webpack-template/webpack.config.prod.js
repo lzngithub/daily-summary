@@ -1,9 +1,11 @@
-const path = require('path')
+const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // 引入语法检查
+const ESLintPlugin = require('eslint-webpack-plugin');
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production';
 
 module.exports = {
   /**
@@ -71,14 +73,12 @@ module.exports = {
       // 对输出的css文件进行重命名
       filename: 'css/index.css',
     }),
+    new ESLintPlugin({
+      fix: true,
+    }),
   ],
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    compress: true,
-    port: 9000,
-    open: true,
+  optimization: {
+    minimizer: [new CssMinimizerPlugin()],
   },
   /**
    * 模式

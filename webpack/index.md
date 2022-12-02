@@ -242,7 +242,111 @@ module: {
     filename: "resources/[hash:10][ext][query]",
   },
 },
-```s
+```
+
+## 将 css 单独提取出来
+
+插件 mini-css-extract-plugin
+
+安装
+
+```bash
+npm i -D mini-css-extract-plugin
+```
+
+配置
+
+```js
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+plugins: [new MiniCssExtractPlugin()]
+
+rules: [
+  {
+    test: /\.css$/i,
+    use: [MiniCssExtractPlugin.loader, "css-loader"],
+  },
+  {
+    test: /\.less$/i,
+    use: [MiniCssExtractPlugin.loader, "css-loader", "less-loader"],
+  },
+],
+
+```
+
+## css兼容性处理
+
+postcss-loader: 做css兼容处理
+postcss-present-env: 帮助postcss-loader找到package.json中browserslist中的浏览器兼容性配置
+
+```bash
+npm i -D postcss-loader postcss-present-env
+```
+
+在package.json中增加配置
+
+```json
+"browserslist": {
+  "development": [
+    "last 1 chrome version",  // 兼容最近的一个chrome版本
+    "last 1 firefox version",
+    "last 1 safari version"
+  ],
+  "production":[
+      ">0.2%", // 兼容99.8%的浏览器，条件取并集
+      "not dead", // 不要已经丢弃的浏览器
+      "not op_mini all" //不要所有的欧朋浏览器
+  ]
+}
+```
+
+在根目录新建postcss.config.js配置文件
+
+```js
+//编辑postcss-loader插件配置的文件
+module.exports = {
+  plugins: [
+      require('postcss-preset-env')
+  ]
+}
+```
+
+在webpack.config.js中配置
+```js
+rules: [
+  {
+    test: /\.css$/i,
+    use: [MiniCssExtractPlugin.loader, "css-loader", 'postcss-loader'],
+  },
+  {
+    test: /\.less$/i,
+    use: [MiniCssExtractPlugin.loader, "css-loader", 'postcss-loader', "less-loader"],
+  },
+],
+```
+
+## 压缩css
+
+webpack5用css-minimizer-webpack-plugin，5之前用optimize-css-assets-webpack-plugin
+
+安装
+```bash
+npm i -D css-minimizer-webpack-plugin
+```
+
+配置
+```js
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+module.exports = {
+  optimization: {
+    minimizer: [
+      new CssMinimizerPlugin(),
+    ],
+  },
+};
+```
+
+
 
 ## devServer
 
