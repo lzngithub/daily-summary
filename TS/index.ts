@@ -1,2 +1,3 @@
-let tup: [number, string]
-tup = [1, '2']
+let x: undefined = undefined
+
+x = null
