@@ -59,6 +59,11 @@ module.exports = {
           filename: 'resources/[hash:10][ext][query]',
         },
       },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'babel-loader',
+      },
     ],
   },
   /**

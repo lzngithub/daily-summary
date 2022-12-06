@@ -348,7 +348,9 @@ module.exports = {
 
 
 
-## devServer
+## webpack热更新
+
+借助webpack-dev-server插件
 
 安装
 
@@ -403,5 +405,33 @@ package.json
 ```json
 "eslintConfig": {
   "extends": "airbnb-base"
+}
+```
+
+## js 处理
+
+使用babel
+
+* babel-loader：加载 ES2015+ 代码，然后使用 Babel 转译为 ES5
+* @babel/core: babel核心包
+* @babel/preset-env：基础的ES语法分析包，各种转译规则的统一设定，目的是告诉loader要以什么规则来转化成对应的js版本
+
+安装
+
+```bash
+npm install -D babel-loader @babel/core @babel/preset-env webpack
+```
+
+配置
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules|bower_components)/,
+      loader: 'babel-loader'
+    }
+  ]
 }
 ```
