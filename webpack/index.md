@@ -374,3 +374,34 @@ devServer: {
 ```bash
 npx webpack server
 ```
+
+## 代码检查
+
+eslint-webpack-plugin: 查找和修复代码中的问题，依赖于eslint
+eslint-config-airbnb-base: 成熟的代码风格，依赖于eslint-plugin-import
+
+安装
+
+```bash
+npm i -D eslint eslint-webpack-plugin eslint-config-airbnb-base eslint-plugin-import
+```
+
+配置
+
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
+
+module.exports = {
+  plugins: [new ESLintPlugin({
+    fix: true
+  })],
+};
+```
+
+package.json
+
+```json
+"eslintConfig": {
+  "extends": "airbnb-base"
+}
+```
