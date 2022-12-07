@@ -31,3 +31,18 @@ git config user.email "your-email-address"
     name = your-username
     email = your-email-address
 ```
+
+## 设置ssh连接
+
+1. github添加ssh（百度）
+
+```bash
+// 测试能不能进行ssh连接
+ssh -T git@github.com
+```
+
+2. 设置连接
+```bash
+git remote -v //看一下当前连接方式
+git remote set-url origin git@github.com:<git地址>/<仓库地址>.git  //改成ssh，这里你项目的ssh地址
+```
