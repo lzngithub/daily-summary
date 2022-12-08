@@ -1,30 +1,34 @@
-const path = require('path')
+const path = require('path');
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'production';
 
 module.exports = {
   /**
-   * 入口
-   */
+     * 入口
+     */
   entry: './src/index.js',
   /**
-   * 输出
-   */
+     * 输出
+     */
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   /**
-   * 模块
-   */
+     * 模块
+     */
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+        ],
       },
       {
         test: /\.less$/i,
@@ -60,9 +64,9 @@ module.exports = {
     ],
   },
   /**
-   * 插件
-   *
-   */
+     * 插件
+     *
+     */
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
@@ -79,10 +83,11 @@ module.exports = {
     compress: true,
     port: 9000,
     open: true,
+    hot: true,
   },
   /**
-   * 模式
-   *
-   */
+     * 模式
+     *
+     */
   mode: 'production',
 };

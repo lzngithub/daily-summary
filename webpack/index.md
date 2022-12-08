@@ -435,3 +435,41 @@ module: {
   ]
 }
 ```
+
+## webpack 性能优化
+
+1. 开发环境
+
+* 优化打包速度
+* 热模块替换-HMR(hot module replacement)
+* 优化代码调试
+* source-map
+
+### HMR
+
+webapck.config.js
+
+```js
+devServer: {
+  static: {
+    directory: path.join(__dirname, 'dist'),
+  },
+  compress: true,
+  port: 9000,
+  open: true,
+  hot: true,
+},
+```
+
+```js
+import { addNumber, prit } from './add';
+import './index.less';
+
+if (module.hot) {
+  module.hot.accept('./add.js', () => {
+    prit('inner');
+  });
+}
+prit('out');
+console.log(addNumber(1, 2));
+```

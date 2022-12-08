@@ -1,4 +1,11 @@
-import add from './add';
+/* eslint-disable import/no-import-module-exports */
+import { addNumber, prit } from './add';
 import './index.less';
 
-console.log(add(1, 2));
+if (module.hot) {
+  module.hot.accept('./add.js', () => {
+    prit('inner');
+  });
+}
+prit('out');
+console.log(addNumber(1, 2));
