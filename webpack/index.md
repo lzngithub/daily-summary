@@ -313,6 +313,7 @@ module.exports = {
 
 在webpack.config.js中配置
 ```js
+process.env.NODE_ENV = 'development'; // 定义nodejs环境变量：决定使用browserslist的哪个环境
 rules: [
   {
     test: /\.css$/i,
@@ -487,3 +488,34 @@ devtool: 'nosources-source-map',
 总结： 
 * 开发环境用：eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
 * 生产环境用：nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容
+
+### oneOf
+
+对于打包的每一个文件，都会把全部rules规则都匹配一次，对符合规则的则用对应的loader进行处理，这样会比较慢，采用oneOf则会在命中第一个规则之后则不会再进行匹配。
+
+例子：
+```js
+rules: [{
+  // css文件第一个匹配成功后后面则不会再匹配
+  oneOf: [
+    {
+      test: /\.css$/i,
+      use: commonCssLoader,
+    },
+    {
+      test: /\.less$/i,
+      use: [...commonCssLoader, 'less-loader'],
+    },
+  ]
+}],
+```
+
+### webapck 缓存
+文件资源缓存
+* hash: 每次wepack构建时会生成一个唯一的hash值。
+        问题: 因为js和css同时使用一个hash值。
+        如果重新打包，会导致所有缓存失效。（可能我却只改动一个文件）
+* chunkhash：根据chunk生成的hash值。如果打包来源于同一个chunk，那么hash值就一样
+        问题: js和css的hash值还是一样的
+          因为css是在js中被引入的，所以同属于一个chunk
+* contenthash: 根据文件的内容生成hash值。不同文件hash值一定不一样    

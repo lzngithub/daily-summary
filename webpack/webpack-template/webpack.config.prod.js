@@ -4,24 +4,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin'); // 引入语法检查
 const ESLintPlugin = require('eslint-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-  /**
-   * 入口
-   */
+  
   entry: './src/index.js',
-  /**
-   * 输出
-   */
+  
   output: {
-    filename: 'main.js',
+    filename: 'js/[name].[contenthash:10].js',
     path: path.resolve(__dirname, 'dist'),
+    assetModuleFilename: 'assets/[contenthash:10][ext][query]'
+    // clean: true,
   },
-  /**
-   * 模块
-   */
+  
   module: {
     rules: [
       {
@@ -76,19 +73,16 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       // 对输出的css文件进行重命名
-      filename: 'css/index.css',
+      filename: 'css/[contenthash:10].css',
     }),
     new ESLintPlugin({
       fix: true,
     }),
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
   },
-  /**
-   * 模式
-   *
-   */
   // nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容
   devtool: 'nosources-source-map', 
   mode: 'production',
