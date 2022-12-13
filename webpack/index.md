@@ -474,6 +474,16 @@ prit('out');
 console.log(addNumber(1, 2));
 ```
 
-### source-map
+### source-map（错误定位）
 
-通过
+通过配置项devtool开启
+
+```js
+devtool: 'nosources-source-map', 
+```
+
+对应的值参考webapck官网：https://webpack.docschina.org/configuration/devtool/
+
+总结： 
+* 开发环境用：eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
+* 生产环境用：nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容

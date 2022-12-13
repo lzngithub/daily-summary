@@ -6,20 +6,11 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-  /**
-     * 入口
-     */
   entry: './src/index.js',
-  /**
-     * 输出
-     */
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  /**
-     * 模块
-     */
   module: {
     rules: [
       {
@@ -63,10 +54,6 @@ module.exports = {
       },
     ],
   },
-  /**
-     * 插件
-     *
-     */
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
@@ -85,9 +72,7 @@ module.exports = {
     open: true,
     hot: true,
   },
-  /**
-     * 模式
-     *
-     */
-  mode: 'production',
+  //eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
+  devtool: 'eval-source-map', 
+  mode: 'development',
 };

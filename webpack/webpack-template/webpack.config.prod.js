@@ -89,5 +89,7 @@ module.exports = {
    * 模式
    *
    */
-  mode: 'development',
+  // nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容
+  devtool: 'nosources-source-map', 
+  mode: 'production',
 };
