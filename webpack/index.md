@@ -274,16 +274,16 @@ rules: [
 
 ```
 
-## css兼容性处理
+## css 兼容性处理
 
-postcss-loader: 做css兼容处理
-postcss-present-env: 帮助postcss-loader找到package.json中browserslist中的浏览器兼容性配置
+postcss-loader: 做 css 兼容处理
+postcss-present-env: 帮助 postcss-loader 找到 package.json 中 browserslist 中的浏览器兼容性配置
 
 ```bash
 npm i -D postcss-loader postcss-present-env
 ```
 
-在package.json中增加配置
+在 package.json 中增加配置
 
 ```json
 "browserslist": {
@@ -300,18 +300,17 @@ npm i -D postcss-loader postcss-present-env
 }
 ```
 
-在根目录新建postcss.config.js配置文件
+在根目录新建 postcss.config.js 配置文件
 
 ```js
 //编辑postcss-loader插件配置的文件
 module.exports = {
-  plugins: [
-      require('postcss-preset-env')
-  ]
-}
+  plugins: [require("postcss-preset-env")],
+};
 ```
 
-在webpack.config.js中配置
+在 webpack.config.js 中配置
+
 ```js
 process.env.NODE_ENV = 'development'; // 定义nodejs环境变量：决定使用browserslist的哪个环境
 rules: [
@@ -326,32 +325,30 @@ rules: [
 ],
 ```
 
-## 压缩css
+## 压缩 css
 
-webpack5用css-minimizer-webpack-plugin，5之前用optimize-css-assets-webpack-plugin
+webpack5 用 css-minimizer-webpack-plugin，5 之前用 optimize-css-assets-webpack-plugin
 
 安装
+
 ```bash
 npm i -D css-minimizer-webpack-plugin
 ```
 
 配置
+
 ```js
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
   optimization: {
-    minimizer: [
-      new CssMinimizerPlugin(),
-    ],
+    minimizer: [new CssMinimizerPlugin()],
   },
 };
 ```
 
+## webpack 热更新
 
-
-## webpack热更新
-
-借助webpack-dev-server插件
+借助 webpack-dev-server 插件
 
 安装
 
@@ -380,8 +377,8 @@ npx webpack server
 
 ## 代码检查
 
-eslint-webpack-plugin: 查找和修复代码中的问题，依赖于eslint
-eslint-config-airbnb-base: 成熟的代码风格，依赖于eslint-plugin-import
+eslint-webpack-plugin: 查找和修复代码中的问题，依赖于 eslint
+eslint-config-airbnb-base: 成熟的代码风格，依赖于 eslint-plugin-import
 
 安装
 
@@ -392,12 +389,14 @@ npm i -D eslint eslint-webpack-plugin eslint-config-airbnb-base eslint-plugin-im
 配置
 
 ```js
-const ESLintPlugin = require('eslint-webpack-plugin');
+const ESLintPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
-  plugins: [new ESLintPlugin({
-    fix: true
-  })],
+  plugins: [
+    new ESLintPlugin({
+      fix: true,
+    }),
+  ],
 };
 ```
 
@@ -411,11 +410,11 @@ package.json
 
 ## js 处理
 
-使用babel
+使用 babel
 
-* babel-loader：加载 ES2015+ 代码，然后使用 Babel 转译为 ES5
-* @babel/core: babel核心包
-* @babel/preset-env：基础的ES语法分析包，各种转译规则的统一设定，目的是告诉loader要以什么规则来转化成对应的js版本
+- babel-loader：加载 ES2015+ 代码，然后使用 Babel 转译为 ES5
+- @babel/core: babel 核心包
+- @babel/preset-env：基础的 ES 语法分析包，各种转译规则的统一设定，目的是告诉 loader 要以什么规则来转化成对应的 js 版本
 
 安装
 
@@ -431,9 +430,9 @@ module: {
     {
       test: /\.m?js$/,
       exclude: /(node_modules|bower_components)/,
-      loader: 'babel-loader'
-    }
-  ]
+      loader: "babel-loader",
+    },
+  ];
 }
 ```
 
@@ -441,10 +440,10 @@ module: {
 
 1. 开发环境
 
-* 优化打包速度
-* 热模块替换-HMR(hot module replacement)
-* 优化代码调试
-* source-map
+- 优化打包速度
+- 热模块替换-HMR(hot module replacement)
+- 优化代码调试
+- source-map
 
 ### HMR
 
@@ -463,37 +462,39 @@ devServer: {
 ```
 
 ```js
-import { addNumber, prit } from './add';
-import './index.less';
+import { addNumber, prit } from "./add";
+import "./index.less";
 
 if (module.hot) {
-  module.hot.accept('./add.js', () => {
-    prit('inner');
+  module.hot.accept("./add.js", () => {
+    prit("inner");
   });
 }
-prit('out');
+prit("out");
 console.log(addNumber(1, 2));
 ```
 
 ### source-map（错误定位）
 
-通过配置项devtool开启
+通过配置项 devtool 开启
 
 ```js
-devtool: 'nosources-source-map', 
+devtool: 'nosources-source-map',
 ```
 
-对应的值参考webapck官网：https://webpack.docschina.org/configuration/devtool/
+对应的值参考 webapck 官网：https://webpack.docschina.org/configuration/devtool/
 
-总结： 
-* 开发环境用：eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
-* 生产环境用：nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容
+总结：
+
+- 开发环境用：eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
+- 生产环境用：nosources-source-map: 会有目录结构的映射，但不包含源码，方便定位问题，但不会暴露源码内容
 
 ### oneOf
 
-对于打包的每一个文件，都会把全部rules规则都匹配一次，对符合规则的则用对应的loader进行处理，这样会比较慢，采用oneOf则会在命中第一个规则之后则不会再进行匹配。
+对于打包的每一个文件，都会把全部 rules 规则都匹配一次，对符合规则的则用对应的 loader 进行处理，这样会比较慢，采用 oneOf 则会在命中第一个规则之后则不会再进行匹配。
 
 例子：
+
 ```js
 rules: [{
   // css文件第一个匹配成功后后面则不会再匹配
@@ -511,11 +512,46 @@ rules: [{
 ```
 
 ### webapck 缓存
-文件资源缓存
-* hash: 每次wepack构建时会生成一个唯一的hash值。
-        问题: 因为js和css同时使用一个hash值。
-        如果重新打包，会导致所有缓存失效。（可能我却只改动一个文件）
-* chunkhash：根据chunk生成的hash值。如果打包来源于同一个chunk，那么hash值就一样
-        问题: js和css的hash值还是一样的
-          因为css是在js中被引入的，所以同属于一个chunk
-* contenthash: 根据文件的内容生成hash值。不同文件hash值一定不一样    
+
+- hash: 每次 wepack 构建时会生成一个唯一的 hash 值。问题: 因为 js 和 css 同时使用一个 hash 值。如果重新打包，会导致所有缓存失效。（可能我却只改动一个文件）
+- chunkhash：根据 chunk 生成的 hash 值。如果打包来源于同一个 chunk，那么 hash 值就一样。问题: js 和 css 的 hash 值还是一样的因为 css 是在 js 中被引入的，所以同属于一个 chunk
+- contenthash: 根据文件的内容生成 hash 值。不同文件 hash 值一定不一样
+
+### 分包
+
+将多次引用和一些静态资源包进行分包处理
+
+通过 splitChunks 字段开启
+
+```js
+optimization: {
+    splitChunks: {
+      chunks: 'async', // 代码分割时对异步代码生效，all：所有代码有效，inital：同步代码有效
+      minSize: 30000, // 代码分割最小的模块大小，引入的模块大于 30000B 才做代码分割
+      minChunks: 1, // 引入的次数大于等于1时才进行代码分割
+      maxAsyncRequests: 6, // 最大的异步请求数量,也就是同时加载的模块最大模块数量
+      maxInitialRequests: 4, // 入口文件做代码分割最多分成 4 个 js 文件
+      cacheGroups: {
+        // 缓存组配置，默认有vendors和default
+        vendors: {
+          test: /[\\/]node_modules[\\/]/, // 匹配需拆分chunk的目录
+          priority: -10, // 拆分优先级
+          name: 'venders',
+        },
+        lodashVenodr: {
+          // 将体积较大的lodash单独提取包，指定页面需要的时候再异步加载
+          test: /lodash/,
+          priority: -10,
+          name: 'lodashVenodr',
+          chunks: 'all',
+        },
+        default: {
+          minChunks: 2, // 覆盖外层minChunks,用于提取被引用指定次数的公共模块，这里默认2次
+          priority: -20,
+          name: 'common',
+          reuseExistingChunk: true, // 是否重用已存在的chunk
+        },
+      },
+    },
+  },
+```
