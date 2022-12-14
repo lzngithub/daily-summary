@@ -90,7 +90,7 @@ module.exports = {
       maxInitialRequests: 4, // 入口文件做代码分割最多分成 4 个 js 文件
       cacheGroups: {
         // 缓存组配置，默认有vendors和default
-        vendors: {
+        vendors: { // 第三方模块
           test: /[\\/]node_modules[\\/]/, // 匹配需拆分chunk的目录
           priority: -10, // 拆分优先级
           name: 'venders',
@@ -102,7 +102,7 @@ module.exports = {
           name: 'lodashVenodr',
           chunks: 'all',
         },
-        default: {
+        default: { // 公共模块
           minChunks: 2, // 覆盖外层minChunks,用于提取被引用指定次数的公共模块，这里默认2次
           priority: -20,
           name: 'common',
