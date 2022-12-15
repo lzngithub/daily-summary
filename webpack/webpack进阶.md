@@ -1,16 +1,18 @@
-#  wepback 进阶
+# wepback 进阶
 
 ## 将 css 单独提取出来
 
-使用mini-css-extract-plugin插件，这个时候就不需要style-loader了
+使用 mini-css-extract-plugin 插件，这个时候就不需要 style-loader 了
 
 安装
+
 ```bash
 npm i -D mini-css-extract-plugin
 npm uninstall style-loader
 ```
 
 配置
+
 ```js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -28,9 +30,10 @@ rules: [
 ],
 ```
 
-## 整理css和js的目录结构
+## 整理 css 和 js 的目录结构
 
 修改配置
+
 ```js
 output: {
     // js输出
@@ -46,13 +49,14 @@ new MiniCssExtractPlugin({
 })
 ```
 
-* [contenthash:10]：hash值取10位
-* [ext]：使用之前的文件扩展名
-* [query]：添加之前的query参数
+- [contenthash:10]：hash 值取 10 位
+- [ext]：使用之前的文件扩展名
+- [query]：添加之前的 query 参数
 
 # 配置文件抽离重复部分
 
-将css和less文件处理的部分抽离出来
+将 css 和 less 文件处理的部分抽离出来
+
 ```js
 const commonCssLoader = [
   MiniCssExtractPlugin.loader,
@@ -75,7 +79,8 @@ postcss-loader: 做 css 兼容处理
 postcss-present-env: 帮助 postcss-loader 找到 package.json 中 browserslist 中的浏览器兼容性配置
 
 ```bash
-npm i -D postcss-loader postcss-preset-env
+npm i -D postcss-loader
+npm i -S postcss-preset-env
 ```
 
 在 package.json 中增加配置
@@ -105,8 +110,9 @@ module.exports = {
 ```
 
 在 webpack.config.js 中配置
+
 ```js
-process.env.NODE_ENV = 'production'; // 定义nodejs环境变量：决定使用browserslist的哪个环境
+process.env.NODE_ENV = "production"; // 定义nodejs环境变量：决定使用browserslist的哪个环境
 const commonCssLoader = [
   MiniCssExtractPlugin.loader,
   "css-loader",
@@ -114,7 +120,8 @@ const commonCssLoader = [
 ];
 ```
 
-在.src/index.less中加入有兼容性的代码进行验证，例如
+在.src/index.less 中加入有兼容性的代码进行验证，例如
+
 ```less
 background-color: #11111111;
 ```
@@ -133,15 +140,17 @@ background-color: #11111111;
 npm install -D babel-loader @babel/core @babel/preset-env webpack
 ```
 
-增加babel配置文件
+增加 babel 配置文件
+
 ```js
-module.exports ={
-    presets: ['@babel/preset-env'],
-    plugins: ['@babel/plugin-proposal-object-rest-spread']
-}
+module.exports = {
+  presets: ["@babel/preset-env"],
+  plugins: ["@babel/plugin-proposal-object-rest-spread"],
+};
 ```
 
 配置
+
 ```js
 module: {
   rules: [
@@ -154,15 +163,17 @@ module: {
 }
 ```
 
-增加js兼容性代码，比如
+增加 js 兼容性代码，比如
+
 ```js
 cosnt a = () => {console.log('箭头函数')}
 ```
+
 ## 代码压缩
 
-生产环境下html代码和js代码会自动开启压缩，所以针对css进行压缩
+生产环境下 html 代码和 js 代码会自动开启压缩，所以针对 css 进行压缩
 
-webpack5 用 css-minimizer-webpack-plugin，5之前用 optimize-css-assets-webpack-plugin
+webpack5 用 css-minimizer-webpack-plugin，5 之前用 optimize-css-assets-webpack-plugin
 
 安装
 
@@ -177,8 +188,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 module.exports = {
   optimization: {
     minimizer: [
-        `...`, // 使用 `...` 语法来扩展现有的 minimizer
-        new CssMinimizerPlugin()
+      `...`, // 使用 `...` 语法来扩展现有的 minimizer
+      new CssMinimizerPlugin(),
     ],
   },
 };
@@ -195,25 +206,27 @@ eslint-config-airbnb-base: 成熟的代码风格，依赖于 eslint-plugin-impor
 npm i -D eslint eslint-webpack-plugin eslint-config-airbnb-base eslint-plugin-import
 ```
 
-增加.eslintrs.js配置文件
+增加.eslintrs.js 配置文件
+
 ```js
 module.exports = {
   root: true, // 限定配置文件使用范围
-  env: { // 指定代码运行环境
+  env: {
+    // 指定代码运行环境
     browser: true, // browser global variables
     es2021: true, //
   },
-  parser: '@babel/eslint-parser', // 指定解析器，解决一些eslint错误覆盖问题
+  parser: "@babel/eslint-parser", // 指定解析器，解决一些eslint错误覆盖问题
   parserOptions: {
-    ecmaVersion: 12, //ECMAScript 版本 
-    sourceType: 'module', //ECMAScript 模块
+    ecmaVersion: 12, //ECMAScript 版本
+    sourceType: "module", //ECMAScript 模块
     allowImportExportEverywhere: true, // important可以在任何地方使用，@babel/eslint-parser配置项
   },
   extends: [
-    'airbnb-base', // ++
+    "airbnb-base", // ++
   ],
   rules: {
-    'no-unused-vars': 'off', // 关掉未使用变量的警告
+    "no-unused-vars": "off", // 关掉未使用变量的警告
   },
 };
 ```
@@ -231,17 +244,6 @@ module.exports = {
   ],
 };
 ```
-
-package.json
-
-```json
-"eslintConfig": {
-  "extends": "airbnb-base"
-}
-```
-
-
-
 
 ## webpack 热更新
 
@@ -271,7 +273,6 @@ devServer: {
 ```bash
 npx webpack server
 ```
-
 
 ## webpack 性能优化
 
