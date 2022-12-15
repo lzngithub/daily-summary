@@ -19,40 +19,42 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
-    rules: [{
-      oneOf: [
-        {
-          test: /\.css$/i,
-          use: commonCssLoader,
-        },
-        {
-          test: /\.less$/i,
-          use: [...commonCssLoader, 'less-loader'],
-        },
-        {
-          // 对图片资源进行处理
-          test: /\.(png|jpe?g|gif|webp)$/,
-          type: 'asset',
-          parser: {
-            dataUrlCondition: {
-              maxSize: 10 * 1024, // 小于10kb的图片会被base64处理
+    rules: [
+      {
+        oneOf: [
+          {
+            test: /\.css$/i,
+            use: commonCssLoader,
+          },
+          {
+            test: /\.less$/i,
+            use: [...commonCssLoader, 'less-loader'],
+          },
+          {
+            // 对图片资源进行处理
+            test: /\.(png|jpe?g|gif|webp)$/,
+            type: 'asset',
+            parser: {
+              dataUrlCondition: {
+                maxSize: 10 * 1024, // 小于10kb的图片会被base64处理
+              },
             },
           },
-        },
-        {
-          test: /\.html$/,
-          // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
-          loader: 'html-loader',
-        },
-        {
-          test: /\.(avi|mp3|ttf|woff2?)$/,
-          type: 'asset/resource',
-          generator: {
-            filename: 'resources/[hash:10][ext][query]',
+          {
+            test: /\.html$/,
+            // 处理html文件的img图片（负责引入img，从而能被url-loader进行处理）
+            loader: 'html-loader',
           },
-        },
-      ]
-    }],
+          {
+            test: /\.(avi|mp3|ttf|woff2?)$/,
+            type: 'asset/resource',
+            generator: {
+              filename: 'resources/[hash:10][ext][query]',
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -76,7 +78,7 @@ module.exports = {
   cache: {
     type: 'memory',
   },
-  //eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
+  // eval-source-map:会生成正确文件索引，初始构建会慢，会在重新构建时提供比较快的速度
   devtool: 'eval-source-map',
   mode: 'development',
 };
