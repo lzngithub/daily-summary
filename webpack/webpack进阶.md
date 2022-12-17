@@ -262,6 +262,12 @@ devServer: {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
     compress: true,
     port: 9000,
     open: true,
@@ -271,7 +277,8 @@ devServer: {
 启动命令改为
 
 ```bash
-npx webpack server
+"start": "npm run dev",
+"dev": "webpack serve",
 ```
 
 ## webpack 性能优化
