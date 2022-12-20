@@ -4,17 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>块级作用域</title>
+    <title>正则</title>
   </head>
   <body>
     <script>
-      let map = new Map([
-        [true, 7],
-        [{ foo: 8 }, { bar: 3 }],
-      ]);
-      let arr = [...map];
-      console.log(map);
-      console.log(arr);
+      let str = "0dd0111abg0045660000000H";
+      let patt = /(abc)|(efg)|(123)|(456)/g;
+      let found = str.match(patt);
+      console.log(found);
     </script>
   </body>
 </html>
