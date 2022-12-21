@@ -8,8 +8,19 @@
   </head>
   <body>
     <script>
-      let a = Symbol();
-      console.log(a);
+      class Liang {
+        constructor(name) {
+          this.name = name;
+          this.say = this.say.bind(this);
+        }
+        say() {
+          console.log(this);
+        }
+      }
+      let liang = new Liang("liang");
+      liang.say(); // hi liang
+      const { say } = liang;
+      say();
     </script>
   </body>
 </html>
