@@ -22,7 +22,7 @@ div {
   margin: auto;
   background: url("./cyberpunk.jpg") no-repeat;
   background-size: cover;
-  animation: main-img-hide 16s infinite step-end;
+  animation: main-img-hide 16s infinite step-edn;
 }
 
 div::before,
@@ -37,12 +37,12 @@ div::after {
 
 div::after {
   content: "";
-  /* animation: glitch-one 16s infinite step-end; */
+  animation: glitch-one 16s infinite step-end;
 }
 
 div::before {
   content: "";
-  /* animation: glitch-two 16s infinite 1s step-end; */
+  animation: glitch-two 16s infinite 1s step-end;
 }
 
 @keyframes glitch-one {
@@ -51,57 +51,46 @@ div::before {
     left: -28px;
   }
   10.5% {
-    -webkit-clip-path: inset(220px 0 203px);
     clip-path: inset(220px 0 203px);
     left: 58px;
   }
   11% {
-    -webkit-clip-path: inset(113px 0 285px);
     clip-path: inset(113px 0 285px);
     left: -73px;
   }
   11.5% {
-    -webkit-clip-path: inset(78px 0 329px);
     clip-path: inset(78px 0 329px);
     left: -96px;
   }
   12% {
-    -webkit-clip-path: inset(38px 0 363px);
     clip-path: inset(38px 0 363px);
     left: 45px;
   }
   12.5% {
-    -webkit-clip-path: inset(379px 0 17px);
     clip-path: inset(379px 0 17px);
     left: -11px;
   }
   13% {
-    -webkit-clip-path: inset(225px 0 176px);
     clip-path: inset(225px 0 176px);
     left: 92px;
   }
   13.5% {
-    -webkit-clip-path: inset(363px 0 45px);
     clip-path: inset(363px 0 45px);
     left: -66px;
   }
   14% {
-    -webkit-clip-path: inset(299px 0 118px);
     clip-path: inset(299px 0 118px);
     left: 77px;
   }
   14.5% {
-    -webkit-clip-path: inset(51px 0 350px);
     clip-path: inset(51px 0 350px);
     left: 49px;
   }
   15.5% {
-    -webkit-clip-path: inset(10px 0 320px);
     clip-path: inset(10px 0 320px);
     left: -20px;
   }
   16% {
-    -webkit-clip-path: inset(10px 0 320px);
     clip-path: inset(10px 0 320px);
     left: -10px;
     opacity: 0;
@@ -109,117 +98,85 @@ div::before {
   45% {
     opacity: 0.5;
     left: -20px;
-    -webkit-filter: hue-rotate(90deg) saturate(1.3);
     filter: hue-rotate(90deg) saturate(1.3);
   }
   45.5% {
     left: 0px;
-    -webkit-filter: invert(1);
     filter: invert(1);
   }
   46% {
-    -webkit-clip-path: inset(150px 0 160px);
     clip-path: inset(150px 0 160px);
     left: 15%;
   }
   46.5% {
-    -webkit-clip-path: inset(20px 0 200px);
     clip-path: inset(20px 0 200px);
     left: -10%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   47% {
-    -webkit-clip-path: inset(240px 0 20px);
     clip-path: inset(240px 0 20px);
     left: -11%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
   47.5% {
-    -webkit-clip-path: inset(20 0 20px);
     clip-path: inset(20 0 20px);
     left: 13%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
-    -webkit-filter: invert(0);
     filter: invert(0);
   }
   48% {
-    -webkit-clip-path: inset(120 0 120px);
     clip-path: inset(120 0 120px);
     left: 15%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   48.5% {
-    -webkit-clip-path: inset(260px 0 10px);
     clip-path: inset(260px 0 10px);
     left: -11%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
-    -webkit-filter: none;
     filter: none;
   }
   49% {
-    -webkit-clip-path: inset(5px 0 350px);
     clip-path: inset(5px 0 350px);
     left: 11%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
   }
   49.5% {
-    -webkit-clip-path: inset(105px 0 210px);
     clip-path: inset(105px 0 210px);
     left: 0%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   50% {
-    -webkit-clip-path: inset(175px 0 160px);
     clip-path: inset(175px 0 160px);
     left: -11%;
   }
   50.5% {
-    -webkit-clip-path: inset(95px 0 230px);
     clip-path: inset(95px 0 230px);
     left: -14%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
   51% {
-    -webkit-clip-path: inset(235px 0 12px);
     clip-path: inset(235px 0 12px);
     left: -14%;
   }
   51.5% {
-    -webkit-clip-path: inset(350px 0 7px);
     clip-path: inset(350px 0 7px);
     left: -14%;
   }
   52% {
-    -webkit-clip-path: inset(320px 0 27px);
     clip-path: inset(320px 0 27px);
     left: -12%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   52.5% {
-    -webkit-clip-path: inset(190px 0 127px);
     clip-path: inset(190px 0 127px);
     left: -11%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
-    -webkit-filter: hue-rotate(90deg) saturate(1.3);
     filter: hue-rotate(90deg) saturate(1.3);
   }
   54% {
-    -webkit-clip-path: inset(20px 0 20px);
     clip-path: inset(20px 0 20px);
     left: 12%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    -webkit-filter: none;
     filter: none;
   }
   54% {
@@ -229,62 +186,50 @@ div::before {
 
 @keyframes glitch-two {
   20% {
-    -webkit-clip-path: inset(285px 0 130px);
     clip-path: inset(285px 0 130px);
     left: 31px;
   }
   20.5% {
-    -webkit-clip-path: inset(176px 0 239px);
     clip-path: inset(176px 0 239px);
     left: 57px;
   }
   21% {
-    -webkit-clip-path: inset(217px 0 179px);
     clip-path: inset(217px 0 179px);
     left: -20px;
   }
   21.5% {
-    -webkit-clip-path: inset(350px 0 53px);
     clip-path: inset(350px 0 53px);
     left: 96px;
   }
   22% {
-    -webkit-clip-path: inset(279px 0 148px);
     clip-path: inset(279px 0 148px);
     left: -28px;
   }
   22.5% {
-    -webkit-clip-path: inset(299px 0 127px);
     clip-path: inset(299px 0 127px);
     left: 100px;
   }
   23% {
-    -webkit-clip-path: inset(154px 0 244px);
     clip-path: inset(154px 0 244px);
     left: 12px;
   }
   23.5% {
-    -webkit-clip-path: inset(113px 0 282px);
     clip-path: inset(113px 0 282px);
     left: 15px;
   }
   24% {
-    -webkit-clip-path: inset(101px 0 299px);
     clip-path: inset(101px 0 299px);
     left: -66px;
   }
   24.5% {
-    -webkit-clip-path: inset(282px 0 145px);
     clip-path: inset(282px 0 145px);
     left: 21px;
   }
   25.5% {
-    -webkit-clip-path: inset(10px 0 320px);
     clip-path: inset(10px 0 320px);
     left: -20px;
   }
   26% {
-    -webkit-clip-path: inset(10px 0 320px);
     clip-path: inset(10px 0 320px);
     left: -10px;
     opacity: 0;
@@ -292,114 +237,84 @@ div::before {
   45% {
     opacity: 0.3;
     left: -20px;
-    -webkit-filter: hue-rotate(45deg) saturate(1.1);
     filter: hue-rotate(45deg) saturate(1.1);
   }
   45.5% {
     left: 0px;
-    -webkit-filter: invert(1.2);
     filter: invert(1.2);
   }
   46% {
-    -webkit-clip-path: inset(50px 0 260px);
     clip-path: inset(50px 0 260px);
     left: -12%;
   }
   46.5% {
-    -webkit-clip-path: inset(120px 0 100px);
     clip-path: inset(120px 0 100px);
     left: 8%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
   47% {
-    -webkit-clip-path: inset(40px 0 300px);
     clip-path: inset(40px 0 300px);
     left: 8%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
   }
   47.5% {
-    -webkit-clip-path: inset(220 0 70px);
     clip-path: inset(220 0 70px);
     left: -9%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    -webkit-filter: invert(1.1);
     filter: invert(1.1);
   }
   48% {
-    -webkit-clip-path: inset(240px 0 120px);
     clip-path: inset(240px 0 120px);
     left: 11%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
   }
   48.5% {
-    -webkit-clip-path: inset(0px 0 310px);
     clip-path: inset(0px 0 310px);
     left: -12%;
-    -webkit-transform: scale(1.2);
     transform: scale(1.2);
-    -webkit-filter: none;
     filter: none;
   }
   49% {
-    -webkit-clip-path: inset(255px 0 50px);
     clip-path: inset(255px 0 50px);
     left: 11%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
   }
   49.5% {
-    -webkit-clip-path: inset(10px 0 240px);
     clip-path: inset(10px 0 240px);
     left: 6%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   50% {
-    -webkit-clip-path: inset(275px 0 90px);
     clip-path: inset(275px 0 90px);
     left: -12%;
   }
   50.5% {
-    -webkit-clip-path: inset(195px 0 90px);
     clip-path: inset(195px 0 90px);
     left: 14%;
-    -webkit-transform: scale(1.4);
     transform: scale(1.4);
   }
   51% {
-    -webkit-clip-path: inset(35px 0 282px);
     clip-path: inset(35px 0 282px);
     left: -14%;
   }
   51.5% {
-    -webkit-clip-path: inset(350px 0 7px);
     clip-path: inset(350px 0 7px);
     left: 14%;
   }
   52% {
-    -webkit-clip-path: inset(20px 0 270px);
     clip-path: inset(20px 0 270px);
     left: -12%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
   52.5% {
-    -webkit-clip-path: inset(90px 0 227px);
     clip-path: inset(90px 0 227px);
     left: -11%;
-    -webkit-transform: scale(1.3);
     transform: scale(1.3);
     filter: hue-rotate(150deg) saturate(1.3);
   }
   54% {
-    -webkit-clip-path: inset(220px 0 100px);
     clip-path: inset(220px 0 100px);
     left: 12%;
-    -webkit-transform: scale(1.1);
     transform: scale(1.1);
     filter: none;
   }
