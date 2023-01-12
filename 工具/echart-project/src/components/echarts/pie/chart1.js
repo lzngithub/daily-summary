@@ -1,6 +1,39 @@
 import { Chart } from "../index";
 import echarts from "../charts";
 
+const data = [
+  {
+    name: "国际、国内、省内替代技术",
+    data: "79",
+    unit: null,
+  },
+  {
+    name: "首台套、首批次、首版次",
+    data: "67",
+    unit: null,
+  },
+  {
+    name: "专利",
+    data: "71",
+    unit: null,
+  },
+  {
+    name: "新产品、新技术、新工艺",
+    data: "79",
+    unit: null,
+  },
+];
+
+const echartData = data.map((item) => ({
+  ...item,
+  value: Number(item.data),
+}));
+
+// 数据整理
+let total = echartData.reduce((a, b) => {
+  return a + b.value;
+}, 0);
+
 const option = {
   backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
     {
@@ -12,88 +45,125 @@ const option = {
       offset: 1,
     },
   ]),
+  color: [
+    "#FFAF4AFF",
+    "#F4765DFF",
+    "#8168F5FF",
+    "#00BDFFFF",
+    "#3FC790FF",
+    "#0188FE",
+  ],
+  tooltip: {
+    show: true,
+    trigger: "item",
+    // trigger: "item",
+    // formatter: "{b}: {c} ({d}%)",
+  },
+  graphic: {
+    elements: [
+      {
+        type: "image",
+        z: 3,
+        style: {
+          image: "",
+          width: 90,
+          height: 90,
+        },
+        left: "center",
+        top: "36%",
+        position: [100, 100],
+      },
+    ],
+  },
   title: {
-    text: "78.7",
-    subtext: "综合指数",
-    right: "5%",
-    top: "5%",
+    text: `{count|${total}}{unit|个}\n{project|  成果}`,
+    left: "44%",
+    top: "53%",
     textStyle: {
-      color: "#FCB321FF",
-      fontSize: 28,
-    },
-    subtextStyle: {
-      color: "#FFFFFFFF",
-      // fontSize: 14,
+      rich: {
+        count: {
+          color: "#fff",
+          fontSize: 24,
+          fontWeight: 600,
+        },
+        unit: {
+          color: "#fff",
+          fontSize: 12,
+        },
+        project: {
+          color: "#fff8",
+          fontSize: 12,
+        },
+      },
     },
   },
-  legend: {},
-  radar: {
-    indicator: [
-      { text: "Indicator1", max: 150 },
-      { text: "Indicator2", max: 150 },
-      { text: "Indicator3", max: 150 },
-      { text: "Indicator4", max: 150 },
-    ],
-    radius: 100,
-    axisName: {
-      color: "#FFFFFFFF",
-      backgroundColor: "transparent",
-      borderRadius: 3,
-      padding: [3, 5],
-    },
-    // 坐标轴的线
-    axisLine: {
-      show: true,
-      lineStyle: {
-        type: "dashed", // 虚线
-        color: "#9CD1FFFF",
+  legend: {
+    left: "center",
+    top: "5%",
+    width: "80%",
+    icon: "circle",
+    itemWidth: 10,
+    itemGap: 13,
+    textStyle: {
+      fontSize: 14,
+      rich: {
+        name: {
+          color: "#fff",
+        },
       },
     },
-    // 分割线
-    splitLine: {
-      show: false,
+    formatter: function (name) {
+      let res = echartData.filter((v) => v.name === name);
+      return `{name|${name}  ${res[0].value}个}`;
     },
-    // 分隔区域
-    splitArea: {
-      areaStyle: {
-        color: ["#E3F4FA ", "#D1EFFA ", "#C3EDFC ", "#B7EAFC ", "#AEE8FD"],
-      },
-    },
+  },
+  toolbox: {
+    show: false,
   },
   series: [
     {
-      type: "radar",
-      data: [
-        {
-          value: [140, 93, 50, 90],
-          symbol: "circle",
-          symbolSize: 8,
-          label: {
-            show: true,
-            color: "#FFFFFFFF",
-          },
-          itemStyle: {
-            color: "#FFFFFFFF",
-            borderColor: "#0EED8EFF",
-            borderWidth: 3,
-          },
-          lineStyle: {
-            color: "#00FFEBFF",
-          },
-          areaStyle: {
-            color: new echarts.graphic.RadialGradient(0.1, 0.6, 1, [
-              {
-                color: "#00EEFF2B",
-                offset: 0,
-              },
-              {
-                color: "#00D7FFAB",
-                offset: 1,
-              },
-            ]),
-          },
+      name: "",
+      type: "pie",
+      radius: [0, "60%"],
+      center: ["50%", "60%"],
+      label: {
+        show: false,
+      },
+      hoverAnimation: false,
+      emptyCircleStyle: {
+        // 无数据的时候使用占位圆的样式
+        color: "#94E4FF1A",
+      },
+    },
+    {
+      name: "",
+      type: "pie",
+      radius: ["40%", "55%"],
+      center: ["50%", "60%"],
+      label: {
+        normal: {
+          show: false,
         },
-      ],
+      },
+      hoverAnimation: false,
+      hoverOffset: 5,
+      data: echartData,
+    },
+    {
+      name: "",
+      type: "pie",
+      radius: [0, "35%"],
+      center: ["50%", "60%"],
+      label: {
+        show: false,
+      },
+      emptyCircleStyle: {
+        // 无数据的时候使用占位圆的样式
+        color: "transparent",
+        borderColor: "#00BDFFFF",
+        borderType: "dashed",
+      },
+      hoverAnimation: false,
     },
   ],
 };

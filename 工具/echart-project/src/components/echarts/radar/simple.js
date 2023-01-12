@@ -1,6 +1,43 @@
 import { Chart } from "../index";
 import echarts from "../charts";
 
+const data = {
+  name: "综合指数",
+  data: "78.7",
+  childList: [
+    {
+      name: "产业链指数",
+      data: "79",
+      unit: null,
+    },
+    {
+      name: "人才链指数",
+      data: "67",
+      unit: null,
+    },
+    {
+      name: "创新链指数",
+      data: "71",
+      unit: null,
+    },
+    {
+      name: "资金链指数",
+      data: "79",
+      unit: null,
+    },
+  ],
+};
+
+const dataValue = data.childList.map((item) => item.data);
+
+const maxData = Math.max(...dataValue);
+console.log(maxData);
+
+const indicator = data.childList.map((item) => ({
+  text: item.name,
+  max: maxData,
+}));
+
 const option = {
   backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
     {
@@ -13,8 +50,8 @@ const option = {
     },
   ]),
   title: {
-    text: "78.7",
-    subtext: "综合指数",
+    text: data.data,
+    subtext: data.name,
     right: "5%",
     top: "5%",
     textStyle: {
@@ -26,14 +63,8 @@ const option = {
       // fontSize: 14,
     },
   },
-  legend: {},
   radar: {
-    indicator: [
-      { text: "Indicator1", max: 150 },
-      { text: "Indicator2", max: 150 },
-      { text: "Indicator3", max: 150 },
-      { text: "Indicator4", max: 150 },
-    ],
+    indicator,
     radius: 100,
     axisName: {
       color: "#FFFFFFFF",
@@ -60,42 +91,40 @@ const option = {
       },
     },
   },
-  series: [
-    {
-      type: "radar",
-      data: [
-        {
-          value: [140, 93, 50, 90],
-          symbol: "circle",
-          symbolSize: 8,
-          label: {
-            show: true,
-            color: "#FFFFFFFF",
-          },
-          itemStyle: {
-            color: "#FFFFFFFF",
-            borderColor: "#0EED8EFF",
-            borderWidth: 3,
-          },
-          lineStyle: {
-            color: "#00FFEBFF",
-          },
-          areaStyle: {
-            color: new echarts.graphic.RadialGradient(0.1, 0.6, 1, [
-              {
-                color: "#00EEFF2B",
-                offset: 0,
-              },
-              {
-                color: "#00D7FFAB",
-                offset: 1,
-              },
-            ]),
-          },
+  series: {
+    type: "radar",
+    data: [
+      {
+        value: dataValue,
+        symbol: "circle",
+        symbolSize: 8,
+        label: {
+          show: true,
+          color: "#FFFFFFFF",
         },
-      ],
-    },
-  ],
+        itemStyle: {
+          color: "#FFFFFFFF",
+          borderColor: "#0EED8EFF",
+          borderWidth: 3,
+        },
+        lineStyle: {
+          color: "#00FFEBFF",
+        },
+        areaStyle: {
+          color: new echarts.graphic.RadialGradient(0.1, 0.6, 1, [
+            {
+              color: "#00EEFF2B",
+              offset: 0,
+            },
+            {
+              color: "#00D7FFAB",
+              offset: 1,
+            },
+          ]),
+        },
+      },
+    ],
+  },
 };
 
 export const SimpleRadar = () => {
