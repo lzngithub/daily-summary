@@ -2,118 +2,92 @@ import { Chart } from "../index";
 import echarts from "../charts";
 
 const option = {
-  color: ["#67F9D8", "#FFE434", "#56A3F1", "#FF917C"],
+  backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+    {
+      color: "#182950CC",
+      offset: 0,
+    },
+    {
+      color: "#13203DFF",
+      offset: 1,
+    },
+  ]),
   title: {
-    text: "Customized Radar Chart",
+    text: "78.7",
+    subtext: "综合指数",
+    right: "5%",
+    top: "5%",
+    textStyle: {
+      color: "#FCB321FF",
+      fontSize: 28,
+    },
+    subtextStyle: {
+      color: "#FFFFFFFF",
+      // fontSize: 14,
+    },
   },
   legend: {},
-  radar: [
-    {
-      indicator: [
-        { text: "Indicator1" },
-        { text: "Indicator2" },
-        { text: "Indicator3" },
-        { text: "Indicator4" },
-        { text: "Indicator5" },
-      ],
-      center: ["25%", "50%"],
-      radius: 120,
-      startAngle: 90,
-      splitNumber: 4,
-      shape: "circle",
-      axisName: {
-        formatter: "【{value}】",
-        color: "#428BD4",
-      },
-      splitArea: {
-        areaStyle: {
-          color: ["#77EADF", "#26C3BE", "#64AFE9", "#428BD4"],
-          shadowColor: "rgba(0, 0, 0, 0.2)",
-          shadowBlur: 10,
-        },
-      },
-      axisLine: {
-        lineStyle: {
-          color: "rgba(211, 253, 250, 0.8)",
-        },
-      },
-      splitLine: {
-        lineStyle: {
-          color: "rgba(211, 253, 250, 0.8)",
-        },
+  radar: {
+    indicator: [
+      { text: "Indicator1", max: 150 },
+      { text: "Indicator2", max: 150 },
+      { text: "Indicator3", max: 150 },
+      { text: "Indicator4", max: 150 },
+    ],
+    radius: 100,
+    axisName: {
+      color: "#FFFFFFFF",
+      backgroundColor: "transparent",
+      borderRadius: 3,
+      padding: [3, 5],
+    },
+    // 坐标轴的线
+    axisLine: {
+      show: true,
+      lineStyle: {
+        type: "dashed", // 虚线
+        color: "#9CD1FFFF",
       },
     },
-    {
-      indicator: [
-        { text: "Indicator1", max: 150 },
-        { text: "Indicator2", max: 150 },
-        { text: "Indicator3", max: 150 },
-        { text: "Indicator4", max: 120 },
-        { text: "Indicator5", max: 108 },
-        { text: "Indicator6", max: 72 },
-      ],
-      center: ["75%", "50%"],
-      radius: 120,
-      axisName: {
-        color: "#fff",
-        backgroundColor: "#666",
-        borderRadius: 3,
-        padding: [3, 5],
+    // 分割线
+    splitLine: {
+      show: false,
+    },
+    // 分隔区域
+    splitArea: {
+      areaStyle: {
+        color: ["#E3F4FA ", "#D1EFFA ", "#C3EDFC ", "#B7EAFC ", "#AEE8FD"],
       },
     },
-  ],
+  },
   series: [
     {
       type: "radar",
-      emphasis: {
-        lineStyle: {
-          width: 4,
-        },
-      },
       data: [
         {
-          value: [100, 8, 0.4, -80, 2000],
-          name: "Data A",
-        },
-        {
-          value: [60, 5, 0.3, -100, 1500],
-          name: "Data B",
-          areaStyle: {
-            color: "rgba(255, 228, 52, 0.6)",
-          },
-        },
-      ],
-    },
-    {
-      type: "radar",
-      radarIndex: 1,
-      data: [
-        {
-          value: [120, 118, 130, 100, 99, 70],
-          name: "Data C",
-          symbol: "rect",
-          symbolSize: 12,
-          lineStyle: {
-            type: "dashed",
-          },
+          value: [140, 93, 50, 90],
+          symbol: "circle",
+          symbolSize: 8,
           label: {
             show: true,
-            formatter: function (params) {
-              return params.value;
-            },
+            color: "#FFFFFFFF",
           },
-        },
-        {
-          value: [100, 93, 50, 90, 70, 60],
-          name: "Data D",
+          itemStyle: {
+            color: "#FFFFFFFF",
+            borderColor: "#0EED8EFF",
+            borderWidth: 3,
+          },
+          lineStyle: {
+            color: "#00FFEBFF",
+          },
           areaStyle: {
             color: new echarts.graphic.RadialGradient(0.1, 0.6, 1, [
               {
-                color: "rgba(255, 145, 124, 0.1)",
+                color: "#00EEFF2B",
                 offset: 0,
               },
               {
-                color: "rgba(255, 145, 124, 0.9)",
+                color: "#00D7FFAB",
                 offset: 1,
               },
             ]),
