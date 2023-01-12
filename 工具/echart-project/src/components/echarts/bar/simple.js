@@ -1,6 +1,7 @@
 import { Chart } from "../index";
 
 const option = {
+  backgroundColor: "#fff",
   title: {
     text: "ECharts 入门示例",
   },

@@ -21,5 +21,11 @@ export const Chart = (props) => {
     };
   }, []);
 
-  return <div ref={domRef} style={{ height: "300px", width: "30%" }}></div>;
+  return (
+    <div
+      ref={domRef}
+      className="card"
+      style={{ height: "300px", width: "30%" }}
+    ></div>
+  );
 };

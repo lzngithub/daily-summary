@@ -1,4 +1,10 @@
 .wrapper {
   display: flex;
   flex-wrap: wrap;
+  background-color: #f2f2f280;
+}
+
+.card {
+  margin: 15px;
+  box-shadow: 0 0 20px #0000000d;
 }
