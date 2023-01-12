@@ -1,14 +1,16 @@
 import "./index.css";
-import { SimpleChart } from "../components/echarts/bar/simple.js";
-import { SimpleRadar } from "../components/echarts/radar/simple.js";
+import { RadarChart } from "../components/echarts/radar";
 import { PieChart } from "../components/echarts/pie";
+import { BarChart } from "../components/echarts/bar";
+import { MapChart } from "../components/echarts/map";
 
 export const Chart = () => {
   return (
     <div className="wrapper">
-      <SimpleChart></SimpleChart>
-      <SimpleRadar></SimpleRadar>
+      <BarChart></BarChart>
+      <RadarChart></RadarChart>
       <PieChart></PieChart>
+      <MapChart></MapChart>
     </div>
   );
 };

@@ -19,6 +19,6 @@ const option = {
   ],
 };
 
-export const SimpleChart = () => {
+export const Chart1 = () => {
   return <Chart option={option}></Chart>;
 };

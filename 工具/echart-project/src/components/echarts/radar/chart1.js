@@ -127,6 +127,6 @@ const option = {
   },
 };
 
-export const SimpleRadar = () => {
+export const Chart1 = () => {
   return <Chart option={option}></Chart>;
 };
