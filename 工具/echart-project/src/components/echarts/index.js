@@ -8,7 +8,7 @@ export const Chart = (props) => {
 
   useEffect(() => {
     console.log("init");
-    chartRef.current = echarts.init(domRef.current);
+    chartRef.current = echarts.init(domRef.current, "dark");
     chartRef.current.setOption(option);
   }, [option]);
 

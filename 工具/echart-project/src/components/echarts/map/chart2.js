@@ -2673,7 +2673,7 @@ const mapJSON = {
   ],
 };
 
-echarts.registerMap("area", mapJSON);
+echarts.registerMap("area2", mapJSON);
 var option = {
   // 地图的阴影底图
   geo: [
@@ -2722,7 +2722,7 @@ var option = {
       roam: false,
       layoutCenter: null,
       layoutSize: null,
-      map: "area",
+      map: "area2",
       selectedMode: false,
     },
   ],

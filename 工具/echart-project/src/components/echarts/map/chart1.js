@@ -11587,7 +11587,7 @@ var mapData = [
     name: "城厢镇",
   },
 ]; //虚拟数据
-echarts.registerMap("area", mapJson);
+echarts.registerMap("area1", mapJson);
 var outdata = []; //地图区域挂载数据
 var maxData = parseInt(mapData[0].value); //热力最大值
 var minData = parseInt(mapData[0].value); //热力最小值
@@ -11604,7 +11604,7 @@ mapData.forEach(function (item, index) {
 });
 var option = {
   tooltip: {
-    show: true,
+    show: false,
     formatter: function (params) {
       return params.name + "<br>" + params.value;
     },
@@ -11614,12 +11614,10 @@ var option = {
     right: "1%",
     top: "1%",
     bottom: "1%",
-    show: true,
-    // backgroundColor:'#000'
   },
   // 地图的阴影底图
   geo: {
-    map: "area",
+    map: "area1",
     left: 0,
     right: 0,
     bottom: 0,
@@ -11642,20 +11640,18 @@ var option = {
   series: [
     {
       type: "map",
-      map: "area",
+      map: "area1",
       aspectScale: 0.9,
       layoutCenter: ["50%", "50%"], //地图位置
       layoutSize: "110%",
       label: {
         normal: {
           show: true,
-          fontFamily: "SourceHanSansCN",
           fontSize: "14",
           color: "#FEFEFE",
         },
         emphasis: {
-          show: true,
-          fontFamily: "SourceHanSansCN",
+          show: false,
           fontSize: "14",
           color: "#FEFEFE",
         },
