@@ -1,0 +1,3 @@
+const defaultSeries = () => {};
+
+export { defaultSeries };

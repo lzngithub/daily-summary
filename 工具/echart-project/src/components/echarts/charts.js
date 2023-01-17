@@ -3,6 +3,7 @@ import * as echarts from "echarts/core";
 // 引入柱状图图表，图表后缀都为 Chart
 import {
   BarChart,
+  PictorialBarChart,
   RadarChart,
   PieChart,
   MapChart,
@@ -37,6 +38,7 @@ echarts.use([
   ToolboxComponent,
   GeoComponent,
   BarChart,
+  PictorialBarChart,
   RadarChart,
   PieChart,
   MapChart,

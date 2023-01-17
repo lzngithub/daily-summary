@@ -1,13 +1,13 @@
 import { Chart } from "../index";
 import echarts from "../charts";
-import mapJSON from "./data/shaoxingshi";
+import mapJSON from "./data/zhejiang";
 
 // 地图的纹理普通状态
 const img = new Image();
 const bgPatternSrc = `data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAD6ADAAQAAAABAAAADwAAAAAHNtsJAAAApUlEQVQoFZ2SXRKDIAyEE0i5RI/Y8/elijGrHaQgP9N9cDLgl11j+Pl6K0FeSEWOsvmIkXhd0rU7Ku/H4GZgvEBwMuUIcPkFAbth1AZIjumMjTZ3aoHMpI/QgXtgCGbVcp4AEbSOPQnWcA+0b0TUXJfzCLQhlTrhP0A0EipWLnXH7/hONZ0Vhct3Nd1NgLTpzbQnQV4/FjuXrZxKPdX8FTgCJFXaATOiT5wDK+FFAAAAAElFTkSuQmCC`;
 img.src = bgPatternSrc;
 
-echarts.registerMap("area2", mapJSON);
+echarts.registerMap("area3", mapJSON);
 var option = {
   // 地图的阴影底图
   geo: [
@@ -56,7 +56,7 @@ var option = {
       roam: false,
       layoutCenter: null,
       layoutSize: null,
-      map: "area2",
+      map: "area3",
       selectedMode: false,
     },
   ],
@@ -79,6 +79,6 @@ var option = {
   },
 };
 
-export const Chart2 = () => {
+export const Chart3 = () => {
   return <Chart option={option}></Chart>;
 };
