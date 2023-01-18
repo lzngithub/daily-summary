@@ -31,10 +31,9 @@ const data = {
 const dataValue = data.childList.map((item) => item.data);
 
 const maxData = Math.max(...dataValue);
-console.log(maxData);
 
 const indicator = data.childList.map((item) => ({
-  text: item.name,
+  name: item.name,
   max: maxData,
 }));
 

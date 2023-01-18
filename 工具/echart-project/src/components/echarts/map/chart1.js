@@ -11600,7 +11600,6 @@ mapData.forEach(function (item, index) {
     value: item.value[2],
     index: index,
   });
-  console.log(outdata);
 });
 var option = {
   tooltip: {

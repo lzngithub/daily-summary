@@ -95,6 +95,5 @@ const option = {
 };
 
 export const Chart2 = () => {
-  console.log(option);
   return <Chart option={option}></Chart>;
 };

@@ -80,5 +80,5 @@ var option = {
 };
 
 export const Chart2 = () => {
-  return <Chart option={option}></Chart>;
+  return <Chart option={option} size="large"></Chart>;
 };
