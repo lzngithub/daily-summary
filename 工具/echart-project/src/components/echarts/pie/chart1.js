@@ -35,24 +35,6 @@ let total = echartData.reduce((a, b) => {
 }, 0);
 
 const option = {
-  backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    {
-      color: "#182950CC",
-      offset: 0,
-    },
-    {
-      color: "#13203DFF",
-      offset: 1,
-    },
-  ]),
-  color: [
-    "#FFAF4AFF",
-    "#F4765DFF",
-    "#8168F5FF",
-    "#00BDFFFF",
-    "#3FC790FF",
-    "#0188FE",
-  ],
   tooltip: {
     show: true,
     trigger: "item",
@@ -82,16 +64,13 @@ const option = {
     textStyle: {
       rich: {
         count: {
-          color: "#fff",
           fontSize: 24,
           fontWeight: 600,
         },
         unit: {
-          color: "#fff",
           fontSize: 12,
         },
         project: {
-          color: "#fff8",
           fontSize: 12,
         },
       },
@@ -106,15 +85,10 @@ const option = {
     itemGap: 13,
     textStyle: {
       fontSize: 14,
-      rich: {
-        name: {
-          color: "#fff",
-        },
-      },
     },
     formatter: function (name) {
       let res = echartData.filter((v) => v.name === name);
-      return `{name|${name}  ${res[0].value}个}`;
+      return `${name}  ${res[0].value}个`;
     },
   },
   toolbox: {

@@ -39,16 +39,6 @@ const indicator = data.childList.map((item) => ({
 }));
 
 const option = {
-  backgroundColor: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-    {
-      color: "#182950CC",
-      offset: 0,
-    },
-    {
-      color: "#13203DFF",
-      offset: 1,
-    },
-  ]),
   title: {
     text: data.data,
     subtext: data.name,
@@ -67,7 +57,6 @@ const option = {
     indicator,
     radius: 100,
     axisName: {
-      color: "#FFFFFFFF",
       backgroundColor: "transparent",
       borderRadius: 3,
       padding: [3, 5],

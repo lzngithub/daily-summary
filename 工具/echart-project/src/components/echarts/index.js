@@ -1,4 +1,6 @@
 import echarts from "./charts";
+import westeros from "./theme/westeros";
+import chalk from "./theme/chalk";
 import { useEffect, useRef } from "react";
 
 export const Chart = (props) => {
@@ -7,8 +9,8 @@ export const Chart = (props) => {
   const domRef = useRef(null);
 
   useEffect(() => {
-    console.log("init");
-    chartRef.current = echarts.init(domRef.current, "dark");
+    echarts.registerTheme("westeros", westeros);
+    chartRef.current = echarts.init(domRef.current, "westeros");
     chartRef.current.setOption(option);
   }, [option]);
 
