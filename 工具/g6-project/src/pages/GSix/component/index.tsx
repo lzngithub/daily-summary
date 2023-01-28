@@ -8,15 +8,6 @@ import { useEffect, useMemo } from 'react';
 import { cloneDeep } from 'lodash';
 
 import chanpinIcon from '@/assets/g6/chanpin.png';
-// import qiyeIcon from '@/assets/g6/qiye.png';
-
-// const iconList: {
-//   [key: string]: string;
-// } = {
-//   企业: qiyeIcon,
-//   产品: chanpinIcon,
-//   其他: qiyeIcon,
-// };
 
 const colorList: {
   [key: string]: string;

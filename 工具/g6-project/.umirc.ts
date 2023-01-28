@@ -34,6 +34,11 @@ export default defineConfig({
       path: '/g6',
       component: './GSix',
     },
+    {
+      name: 'simple-g6',
+      path: '/simple',
+      component: './Simple',
+    },
   ],
   npmClient: 'yarn',
 });
