@@ -1,19 +1,20 @@
-const debounce = (fn, delay) => {
-  let timer = null;
-  return (...params) => {
-    // 清除定时器
-    if (timer) clearTimeout(timer);
-    // 重新设定定时器
-    timer = setTimeout(() => {
-      fn(...params);
-      clearTimeout(timer);
-    }, delay);
+const throttle = (fn, delay) => {
+  let record = null;
+  return (...content) => {
+    const value = content[0].target.value;
+    if (!record) {
+      record = setTimeout(() => {
+        fn(value);
+        clearTimeout(record);
+        record = null;
+      }, delay);
+    }
   };
 };
 
 let inp = document.getElementById("input");
 const b = (e) => {
-  console.log(e.target.value);
+  console.log(e);
 };
-const a = debounce(b, 2000);
+const a = throttle(b, 2000);
 inp.oninput = a;
