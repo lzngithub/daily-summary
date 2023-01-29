@@ -1,20 +1,12 @@
-const throttle = (fn, delay) => {
-  let record = null;
-  return (...content) => {
-    const value = content[0].target.value;
-    if (!record) {
-      record = setTimeout(() => {
-        fn(value);
-        clearTimeout(record);
-        record = null;
-      }, delay);
-    }
-  };
+let result = null;
+
+const fun1 = async () => {
+  return new Promise((resolve) => {
+    resolve("resolved");
+  });
 };
 
-let inp = document.getElementById("input");
-const b = (e) => {
-  console.log(e);
-};
-const a = throttle(b, 2000);
-inp.oninput = a;
+(async () => {
+  result = await fun1();
+  console.log(result); // resolved
+})();
