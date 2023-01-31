@@ -1,12 +1,5 @@
-let result = null;
-
-const fun1 = async () => {
-  return new Promise((resolve) => {
-    resolve("resolved");
-  });
-};
-
-(async () => {
-  result = await fun1();
-  console.log(result); // resolved
-})();
+let a = "ABC abc abc 123";
+let b = a.at(-1);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 'B'
+// ```

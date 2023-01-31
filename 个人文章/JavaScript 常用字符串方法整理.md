@@ -1,0 +1,216 @@
+# string 常用方法整理
+
+1.trim(),去除 str 开头和结尾处的空白字符，返回 str 的一个副本，不影响字符串本身的值，trimStart()、trimEnd()方法类似。
+
+```js
+let a = " a bc ";
+let b = a.trim();
+console.log(a); // ' a bc '
+console.log(b); // 'a bc'
+```
+
+2.toLowerCase(),会将调用该方法的字符串值转为小写形式，并返回。
+
+```js
+let a = "ABC abc abc";
+let b = a.toLowerCase();
+console.log(a); // 'ABC abc abc'
+console.log(b); // 'abc abc abc'
+```
+
+3.toUpperCase(),会将调用该方法的字符串值转为大写形式，并返回。
+
+```js
+let a = "ABC abc abc";
+let b = a.toUpperCase();
+console.log(a); // 'ABC abc abc'
+console.log(b); // 'ABC ABC ABC'
+```
+
+4.concat(),方法将一个或多个字符串与原字符串连接合并，形成一个新的字符串并返回。
+
+```js
+let a = "abc";
+let b = a.concat(1, undefined, null, NaN, {});
+console.log(a); // 'abc'
+console.log(b); // 'abc1undefinednullNaN[object Object]'
+```
+
+5.replace(),replace() 方法返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果 pattern 是字符串，则仅替换第一个匹配项。replaceAll()方法也一样
+
+```js
+let a = "abc abc abc";
+let b = a.replace("abc", "ab");
+console.log(a); // 'abc abc abc'
+console.log(b); // 'ab abc abc'
+```
+
+6.split(),分裂，方法使用指定的分隔符字符串将一个 String 对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。
+
+```js
+/**
+ * @param {string | RegExp} [separator] 分隔匹配字符，以该标志进行分割
+ * @param {number} [limit] 限制分割结果数组的长度
+ * @return {Array} 分隔返回的数组
+ */
+function split(separator, limit) {}
+
+let a = "ABC abc abc 123";
+let b = a.split();
+let c = a.split(" ", 1);
+let d = a.split("", 3);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // ["ABC", "abc", "abc", "123"]
+console.log(c); // ["ABC"]
+console.log(d); // [ 'A', 'B', 'C' ]
+```
+
+7.chatAt()：从一个字符串中返回指定的单个字符，参数为字符串下标，默认不传为 0。
+
+```js
+/**
+ * @param {number} [index = 0] 范围为：0~length-1。
+ * @return {tring} 返回从开始索引到结束索引的值，不符合条件则返回空字符串
+ */
+function chatAt(index) {}
+
+let a = "ABC abc abc 123";
+let b = a.charAt(1);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 'B'
+```
+
+8.at()：从一个字符串中返回指定的单个字符，参数为字符串下标。
+
+```js
+/**
+ * @param {number} [index=0] 下标的值，可为负数。
+ * @return {tring|undefined} 返回从开始索引到结束索引的值，不符合条件则返回undefined
+ */
+function at(index) {}
+
+let a = "ABC abc abc 123";
+let b = a.at(1);
+let c = a.at(-1);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 'B'
+console.log(c); // '3'
+```
+
+9.substring(),方法返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集
+
+参数有以下特点：
+
+- 如果 indexStart 等于 indexEnd，substring 返回一个空字符串。
+- 如果省略 indexEnd，substring 提取字符一直到字符串末尾。
+- 如果任一参数小于 0 或为 NaN，则被当作 0。
+- 如果任一参数大于 stringName.length，则被当作 stringName.length。
+- 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。见下面的例子。
+
+```js
+let a = "ABC abc abc 123";
+let b = a.substring(4, 7);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 'abc'
+```
+
+10.slice()：提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
+
+```js
+/**
+ * @param {number} [startIndx = 0] 开始索引，可为负数，负数从右边数起
+ * @param {number} [endIndex = length + 1] 结束索引，可为负数，负数从右边数起
+ * @return {tring} 返回从开始索引到结束索引的值，不符合条件则返回空字符串
+ */
+function slice(startIndx, endIndex) {}
+
+let a = "ABC abc abc 123";
+let b = a.slice(0, a.length + 1);
+let c = a.slice(1, -1);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 'ABC abc abc 123'
+console.log(c); // 'BC abc abc 12'
+```
+
+11.statsWith()：判断当前字符串是否以另外一个给定的子字符串开头，并根据判断结果返回 true 或 false。endsWith()方法也一样
+
+```js
+let a = "ABC abc abc 123";
+let b = a.statsWith("ABC");
+let c = a.statsWith("abc", 5);
+console.log(b); // true
+console.log(c); // true
+```
+
+12.repeat()：方法用另一个字符串填充当前字符串（如果需要的话，会重复多次），以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。padEnd()方法也一样
+
+```js
+let a = "9";
+let b = a.repeat(3);
+console.log(b); // 999
+```
+
+13.padStart()：方法用另一个字符串填充当前字符串（如果需要的话，会重复多次），以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。padEnd()方法也一样
+
+```js
+let a = "9";
+let b = a.padStart(3, "0");
+console.log(b); // 009
+```
+
+14.includes(),方法用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。
+
+```js
+let a = "ABC abc abc 123";
+let b = a.includes("abc", 1);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // true
+```
+
+15.indexOf(),方法返回调用它的 String 对象中第一次出现的指定值的索引，从 fromIndex 处进行搜索。如果未找到该值，则返回 -1。lastIndexOf() 方法一样
+
+```js
+let a = "ABC abc abc 123";
+let b = a.indexOf("abc", 5);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 8
+```
+
+16.match(),返回一个包含匹配结果的数组，如果没有匹配项，则返回 null。如果参数传入的是一个非正则表达式对象，则会使用 new RegExp(obj) 隐式地将其转换为正则表达式对象
+
+```js
+let a = "ABC abc abc 123";
+let b = a.match(/abc/g);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // ["abc", "abc"]
+```
+
+17.search(),查找 str 与一个正则表达式是否匹配。如果匹配成功，则返回正则表达式在字符串中首次匹配项的索引；否则，返回 -1。如果参数传入的是一个非正则表达式对象，则会使用 new RegExp(obj) 隐式地将其转换为正则表达式对象
+
+```js
+let a = "ABC abc abc 123";
+let b = a.search(/abc/g);
+console.log(a); // 'ABC abc abc 123'
+console.log(b); // 4
+```
+
+记忆分类：
+
+对于单个字符串可做的事情
+
+- 根据下标查的一个或多个字符是什么，用 at chatAt slice substring
+- 根据某个特定字符去分割整个字符串，用 split
+- 替换掉某些特定的字符串，用 replace replaceAll
+- 重复特定次数的字符串，用 repeat
+- 去空格，用 trim trimEnd trimStart
+- 用某个字符填充得到固定长度的字符串， 用 padEnd padStart
+- 大小写转换，用 toLowerCase toUpperCase
+
+对于两个或多个字符串：
+
+- 短的字符串在不在长的字符串里面，用：startsWith endsWith inclueds
+- 短的字符串在不在长的字符串里面什么位置，用: indexOf lastIndexOf search
+- 短的字符串在长的字符串的匹配程度，用: match
+- 连接两个或者多个值，用 concat
+
+参考：[mdn](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)
