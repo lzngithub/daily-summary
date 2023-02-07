@@ -1,10 +1,12 @@
-# react 生命周期和 hook
+# react 生命周期方法
 
-生命周期针对的是类组件，函数式组件没有生命周期，但有一些 hook 去弥补缺失生命周期的部分功能
+React 组件在运行的阶段有挂载，更新和卸载，这些阶段叫做 React 的生命周期，在这些生命周期内会调用一些方法，叫做生命周期方法。了解和使用这些生命周期方法，能更好的帮助我去组织我们的代码。
 
-## 类组件生命周期
+function 组件没有实例，也就没有对应的生命周期。
 
-### 总览
+## 总览
+
+生命周期方法分阶段主要有下面几个
 
 挂载阶段：
 
@@ -41,20 +43,38 @@
 - static getDerivedStateFromProps
 - getSnapshotBeforeUpdate
 
-### 挂载阶段
+## 挂载阶段
 
-#### constructor()
+接下来先了解挂载阶段的方法
 
-- 组件的构造函数，在其内部需要调用 super(props)，不然会报错
-- 会在首次挂载前执行
+### constructor()
+
+- 组件的构造函数，在首次挂载前执行
+- 其内部需要调用 super(props)去执行父组件 React.Component 的构造函数，不然会报错
 - 不要在里面调用 setState()方法，直接用 this.state 赋值就可以。
-- 避免在构造函数中引入任何副作用或订阅
+- 避免在构造函数中引入任何副作用或订阅，主要作用，初始化 state 和进行方法绑定
 
-#### static getDerivedStateFromProps(nextProps, prevState)
+例子：
+
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      // 初始化 state
+    };
+    // 绑定函数，js中类方法的this默认是不指定的
+    this.handleClick = this.handleClick.bind(this);
+  }
+  // ···
+}
+```
+
+### static getDerivedStateFromProps(nextProps, prevState)
 
 - 静态方法，无法通过 this 访问实例属性
 - 作用为组件在 props 发生改变时更新它自身的内部 state
-- 在挂载和更新阶段都会执行
+- 在挂载和更新阶段都会执行，执行时机为 render 阶段
 
 用法
 
@@ -73,7 +93,7 @@ static getDerivedStateFromProps(nextProps, prevState) {
 
 ```
 
-#### render()
+### render()
 
 - 发生在 render 阶段
 - 是 class 组件中唯一必须实现的方法
@@ -88,15 +108,17 @@ static getDerivedStateFromProps(nextProps, prevState) {
 - 字符串或数值类型，会被渲染成文本节点
 - 布尔值或 null，什么都不渲染
 
-#### componentDidMount()
+### componentDidMount()
 
 - 会在组件挂载后（插入 DOM 树中）立即调用，在 commit 阶段的 layout 阶段同步执行，会阻塞页面渲染
 - 在这里调用 setState()会触发额外渲染，但这渲染会发生在浏览器更新屏幕之前，所以即使调用了两次 render(),但是只会发生一次屏幕更新。
 - 等同于 useLayoutEffect hook
 
-### 更新阶段
+## 更新阶段
 
-#### shouldComponentUpdate(nextProps， nextState)
+更新阶段提供给我们调用的方法有五个，其中两个在挂载阶段讲了，接下来主要了解 shouldComonentUpdate、getSnapshotBeforeUpdate 和 compoentDidUpdate 这三个方法。
+
+### shouldComponentUpdate(nextProps, nextState)
 
 根据 shouldComponentUpdate() 的返回值，判断 React 组件的输出是否受当前 state 或 props 更改的影响。默认行为是 state 每次发生变化组件都会重新渲染，优化的一种手段，当你想要某一个 state 变化不会触发更新的时候可以用这个方法。
 
@@ -104,9 +126,21 @@ static getDerivedStateFromProps(nextProps, prevState) {
 - 首次渲染或使用 forceUpdate() 时不会调用该方法。
 - 返回 false 并不会阻止子组件的正常行为，比如说渲染
 
-#### getSnapshotBeforeUpdate(prevProps, prevState)
+例子：
 
-- 在最近一次渲染输出（在 before mutation 中）之前调用，界面还没有更新，一般用作 UI 处理
+```js
+shouldComponentUpdate(nextProps, nextState) {
+  if (this.props.count !== nextProps.count) {
+    // 当count没有改变的时候，不触发渲染
+    return false
+  }
+  return true
+}
+```
+
+### getSnapshotBeforeUpdate(prevProps, prevState)
+
+- 在最近一次渲染输出（在 before mutation 中）之前调用，dom 还没有更新，一般用作 UI 处理
 - 此生命周期的任何返回值将作为参数传递给 componentDidUpdate()。
 
 ```js
@@ -145,38 +179,47 @@ class Child extends Component {
 }
 ```
 
-#### componentDidUpdate(prevProps, prevState, snapshot)
+### componentDidUpdate(prevProps, prevState, snapshot)
 
 - snapshot：接受 getSnapshotBeforeUpdate（）的返回值
 - 在屏幕更新后调用，在 commit 阶段的 layout 阶段同步执行。
 - 在 componentDidUpdate 中改变 state 应该是有条件的，不然会死循环
 - 可以在此处对比更新前后的 props 和 state
 
-### 卸载阶段
+## 卸载阶段
 
-#### componentWillUnmount()
+### componentWillUnmount()
 
 - 会在组件卸载及销毁之前直接调用
 
-### 错误处理
+## 错误处理
 
-#### static getDerivedStateFromError(error)
+### static getDerivedStateFromError(error)
 
 - 此生命周期会在后代组件抛出错误后被调用
 - 它将抛出的错误作为参数，并返回一个值以更新 state
 - 在渲染阶段调用，不允许出现副作用
 
-#### componentDidCatch(error, info)
+### componentDidCatch(error, info)
 
 - 此生命周期在后代组件抛出错误后被调用
 - 在“提交”阶段被调用，因此允许执行副作用。 它应该用于记录错误之类的情况
 
-## 函数组件 hook
+## 总结
 
-### useEffect
+主要的生命周期方法就上面几个，即将被废弃的三个方法就不需要过多了解了，重新回顾下
 
-引入副作用，销毁函数和回调函数在 commit 阶段异步调度，在 layout 阶段完成后异步执行，不会阻塞 ui 得渲染。
+挂载阶段，按顺序执行
 
-### uuseLayoutEffect
+- constructor: 初始化 state 数据，绑定方法，super(props)是必须被实现的
+- static getDrivedStateFormProps: state 值依赖于 props 值变化时使用
+- render: 唯一需要实现的方法，返回值为 React 元素
+- componentDidMount: 同步执行，会阻塞渲染
 
-引入副作用的，useLayoutEffect 会阻塞 dom 的渲染，同步执行，上一次更新的销毁函数在 commit 的 mutation 阶段执行，回调函数在在 layout 阶段执行，和 componentDidxxxx 是等价的。
+更新阶段，按顺序执行
+
+- static getDrivedStateFormProps: 同上
+- shouldComponentUpdate: 返回值为 fasle 不触发渲染，优化手段
+- render: 同上
+- getSnapshotBeforeUpdate: dom 更新前，因为可以记录一些 dom 数据，传给 componentDidUpdate
+- componentDidUpate: dom 更新后，可以对 dom 进行操作了，网络请求也可以从这里发
