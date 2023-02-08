@@ -2,6 +2,8 @@
 
 Hook 是 React16.8 的新特性，Hook 使你在无需修改组件结构的情况下复用状态逻辑。
 
+为 function 组件使用
+
 ### 总览
 
 - useState()
