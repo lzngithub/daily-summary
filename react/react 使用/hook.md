@@ -2,9 +2,11 @@
 
 Hook 是 React16.8 的新特性，Hook 使你在无需修改组件结构的情况下复用状态逻辑。
 
-为 function 组件使用
+弥补了 functin Component 没有实例没有生命周期的问题，react 项目基本上可以全部用 function Component 去实现了。
 
-## 总览
+## hook 总览
+
+常用的官方的 hook 主要是下面几个：
 
 - useState()
 - useReducer()
@@ -16,9 +18,18 @@ Hook 是 React16.8 的新特性，Hook 使你在无需修改组件结构的情�
 - useMemo()
 - useCallback()
 
-## useState
+## hook 基础
 
-存取数据的一种方式，对于简单的 state 适用，复杂的 state 考虑使用 useReducer
+hook 使用规则：
+
+- 不要在循环，条件，或者嵌套函数中调用 hook，在最顶层使用 hook
+- 不能在普通函数中调用 hook
+
+下面主要记录每个 hook 基础的用法，
+
+### useState
+
+存取数据的一种方式，对于简单的 state 适用，复杂的更新逻辑的 state 考虑使用 useReducer
 
 使用：
 
@@ -35,7 +46,7 @@ setState((state) => newState); // 函数式更新
 
 setState 是稳定的，所以在一些 hook 依赖中可以省略
 
-## useReducer
+### useReducer
 
 useState 的一种代替方案，当 state 的处理逻辑比较复杂的时候，有多个子值得时候，可以考虑用 useReducer
 
@@ -61,7 +72,7 @@ const [state, dispatch] = useReducer(reducer, initialState);
 
 dispatch 是稳定的，所以在一些 hook 依赖中可以省略
 
-## useContext
+### useContext
 
 ```js
 const value = useContext(MyContext);
@@ -109,7 +120,7 @@ function ThemedButton() {
 }
 ```
 
-## useRef
+### useRef
 
 ```js
 const refContainer = useRef(initValue);
@@ -176,7 +187,7 @@ function App() {
 export default App;
 ```
 
-## useImperativeHandle
+### useImperativeHandle
 
 useImperativeHandle 可以让你在使用 ref 时自定义暴露给父组件的实例值
 
@@ -221,15 +232,27 @@ const Child = (props) => {
 };
 ```
 
-## useEffect
+### useEffect
 
 引入副作用，销毁函数和回调函数在 commit 阶段异步调度，在 layout 阶段完成后异步执行，不会阻塞 ui 得渲染。
 
-## useLayoutEffect
+```js
+useEffect(() => {
+  //...副作用
+  return () => {
+    // ...清除副作用
+  };
+}, [deps]);
+```
 
-引入副作用的，useLayoutEffect 会阻塞 dom 的渲染，同步执行，上一次更新的销毁函数在 commit 的 mutation 阶段执行，回调函数在在 layout 阶段执行，和 componentDidxxxx 是等价的。
+- 副作用在 commit 阶段异步执行，清除副作用的销毁函数会在下一阶段的的 commit 阶段执行，
+- [deps]：依赖数组，依赖发生变化重新执行
 
-## useMemo
+### useLayoutEffect
+
+引入副作用的，用法和 useEffect 一样，但 useLayoutEffect 会阻塞 dom 的渲染，同步执行，上一次更新的销毁函数在 commit 的 mutation 阶段执行，回调函数在在 layout 阶段执行，和 componentDidxxxx 是等价的。
+
+### useMemo
 
 返回一个 memo 值，作为一种性能优化的手段，只有当依赖项的依赖改变才会重新渲染值
 
@@ -237,7 +260,7 @@ const Child = (props) => {
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-## useCallback
+### useCallback
 
 返回一个 memoized 回调函数，作为一种性能优化的手段，只有当依赖项的依赖改变才会重新构建该函数
 
@@ -247,11 +270,11 @@ const memoizedCallback = useCallback(() => {
 }, [a, b]);
 ```
 
-## useDebugValue
+### useDebugValue
 
 useDebugValue 可用于在 React 开发者工具中显示自定义 hook 的标签, 浏览器装有 react 开发工具调试代码的时候才有用。
 
-## useTransition
+### useTransition
 
 返回一个状态值表示过渡任务的等待状态，以及一个启动该过渡任务的函数。
 
@@ -319,13 +342,9 @@ export default () => {
 };
 ```
 
-## useDeferredValue
+### useDeferredValue
 
 useDeferredValue 接受一个值，并返回该值的新副本，该副本将推迟到更紧急地更新之后。如果当前渲染是一个紧急更新的结果，比如用户输入，React 将返回之前的值，然后在紧急渲染完成后渲染新的值。本，该副本将推迟到更紧急地更新之后
-
-## 自定义 hook
-
-- 是一个函数，use 开头，函数内部可以调用其他的 Hook
 
 ## hook 进阶
 
@@ -333,11 +352,11 @@ react hook 工作当中也用了一段时间了，中间踩过一些坑，针对
 
 - 两个 state 是关联或者需要一起发生改变，可以放在同一个 state，但不要太多
 - 当 state 的更新逻辑比较复杂的时候则可以考虑使用 useReducer 代替
-- useEffect useLayoutEffect useMemo useCallback useImperativeHandle 中依赖数组依赖项最好不要太多，太多则考虑拆分一下，感觉不超 3 到 4 个会比较合适。
+- useEffect、useLayoutEffect、useMemo、useCallback、useImperativeHandle 中依赖数组依赖项最好不要太多，太多则考虑拆分一下，感觉不超 3 到 4 个会比较合适。
 
   - 去掉不必要的依赖项
   - 合并相关的 state 为一个
   - 通过 setState 回到函数方式去更新 state
-  - 看按照不同维度这个 hook 还能不能拆分的更细
+  - 按照不同维度这个 hook 还能不能拆分的更细
 
-- useMemo 多用于对 React 元素做 memorize 处理，对于简单纯 js 计算就不要进行 useMemo 处理了。
+- useMemo 多用于对 React 元素做 memorize 处理或者需要复杂计算得出的值，对于简单纯 js 计算就不要进行 useMemo 处理了。
