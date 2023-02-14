@@ -239,6 +239,39 @@ export default store;
 </button>
 ```
 
+### 在 function Component 中使用
+
+在 7 版本后，可以在函数组件中使用 react-redux
+
+简单使用
+
+```js
+import { useSelector, useDispatch } from "react-redux";
+
+// 取值
+const color = useSelector((state) => ({
+  themeColor: state.color.themeColor,
+}));
+// 触发方法
+const dispatch = useDispatch();
+
+<div>
+  <button
+    onClick={() =>
+      dispatch({
+        type: "color/change",
+        payload: {
+          themeColor: "green",
+        },
+      })
+    }
+    style={{ color: color.themeColor }}
+  >
+    change
+  </button>
+</div>;
+```
+
 总结：
 
 - 单一数据源
