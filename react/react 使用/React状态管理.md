@@ -282,6 +282,227 @@ const dispatch = useDispatch();
 
 上面三个特点保证了 redux 的状态时可预测的
 
+## Mobx
+
+一个非常简单的 状态管理工具，对比 Redux，Mobx 会更容易上手，更容易理解，且编写方便。
+
+> 下面的使用是基于 mobx6 去进行使用的，不支持装饰器语法，参考：[mobx](https://www.mobxjs.com/)
+
+mobx 可以有多个 store，是相互独立的，一个 store 对应一个类实例，mobx 有三个核心概念
+
+- state: 存储值得地方，对应实例的属性
+- action：改变值得方法，对用实例的方法
+- computed: 计算属性，对用实例的 get 方法
+
+### 基础使用
+
+安装依赖，搭配 react 使用要安装 mobx-react
+
+```js
+yarn add mobx mobx-react
+```
+
+新建一个 ./store/counter.js
+
+```js
+import { makeObservable, observable, action, computed } from "mobx";
+
+class Counter {
+  constructor() {
+    // makeObservable 将数据变成可观察的
+    makeObservable(this, {
+      count: observable, // observable：可观察属性
+      double: computed, // computed：计算属性
+      change: action.bound, // action: action方法，bound属性 绑定this
+    });
+  }
+  count = 0;
+  get double() {
+    return this.count * 2;
+  }
+  change() {
+    this.count++;
+  }
+}
+
+const counter = new Counter();
+export default counter; // 要返回实例，不能直接返回类
+```
+
+组件中使用
+
+```js
+import { observer } from "mobx-react";
+import counter from "./store/counter"; // 导入进来直接用就行
+
+function App(props) {
+  return (
+    <div>
+      <button onClick={counter.change}>change</button>
+      <span>{counter.count}</span>
+      <span>{counter.double}</span>
+    </div>
+  );
+}
+
+export default observer(App); // observer高阶方法，包裹产生联系
+```
+
+上面就是一个基本使用的例子，接下来重点说一个 makeObservable 这个方法，需要一个个属性绑定哪些属性是可观察的，这个时候可以替换为使用 makeAutoObservable 方法进行中自动绑定
+
+### makeAutoObservable
+
+```js
+import { makeAutoObservable } from "mobx";
+
+constructor() {
+    makeAutoObservable(this, {}, { autoBind: true });
+  }
+```
+
+autoBind: 绑定 this 为实例
+
+### 监听属性
+
+1.autorun 函数，参数接受一个函数，创建时会运行一次，里面使用值得改变得时候也会触发
+
+```js
+import { autorun } from "mobx";
+
+autorun(() => {
+  console.log(counter.count);
+});
+```
+
+2.reaction 方法，创建时不执行，变化的时候才执行，可以精确到某一个属性
+
+```js
+import { reaction } from "mobx";
+
+reaction(
+  () => counter.count,
+  (count, oldCount) => {
+    console.log(count, oldCount);
+  }
+);
+```
+
+### 处理异步
+
+mobx 可以直接处理异步，可观察对象是可变的，
+
+在 action 中保持对 state 的引用一般是安全的，因此对 state 的修改不是在 action 中话，可以修改，但会有警告
+
+例如：
+
+```js
+change() {
+  setTimeout(() => {
+    this.count ++;
+  })
+}
+```
+
+像上面这样修改时能成功，但会报警告，因为 count 不是直接在 action 方法中修改的，是在定时器的回调函数中执行的，对于这种情况有三种方式可以解决
+
+- 方法，通过配置消除警告（不推荐）
+
+```js
+// ./store/counter.js
+import { configure } from "mobx";
+
+configure({
+  enforceActions: "never", // 默认为 'observed'
+});
+```
+
+- 将异步代码拆分成两个方法
+
+```js
+change() {
+  // 改变state的动作放这里，这样state的改变就是在action里了
+  this.count ++;
+}
+
+asyncChange() {
+  // 异步逻辑放这里
+  setTimeout(this.change)
+}
+```
+
+- 利用 runInAction 方法也可以
+
+```js
+change() {
+    setTimeout(() => {
+      runInAction(() => {
+        this.count++; // 将改变state的动作放在runInAction的回调函数中
+      });
+    });
+  }
+```
+
+### 模块化
+
+新建一个 ./store/user.js
+
+```js
+import { makeObservable, observable } from "mobx";
+
+class User {
+  constructor() {
+    makeObservable(this, {
+      name: observable,
+    });
+  }
+  name = "liangzn";
+}
+
+const user = new User();
+
+export default user;
+```
+
+新建一个 ./store/index.js
+
+```js
+import user from "./user";
+import counter from "./counter";
+import { useContext, createContext } from "react";
+
+class Store {
+  user = user;
+  counter = counter;
+}
+
+const Context = createContext(new Store());
+
+export const useStore = function () {
+  return useContext(Context);
+};
+```
+
+使用
+
+```js
+import { observer } from "mobx-react";
+import { useStore } from "./store";
+
+function App(props) {
+  const { counter, user } = useStore();
+  return (
+    <div>
+      <button onClick={counter.change}>change</button>
+      <span>{counter.count}</span>
+      <span>{counter.double}</span>
+      <div>{user.name}</div>
+    </div>
+  );
+}
+
+export default observer(App);
+```
+
 ## useContext 和 useReducer
 
 这种方案是使用于 hook 同时项目是比较简单的，通过 useContext 和 useReducer 做全局状态管理
