@@ -1,5 +1,11 @@
 # React 状态管理
 
+react 状态管理官方没有强制使用哪个方案，把这个选择的权力交给开发者，接下来主要讲三个状态管理方案的学习和各自的特点
+
+- redux
+- mobx
+- useContext 加 useReducer 的组合
+
 ## Redux
 
 如何理解 Redux
