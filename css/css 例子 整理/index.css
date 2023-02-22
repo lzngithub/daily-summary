@@ -1,0 +1,42 @@
+.demo1 {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 200px;
+}
+
+.demo2 {
+  display: -webkit-box;
+  width: 200px;
+  /* 超出部分隐藏 */
+  overflow: hidden;
+  /* 子元素的排列方式：垂直排列，垂直排列，子代总高度等于父代高度 */
+  -webkit-box-orient: vertical;
+  /* 限制文本显示两行，超出打点展示 */
+  -webkit-line-clamp: 2;
+}
+
+.demo3 {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 1px;
+}
+.demo3::after {
+  position: absolute;
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    #e0e0e0 0%,
+    #e0e0e0 50%,
+    transparent 50%,
+    transparent 100%
+  );
+  background-repeat: repeat-x;
+  background-size: 10px 1px;
+}
