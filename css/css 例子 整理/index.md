@@ -60,3 +60,54 @@ border 画的虚线都是一点一点的，可以利用伪元素加背景渐变�
   background-size: 10px 1px;
 }
 ```
+
+## 媒体查询
+
+- 通过 rem 对不同型号的视口进行响应式布局, 现在主流的有 2560（2k）、1920、1680、1366、1080，基本设置这几个就够用了
+- 谷歌浏览器字体最小为 12 号
+
+```css
+/* 大屏 */
+@media screen and (max-width: 2560px) {
+  html,
+  body {
+    font-size: 20px !important;
+  }
+}
+
+@media screen and (max-width: 1920px) {
+  html,
+  body {
+    font-size: 18px !important;
+  }
+}
+/* 中屏 */
+@media screen and (max-width: 1680px) {
+  html,
+  body {
+    font-size: 16px !important;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  /* 包含1366 */
+  html,
+  body {
+    font-size: 14px !important;
+  }
+}
+/* 小屏 */
+@media screen and (max-width: 1280px) {
+  html,
+  body {
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  html,
+  body {
+    font-size: 8px !important;
+  }
+}
+```

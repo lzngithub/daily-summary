@@ -4,6 +4,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 200px;
+  height: 1rem;
 }
 
 .demo2 {
