@@ -41,3 +41,16 @@
   background-repeat: repeat-x;
   background-size: 10px 1px;
 }
+
+.demo4 {
+  display: inline-block;
+  width: 300px;
+}
+.demo4 .image {
+  float: left;
+  width: 100px;
+  height: 100px;
+  background-color: #eee;
+  shape-outside: circle(50%);
+  clip-path: circle(50%);
+}
