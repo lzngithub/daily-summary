@@ -1,24 +1,15 @@
-class classA {
-  constructor() {}
+function Node(data, left, right) {
+  this.data = data;
+  this.left = left;
+  this.right = right;
 }
 
-const HocClass = function (WrappedClass) {
-  let instance = null;
-  return new Proxy(WrappedClass, {
-    construct(target, args) {
-      if (!instance) {
-        instance = new target(...args);
-      }
-      return instance;
-    },
+function Tree() {
+  this.root = null;
+}
+
+const changeTree = (arr) => {
+  arr.forEach((element) => {
+    new Node(element);
   });
 };
-
-const NewClass = new HocClass(classA);
-NewClass.prototype.say = () => {};
-
-const a1 = new NewClass();
-const a2 = new NewClass();
-
-console.log(a1 === a2);
-a1.say();
