@@ -1,7 +1,13 @@
-body {
-  --color: red;
+.flex-container {
+  margin: -24px 0px 0px -24px;
+  display: flex;
+  width: 220px;
+  flex-wrap: wrap;
+  border: 1px solid gray;
 }
 
-div {
-  color: var(--color);
+.flexbox {
+  margin: 24px 0px 0px 24px;
+  background-color: #338bff;
+  padding: 20px;
 }
