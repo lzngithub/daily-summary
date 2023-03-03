@@ -45,6 +45,7 @@
 .demo4 {
   display: inline-block;
   width: 300px;
+  height: 100vh;
 }
 .demo4 .image {
   float: left;
