@@ -1,0 +1,8 @@
+.wrapper {
+  display: inline-block;
+  width: 300px;
+  height: 100px;
+  background-color: #000;
+  border: 30px solid;
+  border-image: linear-gradient(to right bottom, red, green);
+}
