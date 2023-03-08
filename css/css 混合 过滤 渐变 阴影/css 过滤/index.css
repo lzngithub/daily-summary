@@ -70,19 +70,23 @@
 
 .wrapper2 {
   width: 100px;
-  background-color: #000;
 }
 
-.wrapper2 button {
-  width: 100px;
-  height: 50px;
-  color: #000;
-  background-color: #fff;
-  font-size: 24px;
-  outline: none;
-  border: none;
-}
-
-.wrapper2 button:hover {
-  filter: brightness(100);
+.content {
+  width: 430px;
+  height: 250px;
+  background-color: #b598a1;
+  /* background-image: url(./assets/1.jpg); */
+  background-repeat: repeat;
+  font-size: 30px;
+  padding: 20px;
+  text-align: center;
+  line-height: 250px;
+  font-weight: 600;
+  background-clip: padding-box;
+  background-origin: border-box;
+  color: transparent;
+  background-size: 100px 100px;
+  background-position: 0% 0%;
+  border: 10px dashed #000;
 }

@@ -20,6 +20,14 @@ css3 新增的属性，处理两个元素覆盖部分如何混合的问题。
 
 混合的模式也有很多种
 
+## 语法
+
+用 background-blend-mode 来举例
+
+```css
+background-blend-mode: multiply;
+```
+
 ## 混合模式
 
 - normal：正常，默认
