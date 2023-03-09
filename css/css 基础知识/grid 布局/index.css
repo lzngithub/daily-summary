@@ -1,0 +1,16 @@
+.wrapper {
+  background-color: gray;
+  display: inline-grid;
+  width: 350px;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px;
+  gap: 10px;
+}
+
+.item {
+  background-color: aquamarine;
+  /* width: 100%; */
+}
+.item:nth-child(5) {
+}
