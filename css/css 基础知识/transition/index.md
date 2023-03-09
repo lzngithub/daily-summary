@@ -22,3 +22,4 @@ perspective
 perspective-origin
 backface-visibility
 
+- 渐变色是没有过渡效果的。
