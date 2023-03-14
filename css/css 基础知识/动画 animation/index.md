@@ -1,5 +1,16 @@
 # animation
 
+动画
+
+## 和过渡相比
+
+和过渡属性相比多了四个属性：有八个属性
+
+- 播放次数（过渡只有一次）
+- 暂停还是运行
+- 动画开始播放的方向
+- 动画不播放的时候元素的样式
+
 ## 语法
 
 绑定动画：animation: animatin-name,
@@ -12,6 +23,40 @@
 - animation-iteration-count: 动画播放次数；n 或者 infinite
 - animation-direction: 动画播放的方向
 - animation-play-state: 动画暂停还是运行：paused 或者 running
+
+## animatin-name
+
+动画名称，使用 @keyframes
+
+### @keyframes
+
+定义动画序列中的关键帧，关键帧 keyframes 可以控制动画序列的中间步骤。
+
+例子：
+
+```css
+@keyframes identifier {
+  0% {
+    top: 0;
+    left: 0;
+  }
+  30% {
+    top: 50px;
+  }
+  68%,
+  72% {
+    left: 50px;
+  }
+  100% {
+    top: 100px;
+    left: 100%;
+  }
+}
+```
+
+- 关键帧中出现的 !important 将会被忽略。
+- from === 0%
+- to === 100%
 
 ## animation-timing-function
 
@@ -34,7 +79,7 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 - step-start: 没有过渡效果，相当于 steps(1, start)
 - step-end: 没有过渡效果，相当于 steps(1, end)
 
-# animation-fill-mode
+## animation-fill-mode
 
 默认情况下，CSS 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。animation-fill-mode 属性可重写该行为。
 
