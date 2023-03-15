@@ -131,7 +131,7 @@ animation-iteration-count: 2, 0, infinite;
 默认情况下，CSS 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。animation-fill-mode 属性可重写该行为。
 
 - none: 默认不运用
-- forwards: 应用结束时的样式
+- forwards: 应用结束时的样式，一般 hover 结束的时候用
 - backwards: 应用开始时的样式
 - both: 都运用
 
