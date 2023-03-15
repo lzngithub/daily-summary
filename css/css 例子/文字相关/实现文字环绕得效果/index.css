@@ -1,0 +1,7 @@
+img {
+  shape-outside: url(./undraw_static_assets_rpm6.svg);
+}
+img {
+  margin: 0 2rem;
+  transform: translateX(-2rem);
+}
