@@ -24,7 +24,7 @@
 - animation-direction: 动画播放的方向
 - animation-play-state: 动画暂停还是运行：paused 或者 running
 
-## animatin-name
+## 1 animatin-name
 
 动画名称，使用 @keyframes
 
@@ -58,7 +58,27 @@
 - from === 0%
 - to === 100%
 
-## animation-timing-function
+## 2 animation-duration
+
+指定动画周期的时长，单位为 s
+
+例子：
+
+```css
+animation-duration: 2s;
+```
+
+## 3 animation-delay
+
+定义动画何时开始，单位为秒（s）
+
+例子：
+
+```css
+animation-delay: 2s;
+```
+
+## 4 animation-timing-function
 
 参考 MDN：https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-timing-function
 
@@ -79,7 +99,34 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 - step-start: 没有过渡效果，相当于 steps(1, start)
 - step-end: 没有过渡效果，相当于 steps(1, end)
 
-## animation-fill-mode
+## 5 animation-iteration-count
+
+指定动画播放次数
+
+例子
+
+```css
+/* 值为关键字 */
+animation-iteration-count: infinite;
+
+/* 值为数字 */
+animation-iteration-count: 3;
+animation-iteration-count: 2.4;
+
+/* 指定多个值 */
+animation-iteration-count: 2, 0, infinite;
+```
+
+## 6 animation-direction
+
+动画播放的方向
+
+- normal: 默认，正向
+- reverse: 反向
+- alternate: 1，3，5，···，正向；2，4，6，···，反向
+- alternate-reverse: 1，3，5，···，反向；2，4，6，···，正向
+
+## 7 animation-fill-mode
 
 默认情况下，CSS 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。animation-fill-mode 属性可重写该行为。
 
@@ -88,11 +135,6 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 - backwards: 应用开始时的样式
 - both: 都运用
 
-## animation-direction
+## 8 animation-play-state
 
-动画播放的方向
-
-- normal: 默认，正向
-- reverse: 反向
-- alternate: 1，3，5，···，正向；2，4，6，···，反向
-- alternate-reverse: 1，3，5，···，反向；2，4，6，···，正向
+动画暂停还是运行：paused 或者 running
