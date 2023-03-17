@@ -166,3 +166,13 @@ shape-outside: 指定浮动元素的浮动区域。
 注意点：
 
 - 设置行高和字体高度相同可以设置值为 1 或者 100%，同时设置 display: inline-block;
+
+## 修改滚动条的样式
+
+可以通过一下伪元素去设置滚动条的相关样式
+
+- ::-webkit-scrollbar 滚动条样式
+- ::-webkit-scrollbar-thumb 设置滚动条滑动块的样式
+- ::-webkit-scrollbar-button 滚动条上下按钮的样式
+- ::-webkit-scrollbar-track-piece 除滑动块以外的滚动条部分的样式。
+- ::-webkit-scrollbar-corner 横、竖滚动条交界的角落区域样式。
