@@ -35,98 +35,24 @@ const tree = {
   },
 };
 
-function beforeOrder(root) {
-  if (!root) {
-    return;
-  }
-  console.log(root.value);
-  beforeOrder(root.left);
-  beforeOrder(root.right);
-}
-
-function middleOrder(root) {
-  if (!root) {
-    return;
-  }
-  middleOrder(root.left);
-  console.log(root.value);
-  middleOrder(root.right);
-}
-
-function afterOrder(root) {
-  if (!root) {
-    return;
-  }
-  afterOrder(root.left);
-  afterOrder(root.right);
-  console.log(root.value);
-}
-class Stack {
-  data = [];
-  push(item) {
-    return this.data.push(item);
-  }
-  pop() {
-    return this.data.pop();
-  }
-  isEmpty() {
-    return this.data.length === 0;
-  }
-  peek() {
-    return this.data.length ? this.data[this.data.length - 1] : "栈为空";
-  }
-}
-function beforeSearch(root) {
-  if (!root) return;
-  const result = [];
-  const stack = [];
-  stack.push(root);
-  while (stack.length) {
-    const currentNode = stack.pop();
-    result.push(currentNode.value);
-    if (currentNode.right) stack.push(currentNode.right);
-    if (currentNode.left) stack.push(currentNode.left);
-  }
-  return result;
-}
-
 /**
- *
- * 把握入栈和出栈的时间，意想不到的惊喜
+ * @function 数组排列组合
+ * [1,2,3] => 123 132 213 231 321 312
  */
-
-function middleSearch(root) {
-  if (!root) return;
-  const result = [];
-  const stack = [];
-  let current = root;
-  while (current || stack.length) {
-    // 入栈
-    while (current) {
-      stack.push(current);
-      current = current.left;
-    }
-    // 出栈
-    current = stack.pop();
-    result.push(current.value);
-    // 开启新的一轮入栈
-    current = current.right;
-  }
-  return result;
+let index = 0;
+function permutationCombination(arr) {
+  index++;
+  console.log(arr);
+  if (arr.length === 1) return [arr];
+  const res = [];
+  arr.forEach((val, index) => {
+    const childArr = [...arr];
+    childArr.splice(index, 1);
+    res.push(...permutationCombination(childArr).map((item) => [val, ...item]));
+  });
+  console.log(res, "res");
+  return res;
 }
 
-function afterSearch(root) {
-  if (!root) return;
-  const result = [];
-  const stack = [];
-  stack.push(root);
-  while (stack.length) {
-    const currentNode = stack.pop();
-    result.unshift(currentNode.value);
-    if (currentNode.left) stack.push(currentNode.left);
-    if (currentNode.right) stack.push(currentNode.right);
-  }
-  return result;
-}
-
-console.log(middleSearch(tree));
+console.log(permutationCombination([1, 2, 3]));
+console.log(index);
