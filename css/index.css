@@ -1,28 +1,23 @@
-body {
-  background-color: black;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  display: inline-block;
+  width: 400px;
+  height: 200px;
+  background-color: orange;
+  box-sizing: border-box;
+  padding: 50px;
 }
 
 .box {
-  position: relative;
+}
+
+.item {
   display: inline-block;
-  width: 100px;
-  padding: 10px;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-.box::before {
-  content: "";
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 0px;
-  height: 2px;
-  background: deeppink;
-  transition: width 0.5s;
-}
-
-.box:hover::before {
-  left: 0;
-  width: 100px;
+  width: 100%;
+  height: 100%;
+  background-color: red;
 }

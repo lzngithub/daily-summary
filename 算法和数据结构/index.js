@@ -99,12 +99,19 @@ function middleSearch(root) {
   if (!root) return;
   const result = [];
   const stack = [];
-  currentNode = root;
-  do {
-    if (currentNode.right) stack.push(currentNode.right);
-    stack.push(currentNode);
-    if (currentNode.left) currentNode = stack.pop();
-  } while (stack.length);
+  let current = root;
+  while (current || stack.length) {
+    // 入栈
+    while (current) {
+      stack.push(current);
+      current = current.left;
+    }
+    // 出栈
+    current = stack.pop();
+    result.push(current.value);
+    // 开启新的一轮入栈
+    current = current.right;
+  }
   return result;
 }
 
