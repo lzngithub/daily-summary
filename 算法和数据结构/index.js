@@ -1,22 +1,30 @@
-let cost = [10, 15, 20];
-
-/**
- *
- * @param {*} n  你可以假设 n 不小于 2 且不大于 58的整数
- */
-
-const numTrees = (n) => {
-  let dp = new Array(n + 1).fill(0);
-  dp[0] = 1;
-  dp[1] = 1;
-
-  for (let i = 2; i <= n; i++) {
-    for (let j = 1; j <= i; j++) {
-      dp[i] += dp[j - 1] * dp[i - j];
-    }
+var swapPairs = function (head, n) {
+  let ret =
+    (slow =
+    fast =
+      {
+        val: 0,
+        next: head,
+      });
+  while (n--) {
+    fast = fast.next;
   }
-
-  return dp[n];
+  while (fast.next) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  slow.next = slow.next.next;
+  return ret.next;
 };
 
-console.log(numTrees(3));
+let head = {
+  val: 5,
+  next: null,
+};
+
+const b = swapPairs(head, 1);
+let c = b;
+while (c) {
+  console.log(c.val);
+  c = c.next;
+}
