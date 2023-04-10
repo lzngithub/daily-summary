@@ -51,7 +51,6 @@ const option = {
         color: "rgba(255, 255, 255, 1)",
         verticalAlign: "bottom",
         formatter: (params) => {
-          console.log(params);
           return params.data.value;
         },
       },
