@@ -39,6 +39,11 @@ export default defineConfig({
       path: '/simple',
       component: './Simple',
     },
+    {
+      name: 'treeMap',
+      path: '/treeMap',
+      component: './treeMap',
+    },
   ],
   npmClient: 'yarn',
 });
