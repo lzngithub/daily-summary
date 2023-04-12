@@ -67,7 +67,7 @@ function getWidth(str, fontSize) {
   return currentWidth;
 }
 
-const TreeUp: React.FC = () => {
+const TreeMap: React.FC = () => {
   const clickNode = useRef(null); // 单击选中的节点
   const containerRef = useRef(null);
   const graphRef = useRef(null);
@@ -145,7 +145,6 @@ const TreeUp: React.FC = () => {
             y: -outerSize[1] / 2,
             fill: getColor(cfg.fusion).lighter,
             stroke: getColor(cfg.fusion).darker,
-            radius: cfg.nodeType === 1 ? 4 : outerSize[1] / 2,
           },
           draggable: true,
           name: `outer@${cfg.name}@${cfg.id}`,
@@ -157,7 +156,6 @@ const TreeUp: React.FC = () => {
             x: -size[0] / 2,
             y: -size[1] / 2,
             fill: getColor(cfg.fusion).darker,
-            radius: cfg.nodeType === 1 ? 4 : size[1] / 2,
           },
           draggable: true,
           name: `inner@${cfg.name}@${cfg.id}`,
@@ -233,7 +231,6 @@ const TreeUp: React.FC = () => {
               x: -size[0] / 2,
               y: -size[1] / 2,
               fill: getColor(cfg.fusion).lighter,
-              radius: cfg.nodeType === 1 ? 0 : size[1] / 2,
             },
             draggable: true,
             name: `baseRect@${cfg.name}@${cfg.id}`,
@@ -368,7 +365,8 @@ const TreeUp: React.FC = () => {
           attrs: {
             stroke: style.stroke,
             endArrow: {
-              path: 'M 0,0 L 12, 6 L 9,0 L 12, -6 Z',
+              path: 'M 0,0 L -12, 6 L -9,0 L -12, -6 Z',
+              // path: 'M 0,0 L 12, 6 L 9,0 L 12, -6 Z',
               fill: '#91d5ff',
               d: -20,
             },
@@ -404,7 +402,7 @@ const TreeUp: React.FC = () => {
       height: containerRef.current.scrollHeight,
       layout: {
         type: 'compactBox',
-        direction: 'BT',
+        direction: 'V',
         getId: function getId(d) {
           return d.id;
         },
@@ -464,4 +462,4 @@ const TreeUp: React.FC = () => {
   return <div ref={containerRef} className={styles.content}></div>;
 };
 
-export { TreeUp };
+export { TreeMap };
