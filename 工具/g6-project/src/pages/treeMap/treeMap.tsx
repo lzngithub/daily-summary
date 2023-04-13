@@ -7,7 +7,7 @@ import G6 from '@antv/g6';
 import { data } from './data';
 
 const defaultEdgeStyle = {
-  stroke: 'rgba(216, 216, 216, 1)',
+  stroke: '#63B4FF',
 };
 const colors = [
   {
@@ -81,6 +81,7 @@ const TreeMap: React.FC = () => {
           name: v.name,
           nodeType: v.type,
           fusion: v.fusion,
+          position: v.position,
           children: v.childList.length
             ? [v.childList?.map((i: any) => formatData(i, level + 1))]
             : null,
@@ -92,12 +93,12 @@ const TreeMap: React.FC = () => {
         name: v.name,
         nodeType: v.type,
         fusion: v.fusion,
+        position: v.position,
         children: v.childList?.map((i: any) => formatData(i, level + 1)),
         level,
       };
     };
     const chartData = formatData(data, 1);
-    console.log(chartData);
     return chartData;
   }, []);
   const initGraph = (chartData) => {
@@ -197,7 +198,6 @@ const TreeMap: React.FC = () => {
           const rectShape = group.find(
             (e) => e.get('name').indexOf('baseRect') >= 0,
           );
-          // console.log('xxxxxc', name, item, value, rectShape)
           if (name === 'click') {
             const num = model.fusion;
             // 改变选中的shape的样式
@@ -306,7 +306,6 @@ const TreeMap: React.FC = () => {
             draggable: true,
             name: 'node-keyshape',
           });
-          console.log(cfg, 'cfg');
           for (let i = 0; i < cfg.length; i++) {
             group.addShape('rect', {
               attrs: {
@@ -365,9 +364,11 @@ const TreeMap: React.FC = () => {
           attrs: {
             stroke: style.stroke,
             endArrow: {
-              path: 'M 0,0 L -12, 6 L -9,0 L -12, -6 Z',
-              // path: 'M 0,0 L 12, 6 L 9,0 L 12, -6 Z',
-              fill: '#91d5ff',
+              path:
+                endPoint.y < 0
+                  ? 'M 12,0 L 12, 5 L 20,0 L 12, -5 Z'
+                  : 'M 6,0 L 14, 5 L 14,0 L 14, -5 Z',
+              fill: '#63B4FF',
               d: -20,
             },
             path: [
@@ -418,6 +419,10 @@ const TreeMap: React.FC = () => {
         getHGap: function getHGap() {
           return 90;
         },
+        getSide: function (d) {
+          if (d.data.position === 'up') return 'left';
+          return 'right';
+        },
       },
       defaultNode: {
         type: 'node',
@@ -449,7 +454,6 @@ const TreeMap: React.FC = () => {
     graphRef.current.on('node:click', (evt) => {
       const { item, target } = evt;
       const targrtName = target?.get('name');
-      console.log(targrtName);
       clickNode.current = targrtName;
       const clickNodes = graphRef.current.findAllByState('node', 'click');
       clickNodes.forEach((cn) => {
