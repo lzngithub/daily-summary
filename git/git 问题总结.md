@@ -87,5 +87,5 @@ git remote -v
 改成 ssh，这里你项目的 ssh 地址
 
 ```bash
-git remote set-url origin git@github.com:<git地址>/<仓库地址>.git  #
+git remote set-url origin git@github.com:<git地址>/<仓库地址>.git
 ```
