@@ -1,21 +1,9 @@
-let a = [1, 2];
-let b = {
-  c: 1,
-  d: 2,
-};
+const arr = [10, 21, 0, -7, 35, 7, 9, 23, 18];
 
-// a.map((item, index) => console.log(item, index));
+function getMinIndex(arr) {
+  return arr.findIndex(
+    (item1) => item1 === Math.min(...arr.filter((item) => item > 0))
+  );
+}
 
-Object.prototype.objMap = function (fun) {
-  let origin = this;
-  let target = {};
-  for (let key in origin) {
-    if (origin.hasOwnProperty(key)) {
-      target[key] = fun(key, origin[key]);
-    }
-  }
-  return target;
-};
-
-let c = b.objMap((item, index) => index);
-console.log(c);
+console.log(getMinIndex(arr)); // 5
