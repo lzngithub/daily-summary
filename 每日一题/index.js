@@ -1,9 +1,17 @@
-const arr = [10, 21, 0, -7, 35, 7, 9, 23, 18];
+const list = [1, 2, 3];
+const square = (num) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(num * num);
+    }, 1000);
+  });
+};
 
-function getMinIndex(arr) {
-  return arr.findIndex(
-    (item1) => item1 === Math.min(...arr.filter((item) => item > 0))
-  );
+function test() {
+  list.reduce(async (_, x) => {
+    await _;
+    const res = await square(x);
+    console.log(res);
+  }, undefined);
 }
-
-console.log(getMinIndex(arr)); // 5
+test();
