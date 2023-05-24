@@ -5,9 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .test {
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        overflow-y: auto;
+        padding: 10px;
+        border: 20px solid black;
+        box-sizing: border-box;
+      }
+      .content {
+        display: inline-block;
+        width: 140px;
+        height: 200px;
+        background-color: red;
+      }
+      .content1 {
+        display: inline-block;
+        width: 5px;
+        height: 200px;
+        background-color: yellow;
+      }
+    </style>
   </head>
   <body>
-    <input type="text" id="input" />
-    <script src="index.js"></script>
+    <div class="test">
+      <div class="content"></div>
+      <div class="content1"></div>
+    </div>
+    <script>
+      let test = document.getElementsByClassName("test")[0];
+      console.log(test.clientWidth);
+      console.log(test.offsetWidth);
+      console.log(test.scrollWidth);
+    </script>
   </body>
 </html>
