@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
+      html,
+      body {
+        width: 100vw;
+        height: 100vh;
+      }
       * {
         padding: 0;
         margin: 0;
@@ -34,6 +39,11 @@
     </div>
     <script>
       let test = document.getElementsByClassName("test")[0];
+      let button = document.getElementsByTagName("button")[0];
+      button.addEventListener("click", () => {
+        console.log(test.scrollTop);
+        test.scrollTo(0, 0);
+      });
       let rect = test.getBoundingClientRect();
       console.log(rect);
       console.log(test.style.width);
