@@ -89,3 +89,15 @@ git remote -v
 ```bash
 git remote set-url origin git@github.com:<git地址>/<仓库地址>.git
 ```
+
+## git 文件夹大小写问题
+
+git 默认是忽略文件夹名字大写的，就是不区分大小写，可以通过配置去让他区分大小写
+
+```shell
+git config core.ignorecase true
+```
+
+问题描述：
+
+git 之前配置忽略文件夹名字大小写，中途改了文件名大小写，git 检测不到改动，因此加上了配置，可以识别了，文件显示改动为 R-rename
