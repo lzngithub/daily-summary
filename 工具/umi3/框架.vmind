@@ -1,0 +1,44 @@
+{
+    "root": {
+        "data": {
+            "id": "ctc1piyvnsg0",
+            "created": 1686712581854,
+            "text": "umi3"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "ctc1poirlx40",
+                    "created": 1686712593940,
+                    "text": "目录结构",
+                    "layout_mind_offset": {
+                        "x": -101,
+                        "y": -74
+                    }
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "ctc1rfckm140",
+                            "created": 1686712730703,
+                            "text": "src"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "ctc1rlpvmqo0",
+                                    "created": 1686712744568,
+                                    "text": "pages（页面文件）"
+                                },
+                                "children": []
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-blue",
+    "version": "1.4.43"
+}
