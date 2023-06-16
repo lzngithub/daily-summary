@@ -101,3 +101,5 @@ git config core.ignorecase true
 问题描述：
 
 git 之前配置忽略文件夹名字大小写，中途改了文件名大小写，git 检测不到改动，因此加上了配置，可以识别了，文件显示改动为 R-rename
+
+xiugai
