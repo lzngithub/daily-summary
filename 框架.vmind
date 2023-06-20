@@ -1,0 +1,82 @@
+{
+    "root": {
+        "data": {
+            "id": "cth4pkop0pc0",
+            "created": 1687228848704,
+            "text": "前端",
+            "expandState": "expand"
+        },
+        "children": [
+            {
+                "data": {
+                    "id": "cth4qmejhao0",
+                    "created": 1687228930808,
+                    "text": "JavaScript",
+                    "layout_mind_offset": {
+                        "x": -47,
+                        "y": -55
+                    },
+                    "expandState": "expand"
+                },
+                "children": [
+                    {
+                        "data": {
+                            "id": "cth4qtr5yoo0",
+                            "created": 1687228946810,
+                            "text": "基础语法",
+                            "layout_right_offset": {
+                                "x": -7,
+                                "y": -42
+                            },
+                            "expandState": "expand"
+                        },
+                        "children": [
+                            {
+                                "data": {
+                                    "id": "cth4r6mhegw0",
+                                    "created": 1687228974824,
+                                    "text": "1. 基本数据类型",
+                                    "layout_right_offset": {
+                                        "x": -5,
+                                        "y": -66
+                                    },
+                                    "expandState": "expand"
+                                },
+                                "children": []
+                            }
+                        ]
+                    },
+                    {
+                        "data": {
+                            "id": "cth4t2roeg80",
+                            "created": 1687229123159,
+                            "text": "DOM",
+                            "layout_right_offset": {
+                                "x": -6,
+                                "y": -15
+                            },
+                            "expandState": "expand"
+                        },
+                        "children": []
+                    },
+                    {
+                        "data": {
+                            "id": "cth4t78y2c00",
+                            "created": 1687229132911,
+                            "text": "BOM",
+                            "layout_right_offset": {
+                                "x": -3,
+                                "y": 0
+                            },
+                            "expandState": "expand"
+                        },
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    "template": "default",
+    "theme": "fresh-purple",
+    "version": "1.4.43"
+}
