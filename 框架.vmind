@@ -13,8 +13,8 @@
                     "created": 1687228930808,
                     "text": "JavaScript",
                     "layout_mind_offset": {
-                        "x": -47,
-                        "y": -55
+                        "x": -103,
+                        "y": -87
                     },
                     "expandState": "expand"
                 },
@@ -57,7 +57,24 @@
                                             "created": 1687685617031,
                                             "text": "分类"
                                         },
-                                        "children": []
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctm8xwci18g0",
+                                                    "created": 1687748585225,
+                                                    "text": "值类型"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctm8y0v4qkw0",
+                                                    "created": 1687748595058,
+                                                    "text": "引用类型"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
                                     },
                                     {
                                         "data": {
@@ -66,6 +83,177 @@
                                             "text": "类型转换"
                                         },
                                         "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "ctm8xr55lwg0",
+                                            "created": 1687748573897,
+                                            "text": "类型判断"
+                                        },
+                                        "children": []
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "ctm95cifczc0",
+                                    "created": 1687749168961,
+                                    "text": "流程控制与错误处理",
+                                    "layout_right_offset": {
+                                        "x": 41,
+                                        "y": 81
+                                    }
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "ctm95ipw4ag0",
+                                            "created": 1687749182473,
+                                            "text": "语句块"
+                                        },
+                                        "children": []
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "ctm95yz2lso0",
+                                            "created": 1687749217857,
+                                            "text": "条件判断语句"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctm96ar4n1k0",
+                                                    "created": 1687749243498,
+                                                    "text": "if..else [if]"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctm96iodpn40",
+                                                    "created": 1687749260746,
+                                                    "text": "switch"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "ctm9crnptcw0",
+                                            "created": 1687749750482,
+                                            "text": "循环语句"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctm9cwdcdrs0",
+                                                    "created": 1687749760738,
+                                                    "text": "for[...in/of]"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctm9dbru6m00",
+                                                    "created": 1687749794266,
+                                                    "text": "[do...]while"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "ctm963x12lc0",
+                                            "created": 1687749228617,
+                                            "text": "异常处理"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctm98eklg800",
+                                                    "created": 1687749408538,
+                                                    "text": "throw"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctm98y4tzu00",
+                                                    "created": 1687749451122,
+                                                    "text": "try...catch...finally"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctm99h3y0og0",
+                                                    "created": 1687749492426,
+                                                    "text": "Error对象"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "data": {
+                                    "id": "ctmf83vmfh40",
+                                    "created": 1687766311920,
+                                    "text": "函数"
+                                },
+                                "children": [
+                                    {
+                                        "data": {
+                                            "id": "ctmf892u1yw0",
+                                            "created": 1687766323240,
+                                            "text": "定义函数"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctmf8e0eem00",
+                                                    "created": 1687766333976,
+                                                    "text": "函数声明"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctmf8t4plls0",
+                                                    "created": 1687766366889,
+                                                    "text": "函数表达式"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "data": {
+                                            "id": "ctmfatp6p0g0",
+                                            "created": 1687766524855,
+                                            "text": "作用域"
+                                        },
+                                        "children": [
+                                            {
+                                                "data": {
+                                                    "id": "ctmfaxqbdy80",
+                                                    "created": 1687766533631,
+                                                    "text": "作用域链"
+                                                },
+                                                "children": []
+                                            },
+                                            {
+                                                "data": {
+                                                    "id": "ctmfb81p7ug0",
+                                                    "created": 1687766556087,
+                                                    "text": "闭包"
+                                                },
+                                                "children": []
+                                            }
+                                        ]
                                     }
                                 ]
                             }
