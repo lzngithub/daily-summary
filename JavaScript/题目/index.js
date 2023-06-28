@@ -1,15 +1,7 @@
-function Node(data, left, right) {
-  this.data = data;
-  this.left = left;
-  this.right = right;
-}
-
-function Tree() {
-  this.root = null;
-}
-
-const changeTree = (arr) => {
-  arr.forEach((element) => {
-    new Node(element);
-  });
-};
+var a = 10,
+  b = 20,
+  c = 30;
+++a;
+a++;
+e = ++a + ++b + c++ + a++; // 13 + 21 + 31 + 14
+console.log(a, b, c, e);
