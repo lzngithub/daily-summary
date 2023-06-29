@@ -25,6 +25,19 @@ BOM 区域
 
 Window 对象包含属性：document、location、navigator、screen、history、frames
 
+- navigator: 当前代码的应用程序的相关信息(浏览器版本号，内核等信息)。
+- frames: 返回当前窗口，一个类数组对象，列出了当前窗口的所有直接子窗口。
+- history: 浏览器的历史记录
+- location：窗口 url 地址栏的信息
+- screen：显示设备的信息
+- document：dom
+
+### window 常用属性及方法
+
+- window.alert()、prompt()、confirm()都是浏览器用来与用户互动的方法
+- window.getComputedStyle()是一个可以获取当前元素所有最终使用的 CSS 属性值
+- window.scrollTo()、scroll()滚动到文档中的某个坐标,scrollBy()在窗口中按指定的距离滚动文档。
+
 ## 区别和联系
 
 从 window.document 已然可以看出，DOM 的最根本的对象是 BOM 的 window 对象的子对象。

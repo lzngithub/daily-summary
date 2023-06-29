@@ -1,19 +1,27 @@
 # DOM
 
-文档对象模型（document-object-model），全局对象document是对Document接口的实现
+文档对象模型（document-object-model），全局对象 document 是对 Document 接口的实现,它建模了文档的内容和结构，并提供给编程语言一套完整的操纵文档的 API
 
-Node：指代节点
+Node：指代节点，是 DOM 模型的组成单元。
 Element：指代元素节点
 
 ## 节点
 
-类型分类：文档、元素、属性、文本、注释节点
+有 12 种，但部分已经废弃，主要用的是下面几种
+
+类型分类：
+
+- 文档（9）
+- 元素（nodeType === 1）
+- 属性、
+- 文本（2）、
+- 注释节点（8）
 
 关系分类：父、子、兄弟节点
 
 ## 方法
 
-获取节点: 
+获取节点:
 document.getElementById  
 getElementsByTagName  
 getElementsByClassName  
@@ -64,9 +72,9 @@ node.cloneNode(deep): 克隆一个节点
 Element.getAttributeNames(): 获取全部属性名称
 Element.getAttribute(attr): 后去指定属性
 Element.setAttribute(attr, value): 设置指定属性的值
-element.id: 设置或者返回元素的id
+element.id: 设置或者返回元素的 id
 element.style: 设置或返回元素的样式属性
-element.className: 设置或者返回元素的class属性
+element.className: 设置或者返回元素的 class 属性
 element.classList: 换回元素的类名
 
 ## 事件
@@ -77,6 +85,7 @@ element.onclick(): 触发事件
 element.depatchEvent(type, listence): 移除事件
 
 ### 事件类型
+
 onload: 页面加载完成
 onbeforeunload：页面关闭前
 onunload: 页面关闭
@@ -101,16 +110,10 @@ ondragover: 在里面
 ondrop: 拖动过程中
 ondragleave: 拖动离开
 
-> 浏览器默认阻止ondrop事件，因此要在ondragover中阻止浏览器默认行为
+> 浏览器默认阻止 ondrop 事件，因此要在 ondragover 中阻止浏览器默认行为
 > 拖拽事件的判断标准是以鼠标坐标为准的，而不是以被拖拽元素为准的
 > 拖拽元素事件只有三个
-> dataTransfer用于保存一些在拖拽过程中的数据
+> dataTransfer 用于保存一些在拖拽过程中的数据
 
-* 在ondragstart中赋值，e.dataTransfer.setData('text/html', e.target.id)
-* 在ondrop中赋值， e.target.appendChild(document.getElementById(e.dataTransfer.getData('text/html')))
-
-
-
-
-
-
+- 在 ondragstart 中赋值，e.dataTransfer.setData('text/html', e.target.id)
+- 在 ondrop 中赋值， e.target.appendChild(document.getElementById(e.dataTransfer.getData('text/html')))

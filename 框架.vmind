@@ -320,7 +320,7 @@
                                 "data": {
                                     "id": "ctosk5usc200",
                                     "created": 1688007050935,
-                                    "text": "Navigator"
+                                    "text": "Navigator(row)"
                                 },
                                 "children": []
                             },
@@ -328,7 +328,7 @@
                                 "data": {
                                     "id": "ctoskf4urq80",
                                     "created": 1688007071135,
-                                    "text": "Screen"
+                                    "text": "Screen(low)"
                                 },
                                 "children": []
                             },
