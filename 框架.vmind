@@ -23,7 +23,7 @@
                         "data": {
                             "id": "cth4qtr5yoo0",
                             "created": 1687228946810,
-                            "text": "基础语法",
+                            "text": "ECMAScript",
                             "layout_right_offset": {
                                 "x": -7,
                                 "y": -42
@@ -304,7 +304,47 @@
                                 "data": {
                                     "id": "cto4chng8og0",
                                     "created": 1687938743061,
-                                    "text": "history"
+                                    "text": "History"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "ctorbowt0zk0",
+                                    "created": 1688003566028,
+                                    "text": "Location"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "ctosk5usc200",
+                                    "created": 1688007050935,
+                                    "text": "Navigator"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "ctoskf4urq80",
+                                    "created": 1688007071135,
+                                    "text": "Screen"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "ctoskovwpd40",
+                                    "created": 1688007092361,
+                                    "text": "Frames"
+                                },
+                                "children": []
+                            },
+                            {
+                                "data": {
+                                    "id": "ctoskuo92tk0",
+                                    "created": 1688007104959,
+                                    "text": "Document"
                                 },
                                 "children": []
                             }

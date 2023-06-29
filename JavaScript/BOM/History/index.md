@@ -20,8 +20,8 @@ History 对象包含用户（在浏览器窗口中）访问过的 URL，它是 w
 
 ## 事件
 
-popstate 事件：popstate 事件会在以下的情况触发：
-同一个文档的浏览历史发生变化时触发。调用 history.pushState()和 history.replaceState()方法不会触发。而用户点击浏览器的前进/后退按钮时会触发，调用 history 对象的 back()、forward()、go()方法时，也会触发。popstate 事件的回调函数的参数为 event 对象，该对象的 state 属性为随状态保存的那个对象。
+- popstate 事件：popstate 事件会在以下的情况触发：
+  同一个文档的浏览历史发生变化时触发。调用 history.pushState()和 history.replaceState()方法不会触发。而用户点击浏览器的前进/后退按钮时会触发，调用 history 对象的 back()、forward()、go()方法时，也会触发。popstate 事件的回调函数的参数为 event 对象，该对象的 state 属性为随状态保存的那个对象。
 
 ## 注意的点
 
