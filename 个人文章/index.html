@@ -10,6 +10,7 @@
       body {
         width: 100vw;
         height: 100vh;
+        overflow: auto;
       }
       * {
         padding: 0;
@@ -17,39 +18,28 @@
       }
       .test {
         width: 100%;
-        height: 100%;
-        overflow-y: auto;
+        height: 300px;
       }
-      .content {
-        width: 100%;
-        height: 3000px;
-      }
-      button {
-        position: fixed;
-        bottom: 0;
-        right: 0;
-      }
+      /* .content {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      } */
     </style>
   </head>
   <body>
     <div class="test">
-      <div class="content">
-        <button>11111</button>
-      </div>
+      <div class="content"></div>
     </div>
     <script>
       let test = document.getElementsByClassName("test")[0];
-      let button = document.getElementsByTagName("button")[0];
-      button.addEventListener("click", () => {
-        console.log(test.scrollTop);
-        test.scrollTo(0, 0);
-      });
       let rect = test.getBoundingClientRect();
       console.log(rect);
       console.log(test.style.width);
       console.log(test.clientWidth);
       console.log(test.offsetWidth);
       console.log(test.scrollWidth);
+      console.log(getComputedStyle(test).boxSizing);
     </script>
   </body>
 </html>

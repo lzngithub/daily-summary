@@ -21,14 +21,19 @@ Element：指代元素节点
 
 ## 方法
 
-获取节点:
-document.getElementById  
-getElementsByTagName  
-getElementsByClassName  
-getElementsByName
+### 获取元素:
 
-document/element.querySelector()
-document/element.querySelectorAll()
+dom 选择器，返回结果是动态的，源自 DOM2 标准
+
+- document.getElementById(id)
+- document/element.getElementsByTagName(tagName)
+- document/element.getElementsByClassName(className)
+- document.getElementsByName(name)
+
+css 选择器，返回结果是静态的，源自 Selectors API 规范
+
+- document/element.querySelector()
+- document/element.querySelectorAll()
 
 查找节点：
 element.parentNode/Element(): 查找父节点
@@ -49,33 +54,77 @@ hasChildNodes(): 判断是否包含子节点对象
 childElementCount(): 获取子元素节点数量
 
 创建节点：
-createElement()：创建元素节点
-createTextNode()：创建文本节点
-innerHTML():创建和添加
+document.createElement()：创建元素节点
+document.createTextNode()：创建文本节点
+node.cloneNode(deep): 从已有节点克隆, deep 为 true 表示深拷贝，常用。默认为 false。
+element.innerHTML = domString: 或取或者替换元素的 HTML 片段
 
 插入节点：
-write(): 将任意字符串插入到文档中
-parentNode.appendChild(): 在最后插入子节点
-parentNode.insertBefore(newItem, exsitingItem): 在之前节点插入
+
+- write(): 将任意字符串插入到文档中
+- parentNode.appendChild(node): 在最后插入子节点
+- parentNode.insertBefore(node, nextSibling): 在之前节点插入
+- parentNode.prepend(...nodes or strings): 在第一个子节点之前插入。
+- parentNode.append(...nodes or strings): 在最后一个子节点之后插入。
+- nextSibling.before(...nodes or strings): 在本节点之前同级插入。
+- previousSibling.after(...nodes or strings): 在本节点之后同级插入。
 
 删除节点：
-parentNode.removeChild(oldChild): 删除指定子节点
+
+- parentNode.removeChild(oldChild): 删除指定子节点
+- node.remove(): 移除节点，但不兼容 ie
 
 替换节点：
-parentNode.replaceChild(newChild, oldChild): 替换一个子节点
+
+- parentNode.replaceChild(newChild, oldChild): 替换一个子节点
 
 克隆节点：
 node.cloneNode(deep): 克隆一个节点
 
 ## 属性
 
-Element.getAttributeNames(): 获取全部属性名称
-Element.getAttribute(attr): 后去指定属性
-Element.setAttribute(attr, value): 设置指定属性的值
-element.id: 设置或者返回元素的 id
-element.style: 设置或返回元素的样式属性
-element.className: 设置或者返回元素的 class 属性
-element.classList: 换回元素的类名
+### 基本方法
+
+- Element.getAttributeNames(): 获取全部属性名称
+- Element.getAttribute(attr): 后去指定属性
+- Element.setAttribute(attr, value): 设置指定属性的值
+- element.id: 设置或者返回元素的 id
+- element.style: 设置或返回元素的样式属性
+- element.className: 设置或者返回元素的 class 属性
+- element.classList: 一个包含 elem 所有类的可迭代的类数组对象。这个对象有几个方法，方便我们改变元素的类。
+  - element.classList.contains(class): 检查是否有某个类
+  - add(class): 添加某个类
+  - remove(class): 移除某个类
+  - toggle(class): 切换某个类，如果有就删除，没有就添加
+
+### 元素的位置和尺寸
+
+#### 位置
+
+位置是相对于参照物的，一个元素，有相对于定位父元素，相对于视口，相对于文档三种关系位置。
+
+- 相对于定位父元素：elem.offsetLeft/offsetTop ，相对于参照父节点的左/上边距。elem.offsetParent 获取元素的定位父元素。
+- 相对于浏览器视口：elem.getBoundingClientRect().left/top/right/bottom 分别表示元素盒子（含边框）四角到视口左或上边的距离。
+- 相对于文档：没有直接获取的方式，用处不大，如果真要获取，可以通过滚动举例加上相对于视口的距离来计算（不一定正确）
+
+#### 尺寸
+
+- HTMLElement.clientWidth: 只读，返回元素视口的宽度，包含 padding +（padding 包裹部分，这个部分不包含滚动部分）
+- HTMLElement.offsetWidth：只读，返回元素的布局宽度，等于 clientWidth + scollorbar + border
+- HTMLElement.srcollWidth: 只读，元素内容宽度(有滚动的时候包括滚动部分) + padding，俗称滚动宽度
+- HTMLElement.style.width: 只能获取块级元素通过内联样式设置的 width 属性
+- HTMLElement.getBoundingClientRect().width: 获取到任何都没元素的布局宽度，包括行内元素的
+
+需要注意的点
+
+- 滚动条是在 border 和 padding 中间的，同时滚动条会占据 style.width 的一部分宽度
+- 在 box-sizing：content-box;下 padding 包裹的部分也不一定等于 style.width，因为滚动条会占据 style.width 一部分的宽度。
+
+### 注意的点
+
+- 隐藏元素的方法：1. node.hidden = true(不会占位) 2. ele.style.display = 'none'(不会占位) 3. ele.style.visibility = 'hidden' (会占位)
+- 通过 ele.style 可以获取通过 style 设置的元素样式，不会或者通过 css 或者的元素的样式。
+- 通过 getComputedStyle(elem) 获取最终 css 样式
 
 ## 事件
 
