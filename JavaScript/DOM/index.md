@@ -166,3 +166,12 @@ ondragleave: 拖动离开
 
 - 在 ondragstart 中赋值，e.dataTransfer.setData('text/html', e.target.id)
 - 在 ondrop 中赋值， e.target.appendChild(document.getElementById(e.dataTransfer.getData('text/html')))
+
+* 捕获和冒泡是阶段，addEventListener 的第三个参数是决定该事件是在哪个阶段触发执行的。默认 false，冒泡的时候触发
+* 冒泡是可以被 e.stopPropagation()和 e.stopImmediatePropagation()阻止的
+* 事件捕获是不能被阻止的，但可以设置事件不在捕获阶段触发就可以了
+* 事件监听 addEventListener，移除事件监听 removeEventListener
+
+事件冒泡应用
+
+1. 事件代理或者说事件委托，通过在父元素上绑定事件，利用冒泡去触发做相应的逻辑。
