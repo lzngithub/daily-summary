@@ -10,21 +10,29 @@
         padding: 0;
       }
       .wrapper {
-        min-height: 100vh;
+        
+        height: 100px;
+        width: 100px;
+        background-color: #f40;
+        animation: a 1s 1s backwards;
       }
-      .midWrapper {
-        height: 100%;
+
+      @keyframes a {
+        from {
+          transform: translateX(100px);
+          background-color: blueviolet;
+        }
+        to {
+          transform: translateX(400px);
+          background-color: aqua;
+
+        }
       }
-      .content {
-        height: 300px;
-      }
+      
     </style>
   </head>
   <body>
     <div class="wrapper">
-      <div class="midWrapper">
-        <div class="content"></div>
-      </div>
     </div>
   </body>
 </html>
