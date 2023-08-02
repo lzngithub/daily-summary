@@ -8,24 +8,58 @@
       * {
         margin: 0;
         padding: 0;
+        
+      }
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #000;
+        /* perspective: 500px; */
+
       }
       .wrapper {
-        
-        height: 100px;
-        width: 100px;
-        background-color: #f40;
-        animation: a 1s 1s backwards;
+        position: relative;
+        height: 200px;
+        width: 200px;
+        transform-style: preserve-3d;
+        animation: zhuan 10s infinite linear;
+
+      }
+      .wrapper div {
+        position: absolute;
+        height: 200px;
+        width: 200px;
+        background-color: transparent;
+        border: 2px solid #fff;
+      }
+      .wrapper .item1 {
+        transform: translateZ(100px);
+        /* background-color: #fff; */
+      }
+      .wrapper .item2 {
+        transform: translateZ(-100px);
+      }
+      .wrapper .item3 {
+        transform:  translateX(100px) rotateY(90deg);
+      }
+      .wrapper .item4 {
+        transform:  translateX(-100px) rotateY(90deg);
+      }
+      .wrapper .item5 {
+        transform:  translateY(100px) rotateX(90deg);
+      }
+      .wrapper .item6 {
+        transform:  translateY(-100px) rotateX(90deg);
       }
 
-      @keyframes a {
-        from {
-          transform: translateX(100px);
-          background-color: blueviolet;
+      @keyframes zhuan {
+        0% {
+          transform: rotateX(0deg) rotateY(0deg);
         }
-        to {
-          transform: translateX(400px);
-          background-color: aqua;
-
+        100% {
+          transform: rotateX(360deg) rotateY(360deg);
         }
       }
       
@@ -33,6 +67,15 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class="item1"></div>
+      <div class="item2"></div>
+      <div class="item3"></div>
+      <div class="item4"></div>
+      <div class="item5"></div>
+      <div class="item6"></div>
     </div>
+    <script>
+      let a = 22
+    </script>
   </body>
 </html>
