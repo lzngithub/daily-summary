@@ -1,81 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        
-      }
-      body {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #000;
-        /* perspective: 500px; */
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrapper {
+      transform-style: preserve-3d;
+      background-color: #000;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 500px;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
 
-      }
-      .wrapper {
-        position: relative;
-        height: 200px;
-        width: 200px;
-        transform-style: preserve-3d;
-        animation: zhuan 10s infinite linear;
-
-      }
-      .wrapper div {
-        position: absolute;
-        height: 200px;
-        width: 200px;
-        background-color: transparent;
-        border: 2px solid #fff;
-      }
-      .wrapper .item1 {
-        transform: translateZ(100px);
-        /* background-color: #fff; */
-      }
-      .wrapper .item2 {
-        transform: translateZ(-100px);
-      }
-      .wrapper .item3 {
-        transform:  translateX(100px) rotateY(90deg);
-      }
-      .wrapper .item4 {
-        transform:  translateX(-100px) rotateY(90deg);
-      }
-      .wrapper .item5 {
-        transform:  translateY(100px) rotateX(90deg);
-      }
-      .wrapper .item6 {
-        transform:  translateY(-100px) rotateX(90deg);
-      }
-
-      @keyframes zhuan {
-        0% {
-          transform: rotateX(0deg) rotateY(0deg);
-        }
-        100% {
-          transform: rotateX(360deg) rotateY(360deg);
-        }
-      }
-      
-    </style>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="item1"></div>
-      <div class="item2"></div>
-      <div class="item3"></div>
-      <div class="item4"></div>
-      <div class="item5"></div>
-      <div class="item6"></div>
-    </div>
-    <script>
-      let a = 22
-    </script>
-  </body>
+      background-color: #f40;
+      transform: skew(45deg) rotateX(45deg);
+      /* transform: rotateX(45deg); */
+      transform-origin: 0 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="box"></div>
+  </div>
+  
+</body>
 </html>
