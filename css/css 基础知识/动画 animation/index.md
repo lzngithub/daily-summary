@@ -1,6 +1,6 @@
 # animation
 
-动画
+动画,控制元素去做一些动作.
 
 ## 和过渡相比
 
@@ -15,6 +15,10 @@
 
 绑定动画：animation: animatin-name,
 
+一个元素可以绑定多个动画.
+
+总共有 8 个属性,用来控制动画
+
 - animatin-name: 动画名称
 - animation-duration: 动画持续时间
 - animation-timing-function: 动画如何完成一个周期
@@ -24,11 +28,11 @@
 - animation-direction: 动画播放的方向
 - animation-play-state: 动画暂停还是运行：paused 或者 running
 
-## 1 animatin-name
+### 1 animatin-name
 
 动画名称，使用 @keyframes
 
-### @keyframes
+#### @keyframes
 
 定义动画序列中的关键帧，关键帧 keyframes 可以控制动画序列的中间步骤。
 
@@ -58,7 +62,7 @@
 - from === 0%
 - to === 100%
 
-## 2 animation-duration
+### 2 animation-duration
 
 指定动画周期的时长，单位为 s
 
@@ -68,7 +72,7 @@
 animation-duration: 2s;
 ```
 
-## 3 animation-delay
+### 3 animation-delay
 
 定义动画何时开始，单位为秒（s）
 
@@ -78,7 +82,7 @@ animation-duration: 2s;
 animation-delay: 2s;
 ```
 
-## 4 animation-timing-function
+### 4 animation-timing-function
 
 参考 MDN：https://developer.mozilla.org/zh-CN/docs/Web/CSS/animation-timing-function
 
@@ -90,7 +94,7 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 
 - cubic-bezier(x1, y1, x2, y2): 三次贝塞尔曲线，ease 和 linear 都是它的特殊值，可以通过浏览器去调整其的速度。
 
-- ease: 默认值，有过渡效果，以低俗开始，然后加快，结束前变慢
+- ease: 默认值，有过渡效果，以低速开始，然后加快，结束前变慢
 - linear: 有过渡效果，匀速
 - ease-in: 有过渡效果，低俗开始
 - ease-out: 有过渡效果，低俗结束
@@ -99,9 +103,9 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 - step-start: 没有过渡效果，相当于 steps(1, start)
 - step-end: 没有过渡效果，相当于 steps(1, end)
 
-## 5 animation-iteration-count
+### 5 animation-iteration-count
 
-指定动画播放次数
+指定动画播放次数,默认值为 1
 
 例子
 
@@ -109,15 +113,15 @@ animation-timing-function：主要是由两个函数控制的，steps()和 cubic
 /* 值为关键字 */
 animation-iteration-count: infinite;
 
-/* 值为数字 */
+/* 值为数字, 可以为小数 */
 animation-iteration-count: 3;
 animation-iteration-count: 2.4;
 
-/* 指定多个值 */
+/* 指定多个值, 将按照animatin-name顺序进行分配 */
 animation-iteration-count: 2, 0, infinite;
 ```
 
-## 6 animation-direction
+### 6 animation-direction
 
 动画播放的方向
 
@@ -126,15 +130,17 @@ animation-iteration-count: 2, 0, infinite;
 - alternate: 1，3，5，···，正向；2，4，6，···，反向
 - alternate-reverse: 1，3，5，···，反向；2，4，6，···，正向
 
-## 7 animation-fill-mode
+### 7 animation-fill-mode
 
-默认情况下，CSS 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。animation-fill-mode 属性可重写该行为。
+默认情况下，CSS 动画在第一个关键帧播放完之前不会影响元素，在最后一个关键帧完成后停止影响元素。animation-fill-mode 属性可重写该行为.
 
 - none: 默认不运用
-- forwards: 应用结束时的样式，一般 hover 结束的时候用
-- backwards: 应用开始时的样式
-- both: 都运用
+- forwards: 动画结束的时候应用最后关键帧的样式，一般 hover 结束的时候用,用来保持动画结束时候的样式,鼠标移走后恢复原来的样式.
+- backwards: 动画开始的时候应用第一帧时的样式.
+- both: 是 forwards 和 fbackwards 的结合,动画开始的时候应用第一帧时的样式,动画结束的时候应用最后关键帧的样式.
 
-## 8 animation-play-state
+### 8 animation-play-state
 
-动画暂停还是运行：paused 或者 running
+动画暂停还是运行：paused 或者 running,恢复暂停的动画将从暂停时停止的位置开始播放，而不是从动画序列的开头重新开始播放。
+
+一般是通过 js 去控制.
