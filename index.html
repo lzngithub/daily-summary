@@ -10,30 +10,72 @@
       margin: 0;
       padding: 0;
     }
+
+    body {
+      display: flex;
+    }
     
     .wrapper {
-      transform-style: preserve-3d;
-      background-color: #000;
+      flex: 1;
+      /* transform-style: preserve-3d; */
+      /* background-color: #000; */
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      perspective: 500px;
+      /* perspective: 500px; */
+    }
+    .wrapper1 {
+      flex: 1;
+      transform-style: preserve-3d;
+      /* background-color: #000; */
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* perspective: 500px; */
     }
     .box {
       width: 100px;
       height: 100px;
 
       background-color: #f40;
-      transform: skew(45deg) rotateX(45deg);
-      /* transform: rotateX(45deg); */
-      transform-origin: 0 0;
+      transform: rotateX(45deg);
+      animation: rot 10s infinite;
+    }
+    .box1 {
+      width: 100px;
+      height: 100px;
+      animation: rot 10s infinite;
+      background-color: #f40;
+      transform: rotateX(45deg);
+    }
+    .box2 {
+      width: 100px;
+      height: 100px;
+      background-color: yellow;
+      transform: translateX(-100px);
+    }
+
+
+    @keyframes rot {
+      from {
+        transform: rotateY(0deg) rotateX(45deg)
+      }
+      to {
+        transform: rotateY(360deg) rotateX(45deg)
+      }
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <div class="box"></div>
+    <div class="box">梁增能</div>
+  </div>
+  <div class="wrapper1">
+    <div class="box1">梁增能</div>
+    <div class="box2">liangzengneng</div>
   </div>
   
 </body>
