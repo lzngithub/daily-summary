@@ -11,10 +11,17 @@
 - 背景颜色：background-color
 - 背景图片是否固定：background-attachment
 
-合并写法
+合并写法,注意一点,就是背景定位和背景大小要这样写,即: background-position/background-size;
 
 ```css
 backgound: 顺序不定;
+```
+
+例子:
+
+```css
+/* image position size */
+background: url("./a.png") center/100%;
 ```
 
 ## background-color
@@ -32,7 +39,7 @@ background-color: red;
 语法：
 
 ```css
-background-image: 关键字none或者一个<image>值;
+background-image: 关键字none或者一个<image>值, 可以是渐变;
 ```
 
 支持多背景
@@ -41,8 +48,8 @@ background-image: 关键字none或者一个<image>值;
 
 规定了指定背景图片 background-image 属性的原点位置的背景相对区域。
 
-- padding-box: 背景图片的摆放以 padding 区域为参考(默认)
 - border-box: 背景图片的摆放以 border 区域为参考
+- padding-box: 背景图片的摆放以 padding 区域为参考(默认)
 - content-box: 背景图片的摆放以 content 区域为参考
 
 语法：
@@ -53,11 +60,11 @@ background-origin: padding-box;
 
 ## background-clip
 
-设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面。
+设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面,就是指定背景图片或者颜色的显示区域
 
-- border-box: 延申到 border（默认）
-- padding-box：延申到 padding
-- content-box: 延申到 content
+- border-box: 显示区域为 border+padding+content(默认)
+- padding-box：显示区域为 padding+content
+- content-box: 显示区域为 content
 - text： 作为文字的前景色，但只有部分浏览器支持，同时需要文字颜色要设置为透明
 
 ## background-position
@@ -108,8 +115,8 @@ background-size: 50px 50px;
 属性决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。
 
 - fixed：背景相对于视口固定
-- local：此关键属性值表示背景相对于元素的内容固定（默认）
-- scroll：此关键属性值表示背景相对于元素本身固定，而不是随着它的内容滚动
+- local：此关键属性值表示背景相对于元素的内容固定
+- scroll：此关键属性值表示背景相对于元素本身固定，而不是随着它的内容滚动(默认)
 
 ## 总结
 
