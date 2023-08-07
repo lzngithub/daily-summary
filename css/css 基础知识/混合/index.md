@@ -14,20 +14,31 @@ css3 新增的属性，处理两个元素覆盖部分如何混合的问题。
 
 ## 混合函数
 
+```text
+R = fB(Rs, Rd)
+G = fB(Gs, Gd)
+B = fB(Bs, Bd)
+```
+
+红绿蓝通道互不影响
+
+- 源图层: source
+- 目标图层: destination
+
 主要的混合函数有下面这些
 
 - normal：正常，默认
-- multiply：正片叠底
-- screen：滤色
+- multiply：正片叠底, Chs \* Chd,大于 1 则为 1
+- screen：滤色, 1-[(1-Chs)*(1-Chd)]=Chs+Chd-(Chs\*Chd), 顶层和底层的像素分量分别做反向处理，然后相乘，得到的结果在取反，得到的结果反而会更亮,
 - overlay：叠加
-- darken：变暗
+- darken：变暗, min(Chs, Chd)
 - lighten：变亮
 - color-dodge：颜色减淡
 - color-burn：颜色加深
 - hard-light：强光
 - soft-light：柔光
-- difference：差值
-- exclusion：排除
+- difference：差值, |Chs - Chd|, 相同变黑色,其中一个白色变补色,其中一个黑色的话就不变
+- exclusion：排除, Chs + Chd - 2·Chs·Chd, 其中一个为黑色的话,为另位一个颜色,其中一个为白色的话变补色
 - hue：色相
 - saturation：饱和度
 - color：颜色
