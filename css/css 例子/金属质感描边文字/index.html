@@ -30,6 +30,7 @@
     }
     span.text::before {
       content: 'hello world!';
+      color: #fff;
       position: absolute;
       mix-blend-mode: difference;
       filter: blur(1px);
@@ -40,17 +41,18 @@
       left: 0;
       width: 100%;
       height: 100%;
+      /* 白色保留原本颜色,黑色变为黑色 */
       mix-blend-mode: multiply;
       background: linear-gradient(113deg, rgba(193, 148, 63, 1), rgba(238, 205, 108, 1));
     }
     span.shine {
       background: radial-gradient(circle at center, #fff, #000 35%) center / 25% 25%;
       position: absolute;
-      top: -100%;
+      top: -100%;;
       left: -100%;
       bottom: 0;
       right: 0;
-      mix-blend-mode: color-dodge;;;;;
+      mix-blend-mode: color-dodge;
       animation: move 2s linear infinite;
     }
     @keyframes move {
