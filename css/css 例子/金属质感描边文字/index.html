@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      height: 100vh;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .container {
+      overflow: hidden;
+      filter: brightness(300%);
+    }
+    span.text {
+      font-size: 80px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #000;
+      filter: contrast(2);
+    }
+    span.text::before {
+      content: 'hello world!';
+      color: #fff;
+      position: absolute;
+      mix-blend-mode: difference;
+      filter: blur(1px);
+    }
+    span.back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      /* 白色保留原本颜色,黑色变为黑色 */
+      mix-blend-mode: multiply;
+      background: linear-gradient(113deg, rgba(193, 148, 63, 1), rgba(238, 205, 108, 1));
+    }
+    span.shine {
+      background: radial-gradient(circle at center, #fff, #000 35%) center / 25% 25%;
+      position: absolute;
+      top: -100%;;
+      left: -100%;
+      bottom: 0;
+      right: 0;
+      mix-blend-mode: color-dodge;
+      animation: move 2s linear infinite;
+    }
+    @keyframes move {
+      to {
+        transform: translate(50%, 50%);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <span class="text">hello world!</span>
+    <span class="back"></span>
+    <span class="shine"></span>
+  </div>
+</body>
+</html>

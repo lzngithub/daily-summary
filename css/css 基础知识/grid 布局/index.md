@@ -78,7 +78,7 @@ grid-template-columns: 100px 1fr minmax(100px, 1fr);
 auto 关键字表示由浏览器自己决定长度。
 
 ```css
-grid-template-columns: 100px autho 200px;
+grid-template-columns: 100px auto 200px;
 ```
 
 #### 2.2.6 网格线名称
@@ -87,6 +87,12 @@ grid-template-columns 属性和 grid-template-rows 属性里面，还可以使�
 
 ```css
 grid-template-columns: [c1] 100px [c2] 200px [c3];
+```
+
+用法:
+
+```css
+grid-auto-rows: 100px;
 ```
 
 ### 2.3 grid-gap 属性
