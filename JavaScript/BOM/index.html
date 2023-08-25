@@ -1,82 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            border: 0px solid transparent;
-            line-height: 0;
-        }
-
-        body {
-            overflow: auto;
-        }
-
-        #wrapper {
-            position: relative;
-            top: 200px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 10px solid #000;
-            box-sizing: content-box;
-            height: 600px;
-            width: 1000px;
-            background-color: #eee;
-            overflow: auto;
-        }
-
-        #content {
-            display: inline-block;
-            width: 2000px;
-            height: 2000px;
-        }
-
-        #pos {
-            position: absolute;
-            top: 1000px;
-            left: 70%;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: #ccc;
-        }
+      .wrapper {
+        width: 200px;
+        height: 40px;
+        border: 1px solid #000;
+        overflow: auto;
+      }
+      .content {
+        transform: rotate(90deg);
+      }
+      .text {
+        white-space: nowrap;
+        transform: rotate(-90deg);
+      }
     </style>
-</head>
-
-<body>
-    <div id="wrapper">
-        <div id="content"></div>
-        <div id="pos"></div>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="content">
+        <div class="text">
+          发的发发射点发撒地方撒地方撒地方撒地方撒地方萨芬收到法撒旦方式打法萨芬是飞洒d
+        </div>
+      </div>
     </div>
-
     <script>
-        let content = document.getElementById('content')
-        let wrapper = document.getElementById('wrapper')
-        let pos = document.getElementById('pos')
-        console.log(screen.height) // 固定大小
-        console.log(screen.availHeight) // 固定大小
-        console.log(window.outerHeight) // 浏览器视口大小，包括任务栏页签部分
-        console.log(window.innerHeight) // 可用高度大小，内容区，包括滚动条,会随浏览器窗口大小变化
-        console.log(wrapper.clientHeight) // content + padding
-        console.log(wrapper.offsetHeight) // content + padding + 滚动条 + border
-        console.log(wrapper.scrollHeight) // 内容高度，包括溢出不可见的内容
-        console.log(wrapper.style.height)
-        console.log(wrapper.clientTop)
-        console.log(wrapper.offsetTop)
-        console.log(wrapper.scrollTop)
-        console.log(content.getBoundingClientRect().left)
-        console.log(content.getBoundingClientRect().right)
-        wrapper.onscroll = (e) => {
-            console.log(e.target.offsetTop)
-            console.log(e.target.offsetParent)
-        }
+      let div = document.getElementsByTagName('div')[0];
+      let p = document.getElementsByTagName('p')[0];
     </script>
-</body>
-
+  </body>
 </html>
