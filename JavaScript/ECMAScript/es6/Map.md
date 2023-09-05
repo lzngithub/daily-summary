@@ -38,19 +38,37 @@ Map 的遍历顺序就是插入顺序
 
 ## 和其他数据结构相互转换
 
-1.Map 和 Array
+Array 转 Map
 
 ```js
-let map = new Map([
-  [true, 7],
-  [{ foo: 2 }, { bar: 1 }],
-]); // 数组转化为Map
-let arr = [...map]; // Map转化为数组
+const array = [[1, 2]];
+const map = new Map(array);
 ```
 
-2.Map 和 Object
+Map 转 Array
+
+```js
+const map = new Map([[1, 2]]);
+const array = [...map];
+```
+
+Object 转 Map
 
 ```js
 let obj = { a: 1, b: 2 };
-let map = new Map(Object.entries(obj)); // 对象转为Map
+let map = new Map(Object.entries(obj));
+```
+
+Map 转 Object，键不是字符串转为字符串
+
+```js
+function strMapToObj(strMap) {
+  let obj = Object.create(null);
+  for (let [k, v] of strMap) {
+    obj[k] = v;
+  }
+  return obj;
+}
+const map = new Map([[{ a: 'aa' }, 'aaa']]);
+strMapToObj(map); // { '[object Object]': 'aaa' }
 ```
