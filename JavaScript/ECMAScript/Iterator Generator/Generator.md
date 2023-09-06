@@ -102,3 +102,23 @@ next()、throw()、return()这三个方法本质上是同一件事，可以放�
 - next()是将 yield 表达式替换成一个值。
 - throw()是将 yield 表达式替换成一个 throw 语句。
 - return()是将 yield 表达式替换成一个 return 语句。
+
+## 异步 Generator
+
+```js
+async function* generateSequence(start, end) {
+  for (let i = start; i <= end; i++) {
+    // 哇，可以使用 await 了！
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    yield i;
+  }
+}
+
+(async () => {
+  let generator = generateSequence(1, 5);
+  for await (let value of generator) {
+    alert(value); // 1，然后 2，然后 3，然后 4，然后 5（在每个 alert 之间有延迟）
+  }
+})();
+```
