@@ -1,14 +1,20 @@
-function* foo() {
-  yield 1;
-  return 6;
-}
-const iterator = {
-  [Symbol.iterator]: foo,
-};
+class User {
+  constructor(name) {
+    // 调用 setter
+    this.name = name;
+  }
 
-for (let v of foo()) {
-  console.log(v); // 1
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    if (value.length < 4) {
+      return;
+    }
+    this._name = value;
+  }
 }
-for (let v of iterator) {
-  console.log(v); // 1
-}
+
+let user = new User('John');
+console.log(user._name);
