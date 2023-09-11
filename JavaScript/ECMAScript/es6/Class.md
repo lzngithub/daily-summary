@@ -35,31 +35,49 @@ let liang = new Liang("liang");
 liang.say(); // hi liang
 ```
 
-## 实例属性的两种写法
+## 实例属性和实例方法
+
+实例属性,两种写法
 
 ```js
-// 1.写在constructor里
-constructor(name) {
-  // name是实例属性
-  this.name = name;
+class Animal {
+  // 1. 写在class的最顶层，但无法在初始化的时候接受值,只能在实例化之后赋值
+  color = "black";
+  constructor(color) {
+    // 2.写在constructor里
+    this.color = color;
+  }
 }
-// 2. 写在class的最顶层，但无法接收值
-name = 'name'
 ```
 
-## 静态方法
+实例方法
 
-静态方法是类的方法，不会被实例继承，定义方法则是在方法前加上 static 关键字，静态方法中的 this 关键字是指向类的，父类的静态方法可以被子类继承，父类的静态方法可以在子类中通过 super 对象调用
+```js
+class A {
+  say() {
+    console.log("hello world!");
+  }
+}
+```
 
-## 静态属性
+## 静态方法和静态属性
 
-跟静态方法一样
+静态方法是类的方法，不会被实例继承，定义方法则是在方法前加上 static 关键字，静态方法中的 this 关键字是指向类的，父类的静态方法可以被子类继承，父类的静态方法可以在子类中通过 super 对象调用.静态属性也是如此.
+
+```js
+class Animal {
+  static color = "black";
+  static say() {
+    console.log("hello world!");
+  }
+}
+```
 
 ## 私有方法和属性
 
 只在 class 内能被使用，通过#开头的属性或方法，不能被子类继承
 
-## in
+### in
 
 判断私有属性，只能在类内部运行，通过继承的也有效,但对于 Object.create()、Object.setPrototypeOf 形成的继承，是无效的，因为这种继承不会传递私有属性。
 
@@ -113,7 +131,7 @@ constructor() {
 
 ## new.target
 
-实例化时返回类名，当被继承时，返回的时子类的类名
+实例化时返回类名，当被继承时，返回的是子类的类名
 
 应用
 
@@ -153,19 +171,19 @@ class A {}
 class B extends A {}
 ```
 
-可用做函数和对象使用
+super 可用做函数和对象使用
 
 做函数使用时
 
-- 只能用在构造函数中，
-- 代表的时父类的构造函数，返回的时子类的实例，即 super 内部的 this 指向子类实例，相当于 A.prototype.constructor.call(this)
+- 只能用在构造函数中，super().
+- 代表的是父类的构造函数，返回的是子类的实例，即 super 内部的 this 指向子类实例，相当于 A.prototype.constructor.call(this)
 
 做对象使用时
 
 - 在普通方法中，指向父类的原型对象，super === A.prototype
 - 在普通方法中，通过 super 调用父类的方法中，方法内部的 this 指向子类实例，A.prototype.print.call(this)
 - 在静态方法中，指向父类 super === A
-- 在静态方法中，铜鼓 super 掉用父类的方法时，方法内部的 this 指向子类
+- 在静态方法中，通过 super 调用父类的方法时，方法内部的 this 指向子类
 
 ## 原生构造函数
 

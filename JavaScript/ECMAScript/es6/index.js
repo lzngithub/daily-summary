@@ -1,20 +1,10 @@
-class User {
-  constructor(name) {
-    // 调用 setter
-    this.name = name;
-  }
-
-  get name() {
-    return this._name;
-  }
-
-  set name(value) {
-    if (value.length < 4) {
-      return;
-    }
-    this._name = value;
+class A {
+  #foo = 0;
+  static test(obj) {
+    console.log(#foo in obj);
   }
 }
 
-let user = new User('John');
-console.log(user._name);
+class SubA extends A {}
+
+A.test(new SubA()); // true
