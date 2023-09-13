@@ -1,0 +1,23 @@
+.ReactQuillWrapper {
+  display: flex;
+  height: 80vh;
+  .left {
+    width: 20%;
+    background-color: #e0e0e0;
+  }
+  .middle {
+    width: 50%;
+    .ReactQuillContent {
+      height: calc(100% - 43px);
+      :global {
+        .ql-container {
+          height: 100%;
+        }
+      }
+    }
+  }
+  .right {
+    width: 30%;
+    background-color: #e0e0e0;
+  }
+}
