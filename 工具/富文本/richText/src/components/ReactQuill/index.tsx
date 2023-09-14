@@ -6,12 +6,14 @@ import { defaultValue } from './config';
 
 export default function () {
   const [value, setValue] = useState('');
-  const quill = useRef(null);
+  const quillRef = useRef(null);
+
   const editor = useMemo(() => {
-    console.log(quill);
-    if (!quill.current) return null;
-    return quill.current.editor;
-  }, [quill.current]);
+    console.log(quillRef);
+    if (!quillRef.current) return null;
+    return quillRef.current.getEditor();
+  }, [quillRef.current]);
+
   const ReactQuillProps = useMemo(
     () => ({
       modules: {
@@ -51,12 +53,13 @@ export default function () {
   );
 
   const onChange = (value: SetStateAction<string>) => {
-    console.log(value);
     setValue(value);
-    if (editor) console.log(editor.getText());
+    // if (editor) console.log(editor.getText());
+    console.log(editor.root.innerHTML);
   };
   const insert = () => {
-    if (!quill.current || !editor) return;
+    console.log(quillRef.current, editor);
+    if (!quillRef.current || !editor) return;
     console.log(editor);
     let index = editor.selection.savedRange.index;
     const text = 'LIANG';
@@ -74,7 +77,9 @@ export default function () {
     editor.setSelection(index);
   };
   useEffect(() => {
-    setValue(defaultValue);
+    console.log(quillRef.current);
+
+    setValue(' ');
   }, []);
   return (
     <div className={styles.ReactQuillWrapper}>
@@ -84,7 +89,7 @@ export default function () {
       </div>
       <div className={styles.middle}>
         <ReactQuill
-          ref={quill}
+          ref={quillRef}
           className={styles.ReactQuillContent}
           theme="snow"
           value={value}
