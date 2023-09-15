@@ -1,10 +1,23 @@
 class A {
-  #foo = 0;
-  static test(obj) {
-    console.log(#foo in obj);
+  say() {
+    console.log(this);
   }
 }
 
-class SubA extends A {}
+class B extends A {
+  constructor() {
+    super();
+    this.say = this.say.bind(this);
+  }
+  say() {
+    console.log(this);
+  }
+  s = () => {
+    console.log(this);
+  };
+}
 
-A.test(new SubA()); // true
+const b = new B();
+const s = b.s;
+b.say();
+s();

@@ -2,6 +2,8 @@
 
 class 是语法糖，本质还是基于原型
 
+MDN:类是用于创建对象的模板。他们用代码封装数据以处理该数据。JS 中的类建立在原型上，实际上，类是“特殊的函数”。
+
 ## es5 定义构造函数
 
 ```js
@@ -13,11 +15,13 @@ function Liang(name) {
 Liang.prototype.say = function () {
   console.log(`hi ${this.name}`);
 };
-let liang = new Liang("liang");
+let liang = new Liang('liang');
 liang.say(); // hi liang
 ```
 
 ## es6 定义 class
+
+类声明，不会提升
 
 ```js
 class Liang {
@@ -31,9 +35,35 @@ class Liang {
     console.log(`hi ${this.name}`);
   }
 }
-let liang = new Liang("liang");
+let liang = new Liang('liang');
 liang.say(); // hi liang
 ```
+
+类表达式
+
+```js
+// 未命名/匿名类
+let Rectangle = class {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+console.log(Rectangle.name);
+// output: "Rectangle"
+
+// 命名类
+let Rectangle = class Rectangle2 {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+};
+console.log(Rectangle.name);
+// 输出："Rectangle2"
+```
+
+class 体内部的代码总是在严格模式下执行（非严格模式下，函数中的 this 为 undefined 的 话，会自动挂载在全局对象上）。
 
 ## 实例属性和实例方法
 
@@ -42,7 +72,7 @@ liang.say(); // hi liang
 ```js
 class Animal {
   // 1. 写在class的最顶层，但无法在初始化的时候接受值,只能在实例化之后赋值
-  color = "black";
+  color = 'black';
   constructor(color) {
     // 2.写在constructor里
     this.color = color;
@@ -50,12 +80,12 @@ class Animal {
 }
 ```
 
-实例方法
+原型链方法
 
 ```js
 class A {
   say() {
-    console.log("hello world!");
+    console.log('hello world!');
   }
 }
 ```
@@ -66,9 +96,9 @@ class A {
 
 ```js
 class Animal {
-  static color = "black";
+  static color = 'black';
   static say() {
-    console.log("hello world!");
+    console.log('hello world!');
   }
 }
 ```
@@ -139,7 +169,7 @@ constructor() {
 class Shape {
   constructor() {
     if (new.target === Shape) {
-      throw new Error("本类不能实例化");
+      throw new Error('本类不能实例化');
     }
   }
 }
