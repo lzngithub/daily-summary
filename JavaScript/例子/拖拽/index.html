@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html5-拖拽</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #ddd;
+        float: left;
+        margin-right: 20px;
+      }
+      .item {
+        width: 100%;
+        height: 20px;
+        padding: 0;
+        margin: 0;
+        background-color: pink;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box1" class="box">
+      <p id="item1" class="item" draggable="true">拖拽我试试</p>
+      <p id="item2" class="item" draggable="true">拖拽我也试试</p>
+    </div>
+    <div id="box2" class="box"></div>
+    <div id="box3" class="box"></div>
+    <script>
+      window.onload = function () {
+        // 被拖拽元素事件
+        document.ondragstart = function (e) {
+          e.target.style.opacity = 0.6;
+          /**
+           * 通过dataTransfer来实现数据的存储与获取
+           * setData(format, data)
+           * format: 数据的类型: text/html  text/uri-list text/plain
+           * data: 数据 一般来说是字符串
+           */
+          e.dataTransfer.setData('text/plain', e.target.id);
+        };
+        document.ondragend = function (e) {
+          e.target.style.opacity = 1;
+        };
+        // 目标元素拖拽事件
+        document.ondragover = function (e) {
+          // 阻止浏览器禁止ondrop事件的默认行为
+          e.preventDefault();
+        };
+        // 浏览器会默认阻止ondrop事件，需要在ondragover中阻止浏览器的默认行为
+        document.ondrop = function (e) {
+          console.log(e.target);
+          // 通过e.dataTransfer.setData存储的值，只能在drop事件中获取
+          let id = e.dataTransfer.getData('text/plain');
+          e.target.appendChild(document.getElementById(id));
+        };
+      };
+    </script>
+  </body>
+</html>
