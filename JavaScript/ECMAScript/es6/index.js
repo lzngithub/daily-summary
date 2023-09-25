@@ -1,9 +1,5 @@
-const object1 = {};
-Object.defineProperty(object1, 'property1', {
-  value: 42,
-  writable: false, // 不可修改
-});
-object1.property1 = 77;
-// Throws an error in strict mode
-console.log(object1.property1);
-// Expected output: 42
+const prototype1 = {};
+const object1 = Object.create(prototype1);
+
+console.log(Object.getPrototypeOf(object1) === object1.__proto__);
+// Expected output: true
