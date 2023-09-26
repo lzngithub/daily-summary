@@ -1,5 +1,9 @@
-const prototype1 = {};
-const object1 = Object.create(prototype1);
+const obj = {};
+console.log(Object.isExtensible(obj)); // true
 
-console.log(Object.getPrototypeOf(object1) === object1.__proto__);
-// Expected output: true
+const obj2 = Object.preventExtensions(obj);
+console.log(obj === obj2); // true
+console.log(Object.isExtensible(obj)); // false
+
+obj.a = 2;
+console.log(obj); // {}
