@@ -1,9 +1,15 @@
-const obj = {
-  get notifier() {
-    delete this.notifier;
-    const computed = 100;
-    return (this.notifier = computed);
+var obj = {};
+Object.defineProperty(obj, 'a', {
+  configurable: false,
+  enumerable: false,
+  value: 10,
+  writable: true,
+});
+
+var p = new Proxy(obj, {
+  get: function (target, prop) {
+    return target[prop] ? 20 : undefined;
   },
-};
-console.log(obj.notifier);
-console.log(obj.notifier);
+});
+
+console.log(p.a); //会抛出 TypeError
