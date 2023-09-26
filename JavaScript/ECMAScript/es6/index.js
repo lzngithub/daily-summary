@@ -1,15 +1,9 @@
-var obj = {};
-Object.defineProperty(obj, 'a', {
-  configurable: false,
-  enumerable: false,
-  value: 10,
-  writable: true,
-});
+function levelOrder(n) {
+  let total = 1;
+  for (let i = 2; i <= n; i++) {
+    total *= i;
+  }
+  return total;
+}
 
-var p = new Proxy(obj, {
-  get: function (target, prop) {
-    return target[prop] ? 20 : undefined;
-  },
-});
-
-console.log(p.a); //会抛出 TypeError
+console.log(levelOrder(3));
