@@ -1,9 +1,15 @@
-function levelOrder(n) {
-  let total = 1;
-  for (let i = 2; i <= n; i++) {
-    total *= i;
-  }
-  return total;
-}
+let user = {
+  name: 'John',
+  hi() {
+    alert(this.name);
+  },
+  bye() {
+    alert('Bye');
+  },
+};
 
-console.log(levelOrder(3));
+user.hi(); // 正常运行
+
+// 现在让我们基于 name 来选择调用 user.hi 或 user.bye
+(user.name == 'John' ? user.hi : user.bye)(); // Error!
+console.log('end');
