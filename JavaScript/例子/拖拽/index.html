@@ -55,7 +55,7 @@
           console.log(e.target);
           // 通过e.dataTransfer.setData存储的值，只能在drop事件中获取
           let id = e.dataTransfer.getData('text/plain');
-          e.target.appendChild(document.getElementById(id));
+          e.target.append(document.getElementById(id));
         };
       };
     </script>

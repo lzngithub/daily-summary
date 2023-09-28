@@ -257,7 +257,7 @@ HTML 特性有以下几个特征：
 element.addEventListener(type, listener, useCaptrue): 注册事件
 element.onclick=function() {}: 绑定事件
 element.onclick(): 触发事件
-element.depatchEvent(type, listence): 移除事件
+element.removeEventListener(type, listence): 移除事件
 
 ### 事件类型
 
@@ -282,7 +282,7 @@ ondragend: 拖动结束
 
 ondragenter: 拖动进入
 ondragover: 在里面
-ondrop: 拖动过程中
+ondrop: 拖动放下
 ondragleave: 拖动离开
 
 > 浏览器默认阻止 ondrop 事件，因此要在 ondragover 中阻止浏览器默认行为
@@ -301,5 +301,3 @@ ondragleave: 拖动离开
 事件冒泡应用
 
 1. 事件代理或者说事件委托，通过在父元素上绑定事件，利用冒泡去触发做相应的逻辑。
-
-## 例子

@@ -9,9 +9,9 @@
     <div id="content">999</div>
     <script>
       const content = document.getElementById('content');
-
-      content.removeAttribute('id');
-      console.log(content.getAttributes());
+      content.addEventListener('contextmenu', () => {
+        console.log(22);
+      });
     </script>
   </body>
 </html>
