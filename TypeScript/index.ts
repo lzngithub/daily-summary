@@ -1,4 +1,10 @@
-type Person = {
+interface Animal {
   name: string;
-};
-type K1 = keyof Person; // "name" | "age"
+}
+
+interface Dog {
+  name: string;
+  age: number;
+}
+
+type a = Dog extends Animal ? 1 : 2
