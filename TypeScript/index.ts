@@ -1,10 +1,12 @@
-interface Animal {
-  name: string;
+interface Square {
+  kind: 'square';
+  size: number;
 }
 
-interface Dog {
-  name: string;
-  age: number;
+interface Rectangle {
+  kind: 'rectangle';
+  width: number;
+  height: number;
 }
 
-type a = Dog extends Animal ? 1 : 2
+type Shape = Square | Rectangle;
