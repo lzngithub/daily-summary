@@ -1,37 +1,24 @@
-class Stack {
-  #data = [];
-  isEmpty() {
-    return this.#data.length === 0;
-  }
-  size() {
-    return this.#data.length;
-  }
-  push(item) {
-    return this.#data.push(item);
-  }
-  pop() {
-    return this.#data.length ? this.#data.pop() : "栈为空";
-  }
-  peek() {
-    return this.#data.length ? this.#data[this.#data.length - 1] : "栈为空";
-  }
-  clear() {
-    this.#data = [];
-  }
-}
+const depthFirstSearch = (graph, callback) => {
+  const vertices = graph.getVertices();
+  const adjList = graph.getAdjList();
+  const color = initializeColor(vertices);
 
-function dec(decNumber) {
-  const stack = new Stack();
-  let number = decNumber;
-  let result = "";
-  while (number > 0) {
-    stack.push(Math.floor(number % 2));
-    number = Math.floor(number / 2);
+  for (let i = 0; i < vertices.length; i++) {
+    if (color[vertices[i]] === Colors.WHITE) {
+      depthFirstSearchVisit(vertices[i], color, adjList, callback);
+    }
   }
-  while (!stack.isEmpty()) {
-    result += stack.pop();
-  }
-  return result;
-}
+};
 
-console.log(dec(10));
+const depthFirstSearchVisit = (u, color, adjList, callback) => {
+  color[u] = Colors.GREY;
+  if (callback) callback(u);
+  const neighbors = adjList.get(u);
+  for (let i = 0; i < neighbors.length; i++) {
+    const w = neighbors[i];
+    if (color[w] === Colors.WHITE) {
+      depthFirstSearchVisit(w, color, adjList, callback);
+    }
+  }
+  color[u] = Colors.BLACK;
+};
