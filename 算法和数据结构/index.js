@@ -1,38 +1,23 @@
-let nums = [7, 6, 9, 3, 1, 5, 2, 4, 10, 11];
+function dataSort(origin = []) {
+  let maxBit = Math.max(...origin).toString().length;
+  let dev = 1, // 个位
+    mod = 10, // 十位
+    bucket = [];
 
-function heapSort(origin = []) {
-  let len = origin.length;
-
-  function buildMaxHeap(origin) {
-    for (let i = Math.floor(origin.length / 2); i > 0; i--) {
-      heapify(origin, i);
-    }
-  }
-
-  function heapify(origin, i) {
-    let left = 2 * i + 1;
-    let right = 2 * i + 2;
-    let maxIndex = i;
-    if (left < len && origin[left] > origin[maxIndex]) {
-      maxIndex = left;
-    }
-    if (right < len && origin[right] > origin[maxIndex]) {
-      maxIndex = right;
+  for (let i = 0; i < maxBit; i++, dev *= 10, mod *= 10) {
+    for (let j = 0; j < origin.length; j++) {
+      let index = Math.floor((origin[j] % mod) / dev);
+      if (!bucket[index]) bucket[index] = [];
+      bucket[index].push(origin[j]);
     }
 
-    if (maxIndex !== i) {
-      [origin[maxIndex], origin[i]] = [origin[i], origin[maxIndex]];
-      heapify(origin, maxIndex);
-    }
-  }
-
-  buildMaxHeap(origin);
-  for (let i = origin.length - 1; i > 0; i--) {
-    [origin[0], origin[i]] = [origin[i], origin[0]];
-    len--;
-    heapify(origin, 0);
+    let pos = 0;
+    for (let j = 0; j < bucket.length; j++)
+      while (bucket[j]?.length) origin[pos++] = bucket[j].shift();
   }
   return origin;
 }
 
-console.log(heapSort(nums));
+const nums = [93, 1001, 2, 4, 5];
+
+console.log(dataSort(nums));
