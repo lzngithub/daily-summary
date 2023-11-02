@@ -1,23 +1,21 @@
-function dataSort(origin = []) {
-  let maxBit = Math.max(...origin).toString().length;
-  let dev = 1, // 个位
-    mod = 10, // 十位
-    bucket = [];
+function seqSearch(nums, value) {
+  // nums是已经排序好了的数组
+  let low = 0;
+  let high = nums.length - 1;
 
-  for (let i = 0; i < maxBit; i++, dev *= 10, mod *= 10) {
-    for (let j = 0; j < origin.length; j++) {
-      let index = Math.floor((origin[j] % mod) / dev);
-      if (!bucket[index]) bucket[index] = [];
-      bucket[index].push(origin[j]);
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
+    if (nums[mid] === value) {
+      return mid;
+    } else if (nums[mid] < value) {
+      low = mid + 1;
+    } else {
+      high = mid - 1;
     }
-
-    let pos = 0;
-    for (let j = 0; j < bucket.length; j++)
-      while (bucket[j]?.length) origin[pos++] = bucket[j].shift();
   }
-  return origin;
+  return -1;
 }
 
-const nums = [93, 1001, 2, 4, 5];
+const nums = [9, 1, 2, 4, 5];
 
-console.log(dataSort(nums));
+console.log(seqSearch(nums, 1));
