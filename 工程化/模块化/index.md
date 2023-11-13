@@ -18,6 +18,8 @@
 
 由于早期前端业务比较简单，JS 承担的业务较少，工程师可能随便几行代码就搞定了，直接写在一个文件里即可，稍微复杂些的会分文件引入，然后手动维护加载顺序，代码的大概样子如下：
 
+通过文件划分：
+
 moduleA.js:
 
 ```js
@@ -161,7 +163,7 @@ module.exports = {
 };
 
 // moduleB.js
-const moduleA = require('./moduleA');
+const moduleA = require("./moduleA");
 
 const result = moduleA.add(5, 10);
 console.log(result);
@@ -220,14 +222,14 @@ data-main 属性的作用是指定项目的 JS 主模块，这个模块会被第
 ```js
 // main.js
 require.config({
-  baseUrl: 'js/',
+  baseUrl: "js/",
   paths: {
-    jquery: './lib/jquery',
-    utils: './utils/index',
+    jquery: "./lib/jquery",
+    utils: "./utils/index",
   },
 });
 
-require(['./entry'], function (entry) {
+require(["./entry"], function (entry) {
   entry.init();
 });
 ```
@@ -238,14 +240,14 @@ require(['./entry'], function (entry) {
 
 ```js
 // moduleA.js
-define(['utils', './moduleA', './moduleB'], function (utils, moduleA, moduleB) {
-  console.log('---- entry.js utils', utils);
-  console.log('---- entry.js moduleA', moduleA);
-  console.log('---- entry.js moduleB', moduleB);
+define(["utils", "./moduleA", "./moduleB"], function (utils, moduleA, moduleB) {
+  console.log("---- entry.js utils", utils);
+  console.log("---- entry.js moduleA", moduleA);
+  console.log("---- entry.js moduleB", moduleB);
   return {
     init: function () {
       moduleB.init();
-      console.log('entry.js', 'init');
+      console.log("entry.js", "init");
     },
   };
 });
@@ -256,13 +258,13 @@ JS 文件的加载顺序会按照模块的依赖声明顺序进行加载，例�
 另外，RequireJS 也可以实现模块的懒加载，只需要在需要时再 require 模块即可，代码示例如下：
 
 ```js
-define(['jquery'], function ($) {
+define(["jquery"], function ($) {
   return {
     init: function () {
-      var $btn = $('#btn-click');
+      var $btn = $("#btn-click");
       $btn.click(function () {
         // 事件触发时再加载
-        require(['./handleClick'], function (handleClick) {
+        require(["./handleClick"], function (handleClick) {
           handleClick.init($btn);
         });
       });
@@ -311,14 +313,14 @@ define(['jquery'], function ($) {
 
 ```js
 seajs.config({
-  base: './js/',
+  base: "./js/",
   alias: {
-    jquery: 'lib/jquery',
-    utils: 'utils/index',
+    jquery: "lib/jquery",
+    utils: "utils/index",
   },
 });
 
-seajs.use(['jquery', 'entry'], function ($, entry) {
+seajs.use(["jquery", "entry"], function ($, entry) {
   entry.init();
 });
 ```
@@ -329,10 +331,10 @@ seajs.use(['jquery', 'entry'], function ($, entry) {
 define(function (require, exports, module) {
   return {
     a: function () {
-      var utils = require('utils');
+      var utils = require("utils");
 
       utils.formatDate();
-      console.log('moduleA.js');
+      console.log("moduleA.js");
     },
   };
 });
@@ -346,15 +348,15 @@ define(function (require, exports, module) {
 
 ```js
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined'
+  typeof exports === "object" && typeof module !== "undefined"
     ? (module.exports = factory())
-    : typeof define === 'function' && define.amd
+    : typeof define === "function" && define.amd
     ? define(factory)
     : (global.mylib = factory());
 })(this, function () {
-  'use strict';
+  "use strict";
   var mylib = {};
-  mylib.version = '0.0.1';
+  mylib.version = "0.0.1";
   mylib.say = function (message) {
     console.log(message);
   };
@@ -371,14 +373,14 @@ define(function (require, exports, module) {
 引用模块：
 
 ```js
-import moduleA from './moduleA';
-import { foo } from './moduleB';
+import moduleA from "./moduleA";
+import { foo } from "./moduleB";
 
 moduleA();
 foo();
 
-document.getElementById('btn-click').onclick = () => {
-  import('./handleClick').then(({ handleClick }) => {
+document.getElementById("btn-click").onclick = () => {
+  import("./handleClick").then(({ handleClick }) => {
     handleClick();
   });
 };
@@ -389,18 +391,18 @@ document.getElementById('btn-click').onclick = () => {
 ```js
 // moduleA.js 默认导出
 export default function () {
-  console.log('moduleA');
+  console.log("moduleA");
 }
 
 // moduleB.js 具名导出
-export const NAME = 'moduleB';
+export const NAME = "moduleB";
 
 export function foo() {
-  console.log('foo');
+  console.log("foo");
 }
 
 export function bar() {
-  console.log('bar');
+  console.log("bar");
 }
 ```
 
@@ -408,6 +410,13 @@ ES6 模块的设计思想是尽量的静态化，使得编译时就能确定模�
 
 另外，CommonJS 模块输出的是值的拷贝，而 ES6 模块输出的是值的引用，并且 CommonJS 模块是运行时加载，而 ES6 模块是编译时输出接口，基于这个特性，ES6 模块就很容做静态分析，比如在 Webpack 打包构建时通过 tree shaking 去除无用代码减少代码体积。
 
+在 html 文件中的 script 标签可以通过设置 type=module 去设置模块化
+
+- 默认使用严格模式
+- 独立作用域
+- esm 是通过 cors 模式请求 js 文件，所以服务端要支持 cors
+- esm 引入模块是延迟执行的，相当于 defer
+
 ## 总结
 
-现在已经是 React、Vue 的时代了，ES Module 已经成为了标配，模块化、组件化在这个时代得到更好的实践，虽然目前在实际项目中 ES Module 仍然需要通过 Webpack、Babel 等做编译处理，但最新的浏览器和 NodeJS 已经直接支持 ES Module 了，相信在不久的未来，一定又是一个新的时代。
+现在已经是 React、Vue 的时代了，ES Module 已经成为了标配，模块化、组件化在这个时代得到更好的实践，虽然目前在实际项目中 ES Module 仍然需要通过 Webpack、Babel 等做编译处理，但最新的浏览器和 NodeJS 已经直接支持 ES Module 了，相信在不久的未来，一定又是一个新的时代，但长时间内应该不会出现新的模块化标准了。
