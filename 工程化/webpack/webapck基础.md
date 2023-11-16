@@ -1,6 +1,6 @@
-# webpack基础（webpack5）
+# webpack 基础（webpack5）
 
-前端打包工具主要有webpack、rollup和parcel，webpack打包工具适合工程，rollup适合各种库的打包，parcel可以0配置进行打包。
+前端打包工具主要有 webpack、rollup 和 parcel，webpack 打包工具适合工程，rollup 适合各种库的打包，parcel 可以 0 配置进行打包。
 
 ## 安装 weback
 
@@ -14,12 +14,13 @@ npm i webpack webpack-cli -D
 ```
 
 ## 打包
-* webpack 默认打包入口文件时'/src/index.js'
+
+- webpack 默认打包入口文件时'/src/index.js'
 
 新建文件/src/index.js
 
 ```js
-console.log('this is index');
+console.log("this is index");
 ```
 
 运行打包命令
@@ -27,7 +28,8 @@ console.log('this is index');
 ```bash
 npx webpack
 ```
-运行后根目录下新增dist/mian.js则证明成功打包了
+
+运行后根目录下新增 dist/mian.js 则证明成功打包了
 
 ## 配置文件
 
@@ -47,9 +49,10 @@ module.exports = {
   },
 };
 ```
-* __dirname：获得当前执行文件所在目录的完整目录名，同理还有__filename
-* path.resolve([...path])：将相对路径转为绝对路径, 执行顺序从左到右，构建成决定路径后将不再执行
-* clean: true 每次打包删除上次打包文件
+
+- **dirname：获得当前执行文件所在目录的完整目录名，同理还有**filename
+- path.resolve([...path])：将相对路径转为绝对路径, 执行顺序从左到右，构建成决定路径后将不再执行
+- clean: true 每次打包删除上次打包文件
 
 运行命令：
 
@@ -81,7 +84,7 @@ npm start
 
 - 入口: 打包入口文件，可以有多个
 - 输出：输出包的配置，包括输出路径，输出文件名等
-- 模块：处理非js资源
+- 模块：处理非 js 资源
 - 插件：额外的功能，比部压缩，分包等
 - 模式：两个模式，开发模式和生生产模式
 
@@ -92,7 +95,8 @@ const path = require("path");
 
 module.exports = {
   entry: "./src/index.js", //入口
-  output: { // 输出
+  output: {
+    // 输出
     filename: "main.js",
     path: path.resolve(__dirname, "dist"),
   },
@@ -144,11 +148,13 @@ plugins: [new HtmlWebpackPlugin({
 使用 css-loader, style-loader
 
 安装
+
 ```bash
 npm i style-loader css-loader -D
 ```
 
 增加./src/index.css
+
 ```css
 html body {
   width: 100vw;
@@ -157,12 +163,14 @@ html body {
 }
 ```
 
-在./src/index.js中引入
+在./src/index.js 中引入
+
 ```js
-import './index.css'
+import "./index.css";
 ```
 
 配置
+
 ```js
 module: {
     rules: [
@@ -174,10 +182,10 @@ module: {
 },
 ```
 
-* test: 文件匹配规则，可用正则
-* use：对匹配上的文件采用什么loader进行处理，顺序从右到左
-* css-loader：处理css资源
-* style-loader：将css-loader处理好的资源通过js脚本创建style标签插入到html中
+- test: 文件匹配规则，可用正则
+- use：对匹配上的文件采用什么 loader 进行处理，顺序从右到左
+- css-loader：处理 css 资源
+- style-loader：将 css-loader 处理好的资源通过 js 脚本创建 style 标签插入到 html 中
 
 ## 处理 less
 
@@ -185,7 +193,8 @@ module: {
 npm i less-loader -D
 ```
 
-增加./src/index.less文件
+增加./src/index.less 文件
+
 ```less
 html body {
   width: 100vw;
@@ -194,12 +203,14 @@ html body {
 }
 ```
 
-在./src/index.js中引入
+在./src/index.js 中引入
+
 ```js
-import './index.less'
+import "./index.less";
 ```
 
 配置
+
 ```js
 module: {
     rules: [
@@ -215,25 +226,28 @@ module: {
 },
 ```
 
-* less-loader：处理less资源成css资源
-- 处理sass 等同理，引入对饮loader进行配置
+- less-loader：处理 less 资源成 css 资源
+
+* 处理 sass 等同理，引入对饮 loader 进行配置
 
 ## 处理图片资源
 
-css中的url()会通过css-loader处理，<img>标签的资源需要引入html-loader进行处理
+css 中的 url()会通过 css-loader 处理，<img>标签的资源需要引入 html-loader 进行处理
 
 安装
+
 ```bash
 npm i html-loader -D
 ```
 
-增加图片资源和在html中通过img标签引入
+增加图片资源和在 html 中通过 img 标签引入
 
 ```html
-<img src="./1.webp" width="300px" height="200px">
+<img src="./1.webp" width="300px" height="200px" />
 ```
 
 配置
+
 ```js
 module: {
     rules: [
@@ -245,11 +259,12 @@ module: {
 },
 ```
 
-* html-loader：处理html文件的资源，包括img等
+- html-loader：处理 html 文件的资源，包括 img 等
 
 ## 处理其他资源
 
 配置
+
 ```js
 {
   test: /\.(avi|mp3|ttf|woff2?)$/,
@@ -259,5 +274,3 @@ module: {
   },
 },
 ```
-
-
