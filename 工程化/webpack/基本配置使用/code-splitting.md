@@ -47,6 +47,43 @@
 }
 ```
 
+spitChunks 的其他一些字段
+
+```js
+{
+  optimization: {
+    splitChunks: {
+      chunks: 'async', // 代码分割时对异步代码生效，all：所有代码有效，inital：同步代码有效
+      minSize: 30000, // 代码分割最小的模块大小，引入的模块大于 30000B 才做代码分割
+      minChunks: 1, // 引入的次数大于等于1时才进行代码分割
+      maxAsyncRequests: 6, // 最大的异步请求数量,也就是同时加载的模块最大模块数量
+      maxInitialRequests: 4, // 入口文件做代码分割最多分成 4 个 js 文件
+      cacheGroups: {
+        // 缓存组配置，默认有vendors和default
+        vendors: {
+          test: /[\\/]node_modules[\\/]/, // 匹配需拆分chunk的目录
+          priority: -10, // 拆分优先级
+          name: 'venders',
+        },
+        lodashVenodr: {
+          // 将体积较大的lodash单独提取包，指定页面需要的时候再异步加载
+          test: /lodash/,
+          priority: -10,
+          name: 'lodashVenodr',
+          chunks: 'all',
+        },
+        default: {
+          minChunks: 2, // 覆盖外层minChunks,用于提取被引用指定次数的公共模块，这里默认2次
+          priority: -20,
+          name: 'common',
+          reuseExistingChunk: true, // 是否重用已存在的chunk
+        },
+      },
+    },
+  },
+}
+```
+
 ## 动态导入
 
 通过 esm 的动态导入，实现按需加载，更加灵活。
@@ -157,6 +194,20 @@ const OptimizeCssAssetsWebpackPlugin = require('optimize-css-assets-webpack-plug
     ]
   }
 }
+```
+
+也可以不同添加，通过以下语法来扩展
+
+```js
+const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin");
+module.exports = {
+  optimization: {
+    minimizer: [
+      `...`, // 使用 `...` 语法来扩展现有的 minimizer
+      new OptimizeCssAssetsWebpackPlugin(),
+    ],
+  },
+};
 ```
 
 css、js 压缩插件也可以配置到 optimization 的 minimizer 中

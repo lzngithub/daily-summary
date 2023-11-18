@@ -76,3 +76,31 @@ module: {
 ```
 
 以上就是自定义一个简单的 loader。
+
+## loader 匹配优化
+
+对于打包的每一个文件，都会把全部 rules 规则都匹配一次，对符合规则的则用对应的 loader 进行处理，这样会比较慢，采用 oneOf 则会在命中第一个规则之后则不会再进行匹配。
+
+例子：
+
+```js
+module.exports = {
+  modules: {
+    rules: [
+      {
+        // css文件第一个匹配成功后后面则不会再匹配
+        oneOf: [
+          {
+            test: /\.css$/i,
+            use: commonCssLoader,
+          },
+          {
+            test: /\.less$/i,
+            use: [...commonCssLoader, "less-loader"],
+          },
+        ],
+      },
+    ],
+  },
+};
+```

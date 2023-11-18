@@ -12,6 +12,8 @@
 }
 ```
 
+对应的值参考 webapck 官网：https://webpack.docschina.org/configuration/devtool/
+
 ## 模式
 
 - eval：使用 eval 去执行代码，构建速度快，不生成 source map 文件，只能定位错误文件名，但不能定位具体信息。

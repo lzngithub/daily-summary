@@ -107,3 +107,24 @@ module.hot.accept("./index.js", () => {
   // 这里手动写热更新的逻辑。
 });
 ```
+
+## 其他配置
+
+```js
+{
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
+    },
+    compress: true,
+    port: 9000,
+    open: true,
+},
+}
+```
