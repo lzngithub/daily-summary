@@ -1,5 +1,7 @@
-let name = "liang";
-function fn() {}
+// exports = {
+//   a: 1,
+//   b: 2,
+// };
+console.log(exports === module.exports);
 
-export { name, fn as default };
-// 或者可以通过下面这种方法简写
+exports.a = 1;

@@ -1,3 +1,2 @@
-import module, { name, default as fn } from "./module.js";
-
-console.log(module);
+const obj = require("./module.js");
+console.log(obj);
