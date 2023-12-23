@@ -10,7 +10,7 @@ JavaScript 在浏览器中被解析和执行时具有阻塞的特性，也就是
 
 ## 关于脚本的执行顺序
 
-浏览器是按照从上到下的顺序解析页面，因此正常情况下，JavaScript 脚本的执行顺序也是从上到下的，即页面上先出现的代码或先被引入的代码总是被先执行，即使是允许并行下载 JavaScript 文件时也是如此。dna
+浏览器是按照从上到下的顺序解析页面，因此正常情况下，JavaScript 脚本的执行顺序也是从上到下的，即页面上先出现的代码或先被引入的代码总是被先执行，即使是允许并行下载 JavaScript 文件时也是如此。
 
 - 正常引入：即在页面中通过 script 标签引入脚本代码或者引入外部脚本
 - 通过 document.write 方法向页面写入 script 标签或代码
@@ -34,7 +34,7 @@ JavaScript 在浏览器中被解析和执行时具有阻塞的特性，也就是
 1.同步加载：同步加载文件通常使用 script 标签，并且没有设置 async 和 defer 属性。这种方式会阻塞页面加载，直到文件被完全加载和执行完成。
 
 ```js
-<script src='file.js'></script>
+<script src="file.js"></script>
 ```
 
 2.异步加载：异步加载文件通常使用 script 标签，并且设置了 async 或 defer 属性。这种方式不会阻塞页面加载，而是在文件下载完成后，立即执行文件中的代码。
@@ -44,7 +44,9 @@ JavaScript 在浏览器中被解析和执行时具有阻塞的特性，也就是
 <script src="file.js" defer></script>
 ```
 
-async 和 defer 属性的不同在于，当页面中多个异步加载的脚本都下载完成后，它们的执行顺序是不确定的，而 defer 属性保证了脚本的执行顺序和它们在页面中的顺序一致。
+- async 和 defer 的下载都不会阻塞 html 的解析;
+- async 的执行会阻塞 html 的解析，同时多个 async 的脚本的执行时无序的，先下载完成先执行;
+- defer 的执行不会阻塞 html 的解析，他的执行是有序的且是再 html 解析完成后的;
 
 ## 通过 document.write 方法向页面写入 script 标签或代码
 
@@ -62,12 +64,12 @@ alert("我是内部脚本");
 
 ```js
 function loadScript(url, callback) {
-  var script = document.createElement('script');
-  script.type = 'text/javascript';
+  var script = document.createElement("script");
+  script.type = "text/javascript";
   //绑定加载完毕的事件
   if (script.readyState) {
     script.onreadystatechange = function () {
-      if (script.readyState === 'loaded' || script.readyState === 'complete') {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
         callback && callback();
       }
     };
@@ -77,7 +79,7 @@ function loadScript(url, callback) {
     };
   }
   script.src = url;
-  document.getElementsByTagName('head')[0].appendChild(script);
+  document.getElementsByTagName("head")[0].appendChild(script);
 }
 ```
 
@@ -93,9 +95,9 @@ var xhr = (function () {
       xhr = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
       var xhrVersions = [
-          'MSXML2.XMLHttp',
-          'MSXML2.XMLHttp.3.0',
-          'MSXML2.XMLHttp.6.0',
+          "MSXML2.XMLHttp",
+          "MSXML2.XMLHttp.3.0",
+          "MSXML2.XMLHttp.6.0",
         ],
         i,
         len;
@@ -105,7 +107,7 @@ var xhr = (function () {
         } catch (e) {}
       }
     } else {
-      throw new Error('无法创建xhr对象');
+      throw new Error("无法创建xhr对象");
     }
     return xhr;
   }
@@ -116,11 +118,11 @@ var xhr = (function () {
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
           callback && callback(xhr.responseText);
         } else {
-          alert('请求失败，错误码为' + xhr.status);
+          alert("请求失败，错误码为" + xhr.status);
         }
       }
     };
-    xhr.open('get', url, async);
+    xhr.open("get", url, async);
     xhr.send(null);
   }
   return {
