@@ -1,24 +1,75 @@
-const depthFirstSearch = (graph, callback) => {
-  const vertices = graph.getVertices();
-  const adjList = graph.getAdjList();
-  const color = initializeColor(vertices);
+// function levelOrder(root, queue = [], result = []) {
+//   if (root) queue.push(root);
+//   if (queue.length === 0) return [];
+//   let len = queue.length;
+//   result.push([]);
+//   for (let i = 0; i < len; i++) {
+//     let currentNode = queue.shift();
+//     result[result.length - 1].push(currentNode.value);
+//     if (currentNode.left) queue.push(currentNode.left);
+//     if (currentNode.right) queue.push(currentNode.right);
+//   }
+//   levelOrder(null, queue, result);
+//   return result;
+// }
 
-  for (let i = 0; i < vertices.length; i++) {
-    if (color[vertices[i]] === Colors.WHITE) {
-      depthFirstSearchVisit(vertices[i], color, adjList, callback);
+var levelOrder = (root) => {
+  const result = [];
+  const queue = [];
+  function handleTree() {
+    let len = queue.length; // 提前记录下队列的长度数据，每次递归是递归一层的节点
+    for (let i = 0; i < len; i++) {
+      let currentNode = queue.shift();
+      result.push(currentNode.value);
+      if (currentNode.left) queue.push(currentNode.left);
+      if (currentNode.right) queue.push(currentNode.right);
+    }
+    if (queue.length) {
+      handleTree();
     }
   }
+  queue.push(root);
+  handleTree();
+  return result;
 };
 
-const depthFirstSearchVisit = (u, color, adjList, callback) => {
-  color[u] = Colors.GREY;
-  if (callback) callback(u);
-  const neighbors = adjList.get(u);
-  for (let i = 0; i < neighbors.length; i++) {
-    const w = neighbors[i];
-    if (color[w] === Colors.WHITE) {
-      depthFirstSearchVisit(w, color, adjList, callback);
-    }
-  }
-  color[u] = Colors.BLACK;
+// 中序遍历
+
+const tree = {
+  value: "A",
+  left: {
+    value: "B",
+    left: null,
+    right: {
+      value: "D",
+      left: {
+        value: "F",
+        left: null,
+        right: null,
+      },
+      right: null,
+    },
+  },
+  right: {
+    value: "C",
+    left: null,
+    right: {
+      value: "E",
+      left: {
+        value: "G",
+        left: {
+          value: "H",
+          left: null,
+          right: null,
+        },
+        right: {
+          value: "I",
+          left: null,
+          right: null,
+        },
+      },
+    },
+  },
 };
+
+console.log(levelOrder(tree));
