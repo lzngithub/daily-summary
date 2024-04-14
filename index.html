@@ -1,29 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8" />
   </head>
-
   <body>
-    <ul id="myList">
-      <li id="item1">项目 1</li>
-      <li id="item3">项目 3</li>
-      <li id="item2">项目 2</li>
-      <li id="item4">项目 4</li>
-    </ul>
-
+    <div class="triangle"></div>
     <script>
-      function sortAndReturnTextContent() {
-        const items = document.getElementById("myList").children;
-        // 在此补全代码
-        [...items]
-          .sort((a, b) => parseInt(a.id[4]) - parseInt(b.id[4]))
-          .forEach((item) =>
-            document.getElementById("myList").appendChild(item)
-          );
+      var triangle = document.querySelector(".triangle");
+      // 补全代码
+      let htmlText = "";
+      for (var i = 1; i <= 3; i++) {
+        var text = "*";
+        while (text.length < i) text += "*"; // 写星
+        htmlText += text + "<br/>"; // 换行
       }
-      sortAndReturnTextContent();
+      triangle.innerHTML = document.createElement("div");
     </script>
   </body>
 </html>

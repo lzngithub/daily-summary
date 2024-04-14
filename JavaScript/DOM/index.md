@@ -68,7 +68,7 @@ css 选择器，返回结果是静态的，源自 Selectors API 规范
 
 ### 插入节点：
 
-- write(html): 将任意字符串插入到文档中（老）
+- document.write(html): 将任意字符串插入到文档中（老）
 - parentNode.appendChild(node): 在最后插入子节点（老）
 - parentNode.insertBefore(node, nextSibling): 在之前节点插入（老）
 - parentNode.prepend(...nodes or strings): 在第一个子节点之前插入。
@@ -82,6 +82,12 @@ css 选择器，返回结果是静态的，源自 Selectors API 规范
   - "afterbegin" —— 将 html 插入到 elem 开头，
   - "beforeend" —— 将 html 插入到 elem 末尾，
   - "afterend" —— 将 html 插入到 elem 之后。
+
+详细解释 document.write(string)的用法：
+
+1. 该方法在文档已经关闭后调用的话，会默认调用 document.open()方法，该方法会晴空现有文档的一切内容。
+2. 该方法写在 script 标签中（此时文档还没有关闭），则表现为写入的内容会追加在对应的 script 标签后面。
+3. 参数不接受节点，只接受字符串。
 
 ### 删除节点：
 
@@ -181,13 +187,13 @@ HTML 特性有以下几个特征：
 
 ```html
 <style>
-  .order[data-order-state='new'] {
+  .order[data-order-state="new"] {
     color: green;
   }
-  .order[data-order-state='pending'] {
+  .order[data-order-state="pending"] {
     color: blue;
   }
-  .order[data-order-state='canceled'] {
+  .order[data-order-state="canceled"] {
     color: red;
   }
 </style>
@@ -198,7 +204,7 @@ HTML 特性有以下几个特征：
   // 读取
   alert(order.dataset.orderState); // new
   // 修改
-  order.dataset.orderState = 'pending'; // (*)
+  order.dataset.orderState = "pending"; // (*)
 </script>
 ```
 
