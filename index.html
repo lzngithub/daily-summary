@@ -6,15 +6,28 @@
   <body>
     <div class="triangle"></div>
     <script>
-      var triangle = document.querySelector(".triangle");
-      // 补全代码
-      let htmlText = "";
-      for (var i = 1; i <= 3; i++) {
-        var text = "*";
-        while (text.length < i) text += "*"; // 写星
-        htmlText += text + "<br/>"; // 换行
+      let arr = [2, 4, 6, 1, 5, 9];
+
+      function shellSort(nums) {
+        let gap = Math.floor(nums.length / 2);
+        debugger;
+        while (gap > 0) {
+          for (let i = gap; i < nums.length; i++) {
+            for (let j = i; j > 0; j = j - gap) {
+              if (nums[j] < nums[j - gap]) {
+                [nums[j], nums[j - gap]] = [nums[j - gap], nums[j]];
+              } else {
+                break;
+              }
+            }
+          }
+          console.log(nums);
+          gap = Math.floor(gap / 2);
+        }
+        return nums;
       }
-      triangle.innerHTML = document.createElement("div");
+
+      console.log(shellSort(arr));
     </script>
   </body>
 </html>
