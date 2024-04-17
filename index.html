@@ -1,33 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
   </head>
   <body>
-    <div class="triangle"></div>
-    <script>
-      let arr = [2, 4, 6, 1, 5, 9];
-
-      function shellSort(nums) {
-        let gap = Math.floor(nums.length / 2);
-        debugger;
-        while (gap > 0) {
-          for (let i = gap; i < nums.length; i++) {
-            for (let j = i; j > 0; j = j - gap) {
-              if (nums[j] < nums[j - gap]) {
-                [nums[j], nums[j - gap]] = [nums[j - gap], nums[j]];
-              } else {
-                break;
-              }
-            }
-          }
-          console.log(nums);
-          gap = Math.floor(gap / 2);
-        }
-        return nums;
-      }
-
-      console.log(shellSort(arr));
+    <script type="text/javascript">
+      const _createArray = (number) => {
+        // 补全代码
+        return Array.from(new Array(number), () => number);
+      };
+      console.log(_createArray(3));
     </script>
   </body>
 </html>
