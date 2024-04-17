@@ -7,7 +7,10 @@
     <script type="text/javascript">
       const _createArray = (number) => {
         // 补全代码
-        return Array.from(new Array(number), () => number);
+        return String(number)
+          .repeat(number)
+          .split("")
+          .map((item) => Number(item));
       };
       console.log(_createArray(3));
     </script>
