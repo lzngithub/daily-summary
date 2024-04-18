@@ -5,14 +5,17 @@
   </head>
   <body>
     <script type="text/javascript">
-      const _createArray = (number) => {
+      const _shouldUpdate = (oldVersion, newVersion) => {
         // 补全代码
-        return String(number)
-          .repeat(number)
-          .split("")
-          .map((item) => Number(item));
+        let a = Number(oldVersion.split(".").join());
+        let b = Number(oldVersion.split(".").join());
+        console.log(oldVersion.split(".").join(""));
+        return (
+          Number(oldVersion.split(".").join()) <
+          Number(newVersion.split(".").join())
+        );
       };
-      console.log(_createArray(3));
+      console.log(_shouldUpdate("9.0.1", "9.1.0"));
     </script>
   </body>
 </html>
