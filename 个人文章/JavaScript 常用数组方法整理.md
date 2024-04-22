@@ -156,18 +156,24 @@ console.log(b); // true
 let a = [1, 2, 3];
 let b = a.indexOf(1, 1);
 let c = a.indexOf(1, -3);
+let d = a.indexOf(1, -10);
+let e = a.indexOf(1, 10);
 console.log(b); // -1
 console.log(c); // 0
+console.log(d); // 0
+console.log(e); // -1
 ```
 
-18.lastIndexOf,方法返回在数组中可以找到一个给定元素的第一个索引，如果不存在，则返回-1。
+18.lastIndexOf,方法返回在数组中可以找到一个给定元素的最后一个索引，如果不存在，则返回-1，从给定 index 向前搜索。
 
 ```js
-let a = [1, 2, 3, 1];
-let b = a.lastIndexOf(1, 0);
-let c = a.lastIndexOf(1, -1);
-console.log(b); // 0
-console.log(c); // 3
+const numbers = [2, 5, 9, 2];
+numbers.lastIndexOf(2); // 3
+numbers.lastIndexOf(7); // -1
+numbers.lastIndexOf(2, 3); // 3
+numbers.lastIndexOf(2, 2); // 0
+numbers.lastIndexOf(2, -2); // 0
+numbers.lastIndexOf(2, -1); // 3
 ```
 
 19.join,方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。如果数组只有一个项目，那么将返回该项目而不使用分隔符。默认用逗号连接
@@ -199,5 +205,12 @@ let b = a.reduce((pre, current) => {
 }, []); // 数组去重
 console.log(b);
 ```
+
+## 总结
+
+- 循环：forEach map filter some every find findIndex redux
+- 增加删除：push pop unshift shift
+- concat reverse indexOf lastIndexOf join includes
+- slice splice
 
 > 会改变原数组的方法：push, pop, unshift, shift, splice, reverse, sort(排序)
