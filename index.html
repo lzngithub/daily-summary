@@ -1,50 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
   </head>
   <body>
-    <button class="up">销量升序</button>
-    <button class="down">销量降序</button>
-    <ul></ul>
-
-    <script>
-      var cups = [
-        {
-          type: 1,
-          price: 100,
-          color: "black",
-          sales: 3000,
-          name: "牛客logo马克杯",
-        },
-        { type: 2, price: 40, color: "blue", sales: 1000, name: "无盖星空杯" },
-        { type: 4, price: 60, color: "green", sales: 200, name: "老式茶杯" },
-        { type: 3, price: 50, color: "green", sales: 600, name: "欧式印花杯" },
-      ];
-      var ul = document.querySelector("ul");
-      var upbtn = document.querySelector(".up");
-      var downbtn = document.querySelector(".down");
-      // 补全代码
-      let lis = cups.map((item) => {
-        let li = document.createElement("li");
-        li.innerText = item.name;
-        li.setAttribute("id", item.sales);
-        console.log(li);
-        ul.append(li);
-        return li;
-      });
-      console.log(lis);
-      upbtn.onclick = () => {
-        lis
-          .sort((a, b) => Number(a.id) - Number(b.id))
-          .map((item) => ul.append(item));
-        console.log(lis);
-      };
-      downbtn.onclick = () => {
-        lis
-          .sort((a, b) => Number(b.id) - Number(a.id))
-          .map((item) => ul.append(item));
-        console.log(lis);
+    <script type="text/javascript">
+      const _delete = (array, index) => {
+        // 补全代码
+        return array.slice(0, index).concat(array.slice(index + 1));
       };
     </script>
   </body>
