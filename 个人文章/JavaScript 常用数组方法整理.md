@@ -208,7 +208,7 @@ console.log(b);
 
 ## 总结
 
-- 循环：forEach map filter some every find findIndex redux
+- 循环：forEach map some every find findIndex filter redux
 - 增加删除：push pop unshift shift
 - concat reverse indexOf lastIndexOf join includes
 - slice splice
