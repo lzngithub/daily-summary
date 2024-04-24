@@ -1,30 +1,21 @@
-/**
- * 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
- *
- *
- * @param string1 string字符串
- * @param string2 string字符串
- * @return bool布尔型
- */
-function isGoodFriends(string1, string2) {
-  if (string1 === string2 || string1.length !== string2.length) return false;
-  function strChangeObj(str) {
-    let obj = {};
-    str
-      .split("")
-      .forEach((item) => (obj[item] = obj[item] ? obj[item] + 1 : 1));
-    return obj;
-  }
-  let obj1 = strChangeObj(string1);
-  let obj2 = strChangeObj(string2);
-  for (let item in obj2) {
-    if (!obj1[item]) return fasle;
-  }
-  return true;
-}
+let date = new Date(); // 获取当前日期
+// let date = new Date('2022-08-01'); // 生成 2022-08-01 00:00:00:00 这个时间点的时间对象
 
-let string1 = "abc";
+// 获取年份 月份 日份 星期几
+let year = date.getFullYear();
+let month = date.getMonth();
+let day = date.getDate();
+let week = date.getDay();
 
-let string2 = "bac";
+// 获取时 分 秒 毫秒
+let hour = date.getHours();
+let minute = date.getMinutes();
+let second = date.getSeconds();
+let millisecond = date.getMilliseconds();
 
-console.log(isGoodFriends(string1, string2));
+// 获取时间戳
+let time = date.getTime();
+let time1 = Date.now();
+let time2 = Date.parse(date);
+
+console.log(time2, time, time1);
