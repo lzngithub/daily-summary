@@ -194,23 +194,29 @@ console.log(a); // 'ABC abc abc 123'
 console.log(b); // 4
 ```
 
-记忆分类：
+## 记忆方法
 
-对于单个字符串可做的事情
+从简单到难
 
-- 根据下标查的一个或多个字符是什么，用 at chatAt slice substring
-- substring 和 slice 都是获取子字符串，区别在于 slice 可以接受负数参数从右边算起。
-- 根据某个特定字符去分割整个字符串，用 split
-- 替换掉某些特定的字符串，用 replace replaceAll
-- 去空格，用 trim trimEnd trimStart
-- 用某个字符填充得到固定长度的字符串， 用 padEnd padStart，重复字符串本身达到某个长度，用 repeat
-- 大小写转换，用 toLowerCase toUpperCase
+- 去空格：trim trimStart trimEnd
+- 大小写转换：toLowerCase toUpperCase
 
-对于两个或多个字符串：
+- 字符串拼接：连接符(+) concat
+- 自身重复：repeat
+- 用特定字符来扩展字符串：padStart padEnd
+- 替换：replace replaceAll
 
-- 短的字符串在不在长的字符串里面，用：startsWith endsWith inclueds
-- 短的字符串在不在长的字符串里面什么位置，用: indexOf lastIndexOf search
-- 短的字符串在长的字符串的匹配程度，用: match
-- 连接两个或者多个值，用 concat
+- 字符串转换为数组：split
+
+- 根据下标返回一个或者多个字符：at chatAt slice substring(at 和 slice 接受从右边计算)
+
+- 子字符串是否在父字符串里面：includes startWith endsWith
+- 子字符串在字符串里面的位置：indexOf lastIndexOf search
+
+- 某个模式下在字符串中的匹配结果的数组：match matchAll
+
+- 返回对象字面量的原始值：valueOf toString
+
+- 和数组同名的方法：concat slice indexOf lastIndexOf includes
 
 参考：[mdn](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/String)
