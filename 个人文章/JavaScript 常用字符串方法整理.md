@@ -105,7 +105,7 @@ console.log(c); // '3'
 - 如果省略 indexEnd，substring 提取字符一直到字符串末尾。
 - 如果任一参数小于 0 或为 NaN，则被当作 0。
 - 如果任一参数大于 stringName.length，则被当作 stringName.length。
-- 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。见下面的例子。
+- 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。
 
 ```js
 let a = "ABC abc abc 123";
@@ -199,11 +199,11 @@ console.log(b); // 4
 对于单个字符串可做的事情
 
 - 根据下标查的一个或多个字符是什么，用 at chatAt slice substring
+- substring 和 slice 都是获取子字符串，区别在于 slice 可以接受负数参数从右边算起。
 - 根据某个特定字符去分割整个字符串，用 split
 - 替换掉某些特定的字符串，用 replace replaceAll
-- 重复特定次数的字符串，用 repeat
 - 去空格，用 trim trimEnd trimStart
-- 用某个字符填充得到固定长度的字符串， 用 padEnd padStart
+- 用某个字符填充得到固定长度的字符串， 用 padEnd padStart，重复字符串本身达到某个长度，用 repeat
 - 大小写转换，用 toLowerCase toUpperCase
 
 对于两个或多个字符串：

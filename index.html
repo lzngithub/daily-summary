@@ -1,24 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
   </head>
   <body>
-    <h2></h2>
-
-    <script>
-      var person = {
-        level: "2",
-        name: "小丽",
-        registTime: "2021-11-01",
+    <ul id="ul"></ul>
+    <script type="text/javascript">
+      const _createPage = (allItem, pageItem) => {
+        // 补全代码
+        let ul = document.getElementById("ul");
+        for (let i = 1; i <= Math.ceil(allItem / pageItem); i++) {
+          li = document.createElement("li");
+          console.log(li);
+          li.innerText = i;
+          ul.append(li);
+        }
       };
-      var h2 = document.querySelector("h2");
-      // 补全代码
-      let start = new Date(person.registTime);
-      let end = new Date();
-      let timeDifference = end.getTime() - start.getTime();
-      var days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
-      h2.innerText = `尊贵的牛客网${person.level}级用户${person.name}您好，您已经注册牛客网${days}天啦~`;
+      _createPage(13, 2);
     </script>
   </body>
 </html>
