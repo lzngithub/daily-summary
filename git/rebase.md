@@ -73,7 +73,7 @@ pick 3389add feat: 测试rebase
 # Rebase d4f5c27..3389add onto d4f5c27 (2 commands)
 ```
 
-默认情况下为 p(pick)，保留 commit。把需要合并的改为 s(squash)
+默认情况下为 p(pick)，使用该 commit。把需要合并的改为 s(squash)，会保留合并信息，也可以改为 f，不保留 commit 信息，s 和 f 都是该 commit 挤压向前一个提交
 
 ```shell
 pick ff83e00 feat: store用法
@@ -86,6 +86,12 @@ s 3389add feat: 测试rebase
 
 ```text
 A --> B --> C --> F
+```
+
+中途退出 rebase
+
+```shell
+git rebase --abort
 ```
 
 ## 总结
