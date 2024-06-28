@@ -101,3 +101,20 @@ git config core.ignorecase true
 问题描述：
 
 git 之前配置忽略文件夹名字大小写，中途改了文件名大小写，git 检测不到改动，因此加上了配置，可以识别了，文件显示改动为 R-rename
+
+## 终端不识别命令
+
+在vs code 中的powershell终端中运行下面命令报错：
+
+```text
+PS C:\Users\liang.zengneng\Desktop\vue2重学版> git stash show stash@{0}
+Too many revisions specified: 'stash@' 'MAA=' 'xml' 'text'
+```
+
+解决办法：应该是终端命令识别命令不支持git的这个指令，可改为下面的写法
+
+```shell
+git stash show 'stash@{0}'
+```
+
+或者改为bash终端运行命令
