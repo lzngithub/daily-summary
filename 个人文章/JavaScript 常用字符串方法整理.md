@@ -36,13 +36,15 @@ console.log(a); // 'abc'
 console.log(b); // 'abc1undefinednullNaN[object Object]'
 ```
 
-5.replace(),replace() 方法返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数。如果 pattern 是字符串，则仅替换第一个匹配项。replaceAll()方法也一样
+5.replace(),replace() 方法返回一个由替换值（replacement）替换部分或所有的模式（pattern）匹配项后的新字符串。模式可以是一个字符串或者一个正则表达式，替换值可以是一个字符串或者一个每次匹配都要调用的回调函数，用回调函数会更灵活一点，可以拿到参数进行逻辑计算再确定替换的值。如果 pattern 是字符串，则仅替换第一个匹配项。replaceAll()方法也一样；不会改变原字符串。
 
 ```js
 let a = "abc abc abc";
 let b = a.replace("abc", "ab");
+let c = a.replace(/abc/g, 'ab');
 console.log(a); // 'abc abc abc'
 console.log(b); // 'ab abc abc'
+console.log(c); // 'ab ab ab'
 ```
 
 6.split(),分裂，方法使用指定的分隔符字符串将一个 String 对象分割成子字符串数组，以一个指定的分割字串来决定每个拆分的位置。
@@ -76,11 +78,13 @@ function chatAt(index) {}
 
 let a = "ABC abc abc 123";
 let b = a.charAt(1);
+let c = a.charAt(-1);
 console.log(a); // 'ABC abc abc 123'
 console.log(b); // 'B'
+console.log(c); // ''
 ```
 
-8.at()：从一个字符串中返回指定的单个字符，参数为字符串下标，可以为负数。
+8.at()：从一个字符串中返回指定的单个字符，参数为字符串下标，可以为负数, 负数从右边数起，-1对应倒数第一个。
 
 ```js
 /**
@@ -97,29 +101,36 @@ console.log(b); // 'B'
 console.log(c); // '3'
 ```
 
-9.substring(),方法返回一个字符串在开始索引到结束索引之间的一个子集, 或从开始索引直到字符串的末尾的一个子集
+9.substring(),方法返回一个字符串在开始索引到结束索引之间的一个子字符串。
 
 参数有以下特点：
 
 - 如果 indexStart 等于 indexEnd，substring 返回一个空字符串。
+- 如果 indexStart 大于 indexEnd，则相当于参数位置互换。
 - 如果省略 indexEnd，substring 提取字符一直到字符串末尾。
 - 如果任一参数小于 0 或为 NaN，则被当作 0。
-- 如果任一参数大于 stringName.length，则被当作 stringName.length。
-- 如果 indexStart 大于 indexEnd，则 substring 的执行效果就像两个参数调换了一样。
+- 如果任一参数大于 length，则被当作 length。
 
 ```js
+/**
+ * @param {number} [indexStart=0] 开始位置
+ * @param {number} [indexEnd=length] 结束位置
+ * @return {string}
+ */
+function substring(indexStart, endIndex) {}
+
 let a = "ABC abc abc 123";
 let b = a.substring(4, 7);
 console.log(a); // 'ABC abc abc 123'
 console.log(b); // 'abc'
 ```
 
-10.slice()：提取某个字符串的一部分，并返回一个新的字符串，且不会改动原字符串。
+10.slice()：方法返回一个字符串在开始索引到结束索引之间的一个子字符串，和substring方法的区别是会接受负数参数且不会存在开始位置小于结束位置参数互换的效果，因为参数可以接受负数了，不好判断两个参数的大小。
 
 ```js
 /**
  * @param {number} [startIndx = 0] 开始索引，可为负数，负数从右边数起
- * @param {number} [endIndex = length + 1] 结束索引，可为负数，负数从右边数起
+ * @param {number} [endIndex = length] 结束索引，可为负数，负数从右边数起
  * @return {tring} 返回从开始索引到结束索引的值，不符合条件则返回空字符串
  */
 function slice(startIndx, endIndex) {}
@@ -132,17 +143,24 @@ console.log(b); // 'ABC abc abc 123'
 console.log(c); // 'BC abc abc 12'
 ```
 
-11.statsWith()：判断当前字符串是否以另外一个给定的子字符串开头，并根据判断结果返回 true 或 false。endsWith()方法也一样
+11.startsWith()：判断当前字符串在某位置开始是否是以另外一个子字符串开始，并根据判断结果返回 true 或 false。endsWith()方法也一样
 
 ```js
+/**
+ * @param {number} [searchvalue] 匹配的字符串，必需
+ * @param {number} [index = 0] 开始位置，小于0则会视为0
+ * @return {boolean} 
+ */
+function startsWith(searchvalue, index) {}
+
 let a = "ABC abc abc 123";
-let b = a.statsWith("ABC");
-let c = a.statsWith("abc", 5);
+let b = a.startsWith("ABC");
+let c = a.startsWith("abc", 4);
 console.log(b); // true
 console.log(c); // true
 ```
 
-12.repeat()：方法用另一个字符串填充当前字符串（如果需要的话，会重复多次），以便产生的字符串达到给定的长度。从当前字符串的左侧开始填充。padEnd()方法也一样
+12.repeat()：字符串重复n次拼接成新的字符串。
 
 ```js
 let a = "9";
@@ -158,16 +176,18 @@ let b = a.padStart(3, "0");
 console.log(b); // 009
 ```
 
-14.includes(),方法用于判断一个字符串是否包含在另一个字符串中，根据情况返回 true 或 false。
+14.includes(),判断一个字符串是否有某字符串，可以根据不同位置开始查，默认从0开始查，有返回 true，否则返回 false。
 
 ```js
 let a = "ABC abc abc 123";
-let b = a.includes("abc", 1);
+let b = a.includes("A");
+let c = a.includes("A", 1)
 console.log(a); // 'ABC abc abc 123'
 console.log(b); // true
+console.log(b); // false
 ```
 
-15.indexOf(),方法返回调用它的 String 对象中第一次出现的指定值的索引，从 fromIndex 处进行搜索。如果未找到该值，则返回 -1。lastIndexOf() 方法一样
+15.indexOf(),返回调用它的 String 对象中第一次出现的指定值的索引，从 fromIndex 处进行搜索。如果未找到该值，则返回 -1。lastIndexOf() 方法一样
 
 ```js
 let a = "ABC abc abc 123";
@@ -208,7 +228,7 @@ console.log(b); // 4
 
 - 字符串转换为数组：split
 
-- 根据下标返回一个或者多个字符：at chatAt slice substring(at 和 slice 接受从右边计算)
+- 根据下标返回一个或者多个字符：at chatAt slice substring(at 和 slice 接受负数位置且从右边计算)
 
 - 子字符串是否在父字符串里面：includes startWith endsWith
 - 子字符串在字符串里面的位置：indexOf lastIndexOf search
