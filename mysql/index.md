@@ -127,7 +127,7 @@ DESC user; -- 查看user表的结构
 -- 创建user表，并插入两列，第一列：名称为id，数据类型为int，作为主键，非空，自动递增；第二列：名称为name，类型为VARCHAR(20)，默认值为 ''
 CREATE TABLE IF NOT EXISTS user (
   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  name VARCHAR(20) DEFAULT '',
+  name VARCHAR(20) DEFAULT ''
 );
 DROP TABLE user; -- 删除表user
 DROP TABLE IF EXISTS user; -- 删除表user
