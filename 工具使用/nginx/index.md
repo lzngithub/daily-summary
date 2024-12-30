@@ -11,7 +11,7 @@
 
 ## 安装
 
-mac系统用brew安装
+### mac系统用brew安装
 
 Brew全称叫Homebrew,是Mac系统上的软件包管理工具，安装可以到官网复制安装命令
 
@@ -79,6 +79,8 @@ http {
 ```
 
 3. 重载配置文件，通过nginx -s reload命令
+
+
 
 
 
